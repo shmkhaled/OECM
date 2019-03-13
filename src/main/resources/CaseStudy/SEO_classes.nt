@@ -1,0 +1,97 @@
+<http://purl.org/dc/dcmitype/Collection> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/dc/terms/Agent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/dc/terms/AgentClass> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/dc/terms/AgentClass> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://purl.org/dc/terms/BibliographicResource> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/dc/terms/FileFormat> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/dc/terms/FileFormat> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.org/dc/terms/MediaType> .
+<http://purl.org/dc/terms/Frequency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/dc/terms/Jurisdiction> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/dc/terms/Jurisdiction> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.org/dc/terms/LocationPeriodOrJurisdiction> .
+<http://purl.org/dc/terms/LicenseDocument> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/dc/terms/LicenseDocument> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.org/dc/terms/RightsStatement> .
+<http://purl.org/dc/terms/LinguisticSystem> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/dc/terms/Location> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/dc/terms/Location> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.org/dc/terms/LocationPeriodOrJurisdiction> .
+<http://purl.org/dc/terms/LocationPeriodOrJurisdiction> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/dc/terms/MediaType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/dc/terms/MediaType> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.org/dc/terms/MediaTypeOrExtent> .
+<http://purl.org/dc/terms/MediaTypeOrExtent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/dc/terms/MethodOfAccrual> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/dc/terms/MethodOfInstruction> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/dc/terms/PeriodOfTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/dc/terms/PeriodOfTime> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.org/dc/terms/LocationPeriodOrJurisdiction> .
+<http://purl.org/dc/terms/PhysicalMedium> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/dc/terms/PhysicalMedium> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.org/dc/terms/MediaType> .
+<http://purl.org/dc/terms/PhysicalResource> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/dc/terms/Policy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/dc/terms/ProvenanceStatement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/dc/terms/RightsStatement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/dc/terms/SizeOrDuration> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/dc/terms/SizeOrDuration> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.org/dc/terms/MediaTypeOrExtent> .
+<http://purl.org/dc/terms/Standard> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/seo/ChallengeTrack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/seo/ChallengeTrack> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.org/seo/Track> .
+<http://purl.org/seo/Country> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/seo/Country> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/scholarlydata/ontology/conference-ontology.owl#Site> .
+<http://purl.org/seo/Country> <http://www.w3.org/2000/01/rdf-schema#comment> "Country"@en .
+<http://purl.org/seo/Country> <http://www.w3.org/2000/01/rdf-schema#comment> "The country hosts the event."@en .
+<http://purl.org/seo/DemosTrack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/seo/DemosTrack> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.org/seo/Track> .
+<http://purl.org/seo/DemosTrack> <http://www.w3.org/2000/01/rdf-schema#comment> "Offer an opportunity for presenting late-breaking research results, on-going research projects, and speculative or innovative work in progress."@en .
+<http://purl.org/seo/DoctoralConsortium> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/seo/DoctoralConsortium> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.org/seo/Track> .
+<http://purl.org/seo/DoctoralConsortium> <http://www.w3.org/2000/01/rdf-schema#comment> "Provide PhD students an opportunity to share and develop their research ideas in a critical but supportive environment."@en .
+<http://purl.org/seo/In-useTrack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/seo/In-useTrack> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.org/seo/Track> .
+<http://purl.org/seo/In-useTrack> <http://www.w3.org/2000/01/rdf-schema#comment> "In-Use track provides researchers to discuss novel research taken to the market."@en .
+<http://purl.org/seo/IndustrialConferences> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/seo/IndustrialConferences> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/scholarlydata/ontology/conference-ontology.owl#NonAcademicEvent> .
+<http://purl.org/seo/IndustryTrack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/seo/IndustryTrack> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.org/seo/Track> .
+<http://purl.org/seo/IndustryTrack> <http://www.w3.org/2000/01/rdf-schema#comment> "The industry track seeks to present research contributions in industrial settings."@en .
+<http://purl.org/seo/Keynote> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/seo/Keynote> <http://www.w3.org/2000/01/rdf-schema#comment> "A talk that establishes a main underlying the theme of the event." .
+<http://purl.org/seo/Keynote> <http://www.w3.org/2000/01/rdf-schema#label> "Keynote speech" .
+<http://purl.org/seo/KeynoteSpeaker> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/seo/KeynoteSpeaker> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/scholarlydata/ontology/conference-ontology.owl#Person> .
+<http://purl.org/seo/PanelsTrack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/seo/PanelsTrack> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.org/seo/Track> .
+<http://purl.org/seo/PanelsTrack> <http://www.w3.org/2000/01/rdf-schema#comment> "Present research contributions as panels."@en .
+<http://purl.org/seo/PostersTrack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/seo/PostersTrack> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.org/seo/Track> .
+<http://purl.org/seo/PostersTrack> <http://www.w3.org/2000/01/rdf-schema#comment> "Present research contributions as posters."@en .
+<http://purl.org/seo/Publisher> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/seo/Publisher> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xmlns.com/foaf/0.1/Agent> .
+<http://purl.org/seo/Publisher> <http://www.w3.org/2000/01/rdf-schema#comment> "The publisher of the event proceedings."@en .
+<http://purl.org/seo/Publisher> <http://www.w3.org/2000/01/rdf-schema#label> "Publisher"@en .
+<http://purl.org/seo/ResearchTrack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/seo/ResearchTrack> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.org/seo/Track> .
+<http://purl.org/seo/ResearchTrack> <http://www.w3.org/2000/01/rdf-schema#comment> "The track for fundamental research, innovative technology, and applications concerning the research topic of the event."@en .
+<http://purl.org/seo/ResourceTrack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/seo/ResourceTrack> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.org/seo/Track> .
+<http://purl.org/seo/ResourceTrack> <http://www.w3.org/2000/01/rdf-schema#comment> "The Resources Track aims to promote the sharing of resources including: datasets, ontologies, vocabularies, ... etc"@en .
+<http://purl.org/seo/Sponsor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/seo/Sponsor> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xmlns.com/foaf/0.1/Agent> .
+<http://purl.org/seo/Sponsor> <http://www.w3.org/2000/01/rdf-schema#comment> "The Sponsor of the event (i.e. company, university ... etc.)."@en .
+<http://purl.org/seo/Sponsor> <http://www.w3.org/2000/01/rdf-schema#label> "Sponsor"@en .
+<http://purl.org/seo/Symposium> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/seo/Symposium> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/scholarlydata/ontology/conference-ontology.owl#AcademicEvent> .
+<http://purl.org/seo/SymposiumSeries> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/seo/SymposiumSeries> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/scholarlydata/ontology/conference-ontology.owl#EventSeries> .
+<http://purl.org/seo/SymposiumSeries> <http://www.w3.org/2000/01/rdf-schema#comment> "A series of symposiums."@en .
+<http://purl.org/seo/SymposiumSeries> <http://www.w3.org/2000/01/rdf-schema#label> "Symposiums series"@en .
+<http://purl.org/seo/Track> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/seo/Track> <http://www.w3.org/2000/01/rdf-schema#comment> "A categorization of research contributions submitted to an academic event."@en .
+<http://purl.org/seo/Track> <http://www.w3.org/2000/01/rdf-schema#label> "Event Track"@en .
+<http://purl.org/seo/TutorialProposals> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/seo/TutorialProposals> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.org/seo/Track> .
+<http://purl.org/seo/TutorialProposals> <http://www.w3.org/2000/01/rdf-schema#comment> "Proposal on a research topic relevant to the event audience."@en .
+<http://purl.org/seo/WorkshopProposals> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/seo/WorkshopProposals> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.org/seo/Track> .
+<http://purl.org/seo/WorkshopProposals> <http://www.w3.org/2000/01/rdf-schema#comment> "Proposals for workshops on topics related to the general theme of the conference."@en .
+<http://www.w3.org/2000/01/rdf-schema#Class> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://xmlns.com/foaf/0.1/Agent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/scholarlydata/ontology/conference-ontology.owl#AcademicEvent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/scholarlydata/ontology/conference-ontology.owl#EventSeries> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/scholarlydata/ontology/conference-ontology.owl#Proceedings> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .

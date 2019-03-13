@@ -1,0 +1,11 @@
+<http://purl.org/semsur/Artikel> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/semsur/Artikel> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.org/semsur/Publikation> .
+<http://purl.org/semsur/Artikel> <http://purl.org/dc/terms/description> "Ein Forschungsartikel wird fast immer in einer Fachzeitschrift oder Konferenz veröffentlicht." .
+<http://purl.org/semsur/Artikel> <http://purl.org/semsur/Synonym> "Manuskript" .
+<http://purl.org/semsur/BuchKapitel> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/semsur/BuchKapitel> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.org/semsur/Publikation> .
+<http://purl.org/semsur/Publikation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/semsur/Publikation> <http://purl.org/dc/terms/description> "ein Artikel zum öffentlichen Verkauf" .
+<http://purl.org/semsur/RegelmassigePapier> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://purl.org/semsur/RegelmassigePapier> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.org/semsur/Artikel> .
+<http://purl.org/semsur/RegelmassigePapier> <http://purl.org/dc/terms/description> "Ein Forschungsartikel ist ein Artikel, der die Methoden und Ergebnisse einer von den Autoren durchgeführten Originalstudie berichtet." .

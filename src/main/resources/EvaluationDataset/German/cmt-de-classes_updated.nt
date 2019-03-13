@@ -1,0 +1,111 @@
+<http://cmt_de> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<http://cmt_de#c-0277212-8406046> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-0277212-8406046> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzbeitrag"@de .
+<http://cmt_de#c-0277212-8406046> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-3386094-8929437> .
+<http://cmt_de#c-0277212-8406046> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-2036030-6478102> .
+<http://cmt_de#c-1092336-2330592> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-1092336-2330592> <http://www.w3.org/2000/01/rdf-schema#label> "Entscheidung"@de .
+<http://cmt_de#c-1092336-2330592> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-2636048-9047841> .
+<http://cmt_de#c-1092336-2330592> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-3386094-8929437> .
+<http://cmt_de#c-1092336-2330592> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-3554876-1135672> .
+<http://cmt_de#c-1092336-2330592> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-6476451-2581059> .
+<http://cmt_de#c-1092336-2330592> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-7914897-1988765> .
+<http://cmt_de#c-1092336-2330592> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-9804348-4921383> .
+<http://cmt_de#c-1105419-5848060> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-1105419-5848060> <http://www.w3.org/2000/01/rdf-schema#label> "Zur\u00FCckweisung"@de .
+<http://cmt_de#c-1105419-5848060> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-1092336-2330592> .
+<http://cmt_de#c-1105419-5848060> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-2310106-7377133> .
+<http://cmt_de#c-1253837-4887221> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-1253837-4887221> <http://www.w3.org/2000/01/rdf-schema#label> "vollst\u00E4ndiger Konferenzbeitrag"@de .
+<http://cmt_de#c-1253837-4887221> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-0277212-8406046> .
+<http://cmt_de#c-2036030-6478102> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-2036030-6478102> <http://www.w3.org/2000/01/rdf-schema#label> "Gutachten"@de .
+<http://cmt_de#c-2036030-6478102> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-3386094-8929437> .
+<http://cmt_de#c-2276280-7516043> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-2276280-7516043> <http://www.w3.org/2000/01/rdf-schema#label> "Vorsitzender"@de .
+<http://cmt_de#c-2276280-7516043> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-9804348-4921383> .
+<http://cmt_de#c-2310106-7377133> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-2310106-7377133> <http://www.w3.org/2000/01/rdf-schema#label> "Akzeptanz"@de .
+<http://cmt_de#c-2310106-7377133> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-1092336-2330592> .
+<http://cmt_de#c-2600954-3812137> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-2600954-3812137> <http://www.w3.org/2000/01/rdf-schema#label> "Administrator"@de .
+<http://cmt_de#c-2600954-3812137> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-5325416-2794476> .
+<http://cmt_de#c-2636048-9047841> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-2636048-9047841> <http://www.w3.org/2000/01/rdf-schema#label> "Gebot"@de .
+<http://cmt_de#c-2636048-9047841> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-3386094-8929437> .
+<http://cmt_de#c-2636048-9047841> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-3554876-1135672> .
+<http://cmt_de#c-2636048-9047841> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-6476451-2581059> .
+<http://cmt_de#c-2636048-9047841> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-7914897-1988765> .
+<http://cmt_de#c-2636048-9047841> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-9804348-4921383> .
+<http://cmt_de#c-3386094-8929437> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-3386094-8929437> <http://www.w3.org/2000/01/rdf-schema#label> "Dokument"@de .
+<http://cmt_de#c-3386094-8929437> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-3554876-1135672> .
+<http://cmt_de#c-3386094-8929437> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-6476451-2581059> .
+<http://cmt_de#c-3386094-8929437> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-7914897-1988765> .
+<http://cmt_de#c-3386094-8929437> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-9804348-4921383> .
+<http://cmt_de#c-3554876-1135672> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-3554876-1135672> <http://www.w3.org/2000/01/rdf-schema#label> "Programm-Komitee"@de .
+<http://cmt_de#c-3554876-1135672> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-6476451-2581059> .
+<http://cmt_de#c-3554876-1135672> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-7914897-1988765> .
+<http://cmt_de#c-3554876-1135672> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-9804348-4921383> .
+<http://cmt_de#c-4575828-4677716> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-4575828-4677716> <http://www.w3.org/2000/01/rdf-schema#label> "Verfasser, der kein Gutachter ist"@de .
+<http://cmt_de#c-4575828-4677716> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-7511748-5827387> .
+<http://cmt_de#c-4575828-4677716> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-4872876-3932965> .
+<http://cmt_de#c-4575828-4677716> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-5062955-9564132> .
+<http://cmt_de#c-4872876-3932965> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-4872876-3932965> <http://www.w3.org/2000/01/rdf-schema#label> "Mitglied des Programm-Komitees"@de .
+<http://cmt_de#c-4872876-3932965> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-8082317-4346619> .
+<http://cmt_de#c-4872876-3932965> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-9804348-4921383> .
+<http://cmt_de#c-5062955-9564132> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-5062955-9564132> <http://www.w3.org/2000/01/rdf-schema#label> "Gutachter"@de .
+<http://cmt_de#c-5062955-9564132> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-5325416-2794476> .
+<http://cmt_de#c-5062955-9564132> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-8082317-4346619> .
+<http://cmt_de#c-5062955-9564132> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-5888543-5318130> .
+<http://cmt_de#c-5325416-2794476> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-5325416-2794476> <http://www.w3.org/2000/01/rdf-schema#label> "Benutzer"@de .
+<http://cmt_de#c-5325416-2794476> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-9804348-4921383> .
+<http://cmt_de#c-5336831-3519560> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-5336831-3519560> <http://www.w3.org/2000/01/rdf-schema#label> "Meta-Gutachater (Gutachter der Gutachten begutachtet)"@de .
+<http://cmt_de#c-5336831-3519560> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-5062955-9564132> .
+<http://cmt_de#c-5356419-0853732> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-5356419-0853732> <http://www.w3.org/2000/01/rdf-schema#label> "Vorsitzender der Konferenz"@de .
+<http://cmt_de#c-5356419-0853732> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-8082317-4346619> .
+<http://cmt_de#c-5356419-0853732> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-9309131-3067692> .
+<http://cmt_de#c-5403940-4193578> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-5403940-4193578> <http://www.w3.org/2000/01/rdf-schema#label> "Mitverfasser"@de .
+<http://cmt_de#c-5403940-4193578> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-7511748-5827387> .
+<http://cmt_de#c-5888543-5318130> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-5888543-5318130> <http://www.w3.org/2000/01/rdf-schema#label> "externer Gutachter"@de .
+<http://cmt_de#c-5888543-5318130> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-9804348-4921383> .
+<http://cmt_de#c-6476451-2581059> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-6476451-2581059> <http://www.w3.org/2000/01/rdf-schema#label> "Pr\u00E4ferenz"@de .
+<http://cmt_de#c-6476451-2581059> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-7914897-1988765> .
+<http://cmt_de#c-6476451-2581059> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-9804348-4921383> .
+<http://cmt_de#c-7221579-7498183> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-7221579-7498183> <http://www.w3.org/2000/01/rdf-schema#label> "Gegenstandsbereich"@de .
+<http://cmt_de#c-7511748-5827387> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-7511748-5827387> <http://www.w3.org/2000/01/rdf-schema#label> "Verfasser"@de .
+<http://cmt_de#c-7511748-5827387> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-5325416-2794476> .
+<http://cmt_de#c-7511748-5827387> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-8082317-4346619> .
+<http://cmt_de#c-7606498-1774261> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-7606498-1774261> <http://www.w3.org/2000/01/rdf-schema#label> "Vorsitzender des Programm-Komitees"@de .
+<http://cmt_de#c-7606498-1774261> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-4872876-3932965> .
+<http://cmt_de#c-7914897-1988765> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-7914897-1988765> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenz"@de .
+<http://cmt_de#c-7914897-1988765> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2002/07/owl#Thing> .
+<http://cmt_de#c-7914897-1988765> <http://www.w3.org/2002/07/owl#disjointWith> <http://cmt_de#c-9804348-4921383> .
+<http://cmt_de#c-8082317-4346619> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-8082317-4346619> <http://www.w3.org/2000/01/rdf-schema#label> "Teilnehmer einer Konferenz"@de .
+<http://cmt_de#c-8082317-4346619> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-9804348-4921383> .
+<http://cmt_de#c-8330184-9824066> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-8330184-9824066> <http://www.w3.org/2000/01/rdf-schema#label> "Meta-Gutachten (Gutachten \u00FCber ein Gutachten)"@de .
+<http://cmt_de#c-8330184-9824066> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-2036030-6478102> .
+<http://cmt_de#c-8450582-0542304> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-8450582-0542304> <http://www.w3.org/2000/01/rdf-schema#label> "Zusammenfassung eines Konferenzbeitrags"@de .
+<http://cmt_de#c-8450582-0542304> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-0277212-8406046> .
+<http://cmt_de#c-9309131-3067692> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-9309131-3067692> <http://www.w3.org/2000/01/rdf-schema#label> "stellvertretender Vorsitz"@de .
+<http://cmt_de#c-9309131-3067692> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-8082317-4346619> .
+<http://cmt_de#c-9804348-4921383> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cmt_de#c-9804348-4921383> <http://www.w3.org/2000/01/rdf-schema#label> "Person"@de .
