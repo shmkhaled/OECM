@@ -7,7 +7,7 @@ How to use
 ----------
 ````
 git clone https://github.com/shmkhaled/OECM.git
-cd CLOE
+cd OECM
 
 mvn clean package
 ````
