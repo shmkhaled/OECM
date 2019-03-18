@@ -12,7 +12,7 @@ import org.apache.spark.sql.SparkSession
 * Created by Shimaa 15.oct.2018
 * */
 
-object Main {
+object OntologyEnrichment {
 
   def main(args: Array[String]): Unit = {
     //    val sparkConf = new SparkConf().setMaster("spark://172.18.160.16:3077")
@@ -144,31 +144,12 @@ object Main {
     println("Target ontology without URIs")
     targetOntologyWithoutURI.foreach(println(_))
     val m = new MatchingTwoOntologies()
-    var tripelsForEnrichment: RDD[(String, String, String, Char)] = m.Match(translatedSourceOntology,targetOntologyWithoutURI, targetClassesWithoutURIs).distinct().cache()
+    var triplesForEnrichment: RDD[(String, String, String, Char)] = m.Match(translatedSourceOntology,targetOntologyWithoutURI, targetClassesWithoutURIs).distinct().cache()
     println("####################### source triples needed for enrichment #######################")
-    println(tripelsForEnrichment.count()+ " triples. Triples with flag 'E' are needed to enrich the target ontology. Triples with flag 'A' are new triples will be added to the target ontology.")
-    tripelsForEnrichment.foreach(println(_))
+    println(triplesForEnrichment.count()+ " triples. Triples with flag 'E' are needed to enrich the target ontology. Triples with flag 'A' are new triples will be added to the target ontology.")
+    triplesForEnrichment.foreach(println(_))
+//    translatedSourceOntology.coalesce(1).saveAsTextFile("Output/triplesForEnrichment(SEO-Conference)")
 
-    /*
-
-//    println("All translations")
-//    sourceClassesWithTranslatedSynonyms.foreach(println(_))
- var recordedTranslations: RDD[(String, String)] = sourceClassesWithTranslatedSynonyms.subtract(sourceClassesWithTranslatedSynonyms.filter(x=>x._1 == x._2)).union(translations.map(x=>(x.getSubject.getLocalName,x.getObject.getLocalName)))
-//    recordedTranslations.cache()
-//    recordedTranslations.foreach(println(_))
- println("Triples with URIs to be added to the target ontologyTriples")
- val r = new RetrieveURIs()
-   var triplesToBeAddedToTarget = r.getTripleURIs(sourceOntology,recordedTranslations,translatedTriples)
-//    var triplesToBeAddedToTarget = r.getTripleURIs(sourceOntology,sourceClassesWithTranslatedSynonyms,translatedTriples)
-//    r.getTripleURIs(sourceOntology,sourceClassesWithTranslatedSynonyms,translatedTriples)
-
- triplesToBeAddedToTarget.foreach(println(_))
-
-                         */
-//    var targetClassesWithoutURIssssss: RDD[String] = targetOntology.map{case(x)=> if(!x.getObject.isLiteral)(p.stringPreProcessing(x.getObject.getLocalName))else null}.filter(y => y != null && y != "class").distinct()
-
-//    println("############## try #############"+targetClassesWithoutURIssssss.count())
-//    targetClassesWithoutURIssssss.foreach(println(_))
     val endTimeMillis = System.currentTimeMillis()
     val durationSeconds = (endTimeMillis - startTimeMillis) / 1000
     println("runtime = "+durationSeconds+ " seconds")
