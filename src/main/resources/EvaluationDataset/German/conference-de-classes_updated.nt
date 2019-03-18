@@ -11,7 +11,7 @@
 <http://conference_de#c-1025534-8292294> <http://www.w3.org/2000/01/rdf-schema#label> "geschriebener Beitrag"@de .
 <http://conference_de#c-1025534-8292294> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-8115832-0092831> .
 <http://conference_de#c-1178842-2732173> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://conference_de#c-1178842-2732173> <http://www.w3.org/2000/01/rdf-schema#label> "Mitverfasser eines Beitrags"@de .
+<http://conference_de#c-1178842-2732173> <http://www.w3.org/2000/01/rdf-schema#label> "Mitverfasser Beitrags"@de .
 <http://conference_de#c-1178842-2732173> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-2852856-4092117> .
 <http://conference_de#c-1178842-2732173> <http://www.w3.org/2002/07/owl#disjointWith> <http://conference_de#c-9185334-5782431> .
 <http://conference_de#c-1308924-1537645> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -46,7 +46,7 @@
 <http://conference_de#c-2225732-5117501> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-1025534-8292294> .
 <http://conference_de#c-2225732-5117501> <http://www.w3.org/2002/07/owl#disjointWith> <http://conference_de#c-7357618-1642646> .
 <http://conference_de#c-2326730-6671120> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://conference_de#c-2326730-6671120> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzbewerber, der die Konferenzgebühr früh gezahlt hat"@de .
+<http://conference_de#c-2326730-6671120> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzbewerber"@de .
 <http://conference_de#c-2326730-6671120> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-3096259-3019685> .
 <http://conference_de#c-2326730-6671120> <http://www.w3.org/2002/07/owl#disjointWith> <http://conference_de#c-9664517-5940464> .
 <http://conference_de#c-2365620-6793184> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -67,7 +67,7 @@
 <http://conference_de#c-2807153-3693543> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://conference_de#c-2807153-3693543> <http://www.w3.org/2000/01/rdf-schema#label> "Person"@de .
 <http://conference_de#c-2852856-4092117> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://conference_de#c-2852856-4092117> <http://www.w3.org/2000/01/rdf-schema#label> "Author eines regul\u00E4ren Beitrags"@de .
+<http://conference_de#c-2852856-4092117> <http://www.w3.org/2000/01/rdf-schema#label> "Author regulären Beitrags"@de .
 <http://conference_de#c-2852856-4092117> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-4615338-8666561> .
 <http://conference_de#c-2883309-0508630> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://conference_de#c-2883309-0508630> <http://www.w3.org/2000/01/rdf-schema#label> "aktiver Konferenzteilnehmer"@de .
@@ -77,10 +77,10 @@
 <http://conference_de#c-3040625-6424461> <http://www.w3.org/2000/01/rdf-schema#label> "eingeladener Referent"@de .
 <http://conference_de#c-3040625-6424461> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-4615338-8666561> .
 <http://conference_de#c-3096259-3019685> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://conference_de#c-3096259-3019685> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzbewerber, der die Konferenzgebühr gezahlt hat"@de .
+<http://conference_de#c-3096259-3019685> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzbewerber"@de .
 <http://conference_de#c-3096259-3019685> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-5035120-4059294> .
 <http://conference_de#c-3407738-8040996> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://conference_de#c-3407738-8040996> <http://www.w3.org/2000/01/rdf-schema#label> "Pr\u00E4sentation"@de .
+<http://conference_de#c-3407738-8040996> <http://www.w3.org/2000/01/rdf-schema#label> "Präsentation"@de .
 <http://conference_de#c-3407738-8040996> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-8115832-0092831> .
 <http://conference_de#c-3560304-9366401> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://conference_de#c-3560304-9366401> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenz"@de .
@@ -89,10 +89,10 @@
 <http://conference_de#c-4481836-1173835> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-5562180-9263139> .
 <http://conference_de#c-4481836-1173835> <http://www.w3.org/2002/07/owl#disjointWith> <http://conference_de#c-8071281-1290388> .
 <http://conference_de#c-4615338-8666561> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://conference_de#c-4615338-8666561> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzteilnehmer, der einen Beitrag geleistet hat"@de .
+<http://conference_de#c-4615338-8666561> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzteilnehmer"@de .
 <http://conference_de#c-4615338-8666561> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-2807153-3693543> .
 <http://conference_de#c-4650867-2477948> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://conference_de#c-4650867-2477948> <http://www.w3.org/2000/01/rdf-schema#label> "Angeh\u00F6rige des Ausschusses"@de .
+<http://conference_de#c-4650867-2477948> <http://www.w3.org/2000/01/rdf-schema#label> "Angehörige des Ausschusses"@de .
 <http://conference_de#c-4650867-2477948> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-2807153-3693543> .
 <http://conference_de#c-4730732-9118818> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://conference_de#c-4730732-9118818> <http://www.w3.org/2000/01/rdf-schema#label> "Internet der Konferenz"@de .
@@ -107,7 +107,7 @@
 <http://conference_de#c-5236249-1093814> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-9365621-4628022> .
 <http://conference_de#c-5236249-1093814> <http://www.w3.org/2002/07/owl#disjointWith> <http://conference_de#c-5636031-1076429> .
 <http://conference_de#c-5548459-1019906> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://conference_de#c-5548459-1019906> <http://www.w3.org/2000/01/rdf-schema#label> "Aufruf f\u00FCr Beitr\u00E4ge"@de .
+<http://conference_de#c-5548459-1019906> <http://www.w3.org/2000/01/rdf-schema#label> "Aufruf Beiträge"@de .
 <http://conference_de#c-5548459-1019906> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-7521012-9493261> .
 <http://conference_de#c-5562180-9263139> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://conference_de#c-5562180-9263139> <http://www.w3.org/2000/01/rdf-schema#label> "begutachteter Beitrag"@de .
@@ -125,7 +125,7 @@
 <http://conference_de#c-6508590-8109709> <http://www.w3.org/2000/01/rdf-schema#label> "Gutachten"@de .
 <http://conference_de#c-6508590-8109709> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-7521012-9493261> .
 <http://conference_de#c-6598246-0855085> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://conference_de#c-6598246-0855085> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzank\u00FCndigung"@de .
+<http://conference_de#c-6598246-0855085> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzankündigung"@de .
 <http://conference_de#c-6598246-0855085> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-7521012-9493261> .
 <http://conference_de#c-6600254-2450629> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://conference_de#c-6600254-2450629> <http://www.w3.org/2000/01/rdf-schema#label> "Zusammenfassung"@de .
@@ -134,13 +134,13 @@
 <http://conference_de#c-6776566-6732274> <http://www.w3.org/2000/01/rdf-schema#label> "Koferenzbewerber"@de .
 <http://conference_de#c-6776566-6732274> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-2807153-3693543> .
 <http://conference_de#c-6804730-6814876> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://conference_de#c-6804730-6814876> <http://www.w3.org/2000/01/rdf-schema#label> "Informationen f\u00FCr Teilnehmer"@de .
+<http://conference_de#c-6804730-6814876> <http://www.w3.org/2000/01/rdf-schema#label> "Informationen Teilnehmer"@de .
 <http://conference_de#c-6804730-6814876> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-7521012-9493261> .
 <http://conference_de#c-6828546-9901709> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://conference_de#c-6828546-9901709> <http://www.w3.org/2000/01/rdf-schema#label> "Präferenz des Gutachters"@de .
 <http://conference_de#c-6828546-9901709> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2002/07/owl#Thing> .
 <http://conference_de#c-7096317-3412127> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://conference_de#c-7096317-3412127> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzgeb\u00FChren"@de .
+<http://conference_de#c-7096317-3412127> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzgebühren"@de .
 <http://conference_de#c-7158328-5483937> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://conference_de#c-7158328-5483937> <http://www.w3.org/2000/01/rdf-schema#label> "Vorsitzender"@de .
 <http://conference_de#c-7158328-5483937> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-4650867-2477948> .
@@ -164,18 +164,18 @@
 <http://conference_de#c-8237344-7989230> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzteilnehmer"@de .
 <http://conference_de#c-8237344-7989230> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-2807153-3693543> .
 <http://conference_de#c-8573778-5851296> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://conference_de#c-8573778-5851296> <http://www.w3.org/2000/01/rdf-schema#label> "Aufruf zu Teilnahme"@de .
+<http://conference_de#c-8573778-5851296> <http://www.w3.org/2000/01/rdf-schema#label> "Aufruf Teilnahme"@de .
 <http://conference_de#c-8573778-5851296> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-7521012-9493261> .
 <http://conference_de#c-9185334-5782431> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://conference_de#c-9185334-5782431> <http://www.w3.org/2000/01/rdf-schema#label> "prim\u00E4rer Author eines Beitrags"@de .
+<http://conference_de#c-9185334-5782431> <http://www.w3.org/2000/01/rdf-schema#label> "primärer Author Beitrags"@de .
 <http://conference_de#c-9185334-5782431> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-2852856-4092117> .
 <http://conference_de#c-9365621-4628022> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://conference_de#c-9365621-4628022> <http://www.w3.org/2000/01/rdf-schema#label> "Abschnitte der Konferenz"@de .
+<http://conference_de#c-9365621-4628022> <http://www.w3.org/2000/01/rdf-schema#label> "Abschnitte Konferenz"@de .
 <http://conference_de#c-9605590-3026126> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://conference_de#c-9605590-3026126> <http://www.w3.org/2000/01/rdf-schema#label> "Leiter der Workshops"@de .
+<http://conference_de#c-9605590-3026126> <http://www.w3.org/2000/01/rdf-schema#label> "Leiter Workshops"@de .
 <http://conference_de#c-9605590-3026126> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-2807153-3693543> .
 <http://conference_de#c-9625814-4995879> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://conference_de#c-9625814-4995879> <http://www.w3.org/2000/01/rdf-schema#label> "Ausschuss"@de .
 <http://conference_de#c-9664517-5940464> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://conference_de#c-9664517-5940464> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzbewerber, der die Konferenzgebühr spät gezahlt hat"@de .
+<http://conference_de#c-9664517-5940464> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzbewerber"@de .
 <http://conference_de#c-9664517-5940464> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-3096259-3019685> .
