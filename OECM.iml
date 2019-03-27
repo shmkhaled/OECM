@@ -257,5 +257,25 @@
     <orderEntry type="library" name="Maven: edu.stanford.nlp:stanford-corenlp:models:3.9.2" level="project" />
     <orderEntry type="library" name="Maven: edu.stanford.nlp:stanford-corenlp:models-german:3.9.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-compress:1.18" level="project" />
+    <orderEntry type="library" name="Maven: junit:junit:4.0" level="project" />
+    <orderEntry type="library" name="Maven: org.xerial:sqlite-jdbc:3.7.2" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: de.sciss:jawjaw:0.1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/jawjaw.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: de.sciss:ws4j:0.1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/ws4j.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

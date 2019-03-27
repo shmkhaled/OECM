@@ -7,6 +7,7 @@ import org.apache.log4j.{Level, Logger}
 import org.apache.spark.broadcast.Broadcast
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
+//import net.sansa_stack.ml.common.nlp.wordnet
 
 /*
 * Created by Shimaa 15.oct.2018
@@ -15,6 +16,11 @@ import org.apache.spark.sql.SparkSession
 object OntologyEnrichment {
 
   def main(args: Array[String]): Unit = {
+    var semSim = new SemanticSimilarity()
+//    println("Path similarity = "+semSim.getPathSimilarity("stream","river"))
+    println("Path similarity = "+semSim.getPathSimilarity("writer","author"))
+//    println(semSim.getSemanticSimilarity("conference","event"))
+
     //    val sparkConf = new SparkConf().setMaster("spark://172.18.160.16:3077")
     Logger.getLogger("org").setLevel(Level.OFF)
     Logger.getLogger("akka").setLevel(Level.OFF)
@@ -121,8 +127,8 @@ object OntologyEnrichment {
 //    sourceClassesWithAllAvailableTranslations.foreach(println(_))
 
     val sourceClassesWithListOfBestTranslations: RDD[(String, List[String], List[Any])] = sourceClassesWithAllAvailableTranslations.map(x => (x._1,x._2,trans.GetBestTranslation(x._2))).cache()
-//    println("All sources with list of best translations ")
-//    sourceClassesWithListOfBestTranslations.take(70).foreach(println(_))
+    println("All sources with list of best translations ")
+    sourceClassesWithListOfBestTranslations.take(70).foreach(println(_))
 //    sourceClassesWithListOfBestTranslations.coalesce(1).saveAsTextFile("src/main/resources/EvaluationDataset/German/translation")
 //    println("Translations should be validated by experts")
 
@@ -149,6 +155,9 @@ object OntologyEnrichment {
     println(triplesForEnrichment.count()+ " triples. Triples with flag 'E' are needed to enrich the target ontology. Triples with flag 'A' are new triples will be added to the target ontology.")
     triplesForEnrichment.foreach(println(_))
 //    translatedSourceOntology.coalesce(1).saveAsTextFile("Output/triplesForEnrichment(SEO-Conference)")
+
+
+
 
     val endTimeMillis = System.currentTimeMillis()
     val durationSeconds = (endTimeMillis - startTimeMillis) / 1000
