@@ -1,6 +1,7 @@
 
 
 //import de.danielnaber.jwordsplitter.GermanWordSplitter
+import edu.stanford.nlp.simple.{Document, Sentence}
 import edu.stanford.nlp.tagger.maxent.MaxentTagger
 import org.apache.jena.graph
 import org.apache.jena.graph.Node
@@ -42,7 +43,7 @@ class PreProcessing extends Serializable{
   }
   def stringPreProcessing(term: String): String = {
     //For SemSur and Edas and ekaw Datasets
-    var preProcessedString: String = term.replaceAll("""([\p{Punct}&&[^.]]|\b\p{IsLetter}{1,2}\b)\s*""", " ").trim
+    var preProcessedString: String = term.replaceAll("""([\p{Punct}&&[^.]]|\b\p{IsLetter}{1,2}\b)\s*""", "").trim
     var splittedString: String = splitCamelCase(preProcessedString).toLowerCase
      splittedString
 
@@ -130,5 +131,12 @@ class PreProcessing extends Serializable{
     strWithoutTags
 //    strWithTags
 
+  }
+  def sentenceLemmatization (sentence1: String):String={
+    val doc = new Document(sentence1)
+    var sent: Sentence = doc.sentences.get(0)
+    var lemmas = this.stringPreProcessing(sent.lemmas.toString.split(",").mkString).replaceAll(" +", " ")
+//    println("Lemmatization for "+ sent + " is "+ lemmas)
+    lemmas
   }
 }

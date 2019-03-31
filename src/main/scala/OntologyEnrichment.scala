@@ -17,9 +17,47 @@ object OntologyEnrichment {
 
   def main(args: Array[String]): Unit = {
     var semSim = new SemanticSimilarity()
-//    println("Path similarity = "+semSim.getPathSimilarity("stream","river"))
-    println("Path similarity = "+semSim.getPathSimilarity("writer","author"))
-//    println(semSim.getSemanticSimilarity("conference","event"))
+    var preee = new PreProcessing()
+    println(preee.sentenceLemmatization("industrial conferences"))
+    println(preee.sentenceLemmatization("conference proceedings"))
+    var sent1 = "conference candidate"
+    var sent2 = "industrial conference"
+
+    println("Path similarity between "+sent1+" and "+sent2+" = "+semSim.sentenceSimilarity(sent1,sent2))
+    println("Path similarity between "+sent2+" and "+sent1+" = "+semSim.sentenceSimilarity(sent2,sent1))
+    println("Symmetric similarity = "+semSim.symmetricSentenceSimilarity(sent1,sent2))
+
+        println("Path similarity = "+semSim.getPathSimilarity("conference","industrial"))
+        println("Path similarity = "+semSim.getPathSimilarity("conference","conference"))
+        println("Path similarity = "+semSim.getPathSimilarity("candidate","industrial"))
+        println("Path similarity = "+semSim.getPathSimilarity("candidate","conference"))
+
+
+    //    println("Path similarity = "+semSim.getPathSimilarity("workshop","chair"))
+//    println("Path similarity = "+semSim.getPathSimilarity("chair","proposal"))
+
+
+    //    println("Path similarity = "+semSim.getPathSimilarity("cat","dog"))
+//    println("Path similarity = "+semSim.getPathSimilarity("cat","are"))
+//    println("Path similarity = "+semSim.getPathSimilarity("cat","awesome"))
+//
+//    println("Path similarity = "+semSim.getPathSimilarity("are","dog"))
+//    println("Path similarity = "+semSim.getPathSimilarity("are","are"))
+//    println("Path similarity = "+semSim.getPathSimilarity("are","awesome"))
+//
+//    println("Path similarity = "+semSim.getPathSimilarity("beautiful","dog"))
+//    println("Path similarity = "+semSim.getPathSimilarity("beautiful","are"))
+//    println("Path similarity = "+semSim.getPathSimilarity("beautiful","awesome"))
+//
+//    println("Path similarity = "+semSim.getPathSimilarity("animal","dog"))
+//    println("Path similarity = "+semSim.getPathSimilarity("animal","are"))
+//    println("Path similarity = "+semSim.getPathSimilarity("animal","awesome"))
+
+//    println(semSim.symmetricSentenceSimilarity("Cat are beautiful animal", "Dog are awesome"))
+//    println(semSim.sentenceSimilarity("workshop chair","workshop proposals"))
+//    println(semSim.sentenceSimilarity("workshop proposals","workshop chair"))
+//
+//    println(semSim.symmetricSentenceSimilarity("workshop chair","workshop proposals"))
 
     //    val sparkConf = new SparkConf().setMaster("spark://172.18.160.16:3077")
     Logger.getLogger("org").setLevel(Level.OFF)
@@ -96,9 +134,14 @@ object OntologyEnrichment {
 //    targetClasses.foreach(println(_))
 
     //####################### Translation #####################################
-      var targetClassesWithoutURIs: RDD[String] = targetOntology.map(y=>p.stringPreProcessing(y.getSubject.getLocalName)).distinct().union(targetOntology.map{case(x)=> if(!x.getObject.isLiteral)(p.stringPreProcessing(x.getObject.getLocalName))else null}.filter(y => y != null && y != "class")).distinct()//for classes with local names ex:ekaw-en, edas and SEO ontologies
+      var targetClassesWithoutURIs: RDD[String] = targetOntology.map(y=>p.stringPreProcessing(y.getSubject.getLocalName)).distinct().union(targetOntology.map{case(x)=> if(x.getObject.isURI)(p.stringPreProcessing(x.getObject.getLocalName))else null}.filter(y => y != null && y != "class")).distinct()//for classes with local names ex:ekaw-en, edas and SEO ontologies
+//    var tt: RDD[String] = targetOntology.map{case(x)=> if(!x.getObject.isLiteral)(p.stringPreProcessing(x.getObject.getLocalName))else null}.filter(y => y != null && y != "class").distinct()
+//    println("########## new ##############"+ tt.count())
+//    tt.foreach(println(_))
+//    println("########################")
 
-//    var targetClassesWithoutURIs: RDD[String] = targetOntology.filter(x=>x.getPredicate.getLocalName == "label").map(y=>y.getObject.getLiteral.getLexicalForm.split("@").head)//for classes with labels ex:cmt-en, confOf-de and sigkdd-de ontologies
+
+    //    var targetClassesWithoutURIs: RDD[String] = targetOntology.filter(x=>x.getPredicate.getLocalName == "label").map(y=>y.getObject.getLiteral.getLexicalForm.split("@").head)//for classes with labels ex:cmt-en, confOf-de and sigkdd-de ontologies
 
     println("All classes in the target ontology Triples:" + targetClassesWithoutURIs.count())
     targetClassesWithoutURIs.foreach(println(_))
