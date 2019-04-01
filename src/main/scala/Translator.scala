@@ -10,25 +10,26 @@ def Translate (preprocessedSourceClasses: RDD[String], availableTranslations: RD
   sourceClassesWithTranslations
   }
 
-  def GetBestTranslation(listOfTranslations: List[String]): List[Any]={
+  def GetBestTranslation(listOfTranslations: List[String]): List[String]={
     val sp = SparkSession.builder.master("local[*]")
       .config("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
       .getOrCreate()
-    var bestTranslation: List[Any] = List(" ", 0.0)
+//    var bestTranslation: List[Any] = List(" ", 0.0)
+    var bestTranslation: List[String] = List(" ")
+
     val gS = new GetSimilarity()
-    val semSim = new SemanticSimilarity()
     var t: RDD[String] = sp.sparkContext.parallelize(targetClasses.value.map(_._1).toList).cache()
     var translations = sp.sparkContext.parallelize(listOfTranslations)
     var crossRDD: RDD[(String, String)] = translations.cartesian(t)
 //    var sim: RDD[(String, String, Double)] = crossRDD.map(x=>(x._1,x._2,gS.getJaccardStringSimilarity(x._1,x._2))).filter(y=>y._3>=0.3)
 //    var sim: RDD[(String, String, Double)] = crossRDD.map(x=>(x._1,x._2,semSim.getPathSimilarity(x._1.split(" ").last,x._2.split(" ").last))).filter(y=>y._3>=0.6)
-    var sim: RDD[(String, String, Double)] = crossRDD.map(x=>(x._1,x._2,semSim.symmetricSentenceSimilarity(x._1,x._2))).filter(y=>y._3>0.5)
+    var sim: RDD[(String, String, Double)] = crossRDD.map(x=>(x._1,x._2,gS.getSimilarity(x._1,x._2))).filter(y=>y._3>0.9)
 //    sim = sim.map(x=>(x._1,x._2,gS.getJaccardStringSimilarity(x._1,x._2))).filter(y=>y._3>=0.6)
 //    sim = sim.map{case (x) => if (x._1.split(" ").length > 1 || x._2.split(" ").length > 1) (x._1,x._2,gS.getJaccardStringSimilarity(x._1,x._2)) else (x._1,x._2,x._3)}.filter(y=>y._3>=0.3)
-    sim.foreach(println(_))
+//    sim.foreach(println(_))
     var matchedTerms: RDD[(String, Double)] = sim.map(x=>(x._2,x._3))
     if (!matchedTerms.isEmpty()){
-      bestTranslation = matchedTerms.collect().toList
+      bestTranslation = matchedTerms.collect().toList.map(x=>(x._1))
     }
     else bestTranslation = listOfTranslations
 

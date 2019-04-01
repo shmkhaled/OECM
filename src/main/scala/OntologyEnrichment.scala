@@ -16,21 +16,22 @@ import org.apache.spark.sql.SparkSession
 object OntologyEnrichment {
 
   def main(args: Array[String]): Unit = {
-    var semSim = new SemanticSimilarity()
+    val gS = new GetSimilarity()
+
     var preee = new PreProcessing()
-    println(preee.sentenceLemmatization("industrial conferences"))
-    println(preee.sentenceLemmatization("conference proceedings"))
-    var sent1 = "conference candidate"
-    var sent2 = "industrial conference"
+    println(preee.sentenceLemmatization("review preference"))
+    println(preee.sentenceLemmatization("review question"))
+    var sent1 = "review preference"
+    var sent2 = "review question"
 
-    println("Path similarity between "+sent1+" and "+sent2+" = "+semSim.sentenceSimilarity(sent1,sent2))
-    println("Path similarity between "+sent2+" and "+sent1+" = "+semSim.sentenceSimilarity(sent2,sent1))
-    println("Symmetric similarity = "+semSim.symmetricSentenceSimilarity(sent1,sent2))
+    println("Path similarity between "+sent1+" and "+sent2+" = "+gS.sentenceSimilarity(sent1,sent2))
+    println("Path similarity between "+sent2+" and "+sent1+" = "+gS.sentenceSimilarity(sent2,sent1))
+    println("Symmetric similarity = "+gS.symmetricSentenceSimilarity(sent1,sent2))
 
-        println("Path similarity = "+semSim.getPathSimilarity("conference","industrial"))
-        println("Path similarity = "+semSim.getPathSimilarity("conference","conference"))
-        println("Path similarity = "+semSim.getPathSimilarity("candidate","industrial"))
-        println("Path similarity = "+semSim.getPathSimilarity("candidate","conference"))
+        println("Path similarity = "+gS.getPathSimilarity("review","question"))
+        println("Path similarity = "+gS.getPathSimilarity("preference","review"))
+        println("Path similarity = "+gS.getPathSimilarity("preference","question"))
+//        println("Path similarity = "+gS.getPathSimilarity("candidate","conference"))
 
 
     //    println("Path similarity = "+semSim.getPathSimilarity("workshop","chair"))
@@ -169,21 +170,23 @@ object OntologyEnrichment {
 //    println("All source with all translations "+sourceClassesWithAllAvailableTranslations.count())
 //    sourceClassesWithAllAvailableTranslations.foreach(println(_))
 
-    val sourceClassesWithListOfBestTranslations: RDD[(String, List[String], List[Any])] = sourceClassesWithAllAvailableTranslations.map(x => (x._1,x._2,trans.GetBestTranslation(x._2))).cache()
+    val sourceClassesWithListOfBestTranslations: RDD[(String, List[String], List[String])] = sourceClassesWithAllAvailableTranslations.map(x => (x._1,x._2,trans.GetBestTranslation(x._2))).cache()
     println("All sources with list of best translations ")
     sourceClassesWithListOfBestTranslations.take(70).foreach(println(_))
 //    sourceClassesWithListOfBestTranslations.coalesce(1).saveAsTextFile("src/main/resources/EvaluationDataset/German/translation")
 //    println("Translations should be validated by experts")
 
+    val validSourceTranslationsByExperts: RDD[(String, String)] = sourceClassesWithListOfBestTranslations.map(x=>(x._1.toLowerCase,x._3.head.toString.toLowerCase))
     /*Experts should validate the translations*/
   //arg(3) = src/main/resources/EvaluationDataset/Translations/ConferenceTranslations_W_R_T_SEO
-    val validSourceTranslationsByExperts: RDD[(String, String)] = sparkSession1.sparkContext.textFile(args(3)).map(x=>x.split(",")).map(y=>(y.head.toLowerCase,y.last.toLowerCase))
+//    val validSourceTranslationsByExperts: RDD[(String, String)] = sparkSession1.sparkContext.textFile(args(3)).map(x=>x.split(",")).map(y=>(y.head.toLowerCase,y.last.toLowerCase))
     println("Validated translated source classes W.R.T SEO: ")
     validSourceTranslationsByExperts.take(70).foreach(println(_))
 
+
     println("####################### Recreating the source ontologyTriples #####################################")
     val sor = new SourceOntologyReconstruction()
-    var translatedSourceOntology = sor.ReconstructOntology(sOntology,validSourceTranslationsByExperts).filter(x=>x._2 != "disjointWith").cache()
+    var translatedSourceOntology = sor.ReconstructOntology(sOntology,validSourceTranslationsByExperts)//.filter(x=>x._2 != "disjointWith").cache()
 //
     println("Source Ontology after translating subject and object classes "+ translatedSourceOntology.count())
     translatedSourceOntology.distinct().foreach(println(_))
