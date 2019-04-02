@@ -16,21 +16,21 @@ import org.apache.spark.sql.SparkSession
 object OntologyEnrichment {
 
   def main(args: Array[String]): Unit = {
-    val gS = new GetSimilarity()
-
-    var preee = new PreProcessing()
-    println(preee.sentenceLemmatization("review preference"))
-    println(preee.sentenceLemmatization("review question"))
-    var sent1 = "review preference"
-    var sent2 = "review question"
-
-    println("Path similarity between "+sent1+" and "+sent2+" = "+gS.sentenceSimilarity(sent1,sent2))
-    println("Path similarity between "+sent2+" and "+sent1+" = "+gS.sentenceSimilarity(sent2,sent1))
-    println("Symmetric similarity = "+gS.symmetricSentenceSimilarity(sent1,sent2))
-
-        println("Path similarity = "+gS.getPathSimilarity("review","question"))
-        println("Path similarity = "+gS.getPathSimilarity("preference","review"))
-        println("Path similarity = "+gS.getPathSimilarity("preference","question"))
+//    val gS = new GetSimilarity()
+//
+//    var preee = new PreProcessing()
+//    println(preee.sentenceLemmatization("review preference"))
+//    println(preee.sentenceLemmatization("review question"))
+//    var sent1 = "review preference"
+//    var sent2 = "review question"
+//
+//    println("Path similarity between "+sent1+" and "+sent2+" = "+gS.sentenceSimilarity(sent1,sent2))
+//    println("Path similarity between "+sent2+" and "+sent1+" = "+gS.sentenceSimilarity(sent2,sent1))
+//    println("Symmetric similarity = "+gS.symmetricSentenceSimilarity(sent1,sent2))
+//
+//        println("Path similarity = "+gS.getPathSimilarity("review","question"))
+//        println("Path similarity = "+gS.getPathSimilarity("preference","review"))
+//        println("Path similarity = "+gS.getPathSimilarity("preference","question"))
 //        println("Path similarity = "+gS.getPathSimilarity("candidate","conference"))
 
 
@@ -87,10 +87,10 @@ object OntologyEnrichment {
     val runTime = Runtime.getRuntime
 
     val ontStat = new OntologyStatistics()
-    println("################### Statistics of the Source Ontology ###########################")
-    ontStat.GetStatistics(sourceOntology)
-    println("################### Statistics of the Target Ontology ###########################")
-    ontStat.GetStatistics(targetOntology)
+//    println("################### Statistics of the Source Ontology ###########################")
+//    ontStat.GetStatistics(sourceOntology)
+//    println("################### Statistics of the Target Ontology ###########################")
+//    ontStat.GetStatistics(targetOntology)
 
     println("########################## PreProcessing ##############################")
     val p = new PreProcessing()
@@ -102,13 +102,13 @@ object OntologyEnrichment {
     //println("############################## Mapped Target Ontology ##############################" + tOntology.count())
     //tOntology.take(5).foreach(println(_))
 
-    println("======================================")
-    println("|        Predefined Properties       |")
-    println("======================================")
-    println("All available predicates in the source ontology:")
+//    println("======================================")
+//    println("|        Predefined Properties       |")
+//    println("======================================")
+//    println("All available predicates in the source ontology:")
     val sourcePredicatesWithoutURIs = sourceOntology.map(_.getPredicate.getLocalName).distinct()
-    sourcePredicatesWithoutURIs.foreach(println(_))
-    println("Please enter the properties without URIs separated by ',':")
+//    sourcePredicatesWithoutURIs.foreach(println(_))
+//    println("Please enter the properties without URIs separated by ',':")
 //    val line=scala.io.StdIn.readLine()
 //    val predefinedProperty: Array[String] = line.split(',')
     val predefinedProperty: Array[String] = Array("subClassOf", "type")//line.split(',')
@@ -170,13 +170,16 @@ object OntologyEnrichment {
 //    println("All source with all translations "+sourceClassesWithAllAvailableTranslations.count())
 //    sourceClassesWithAllAvailableTranslations.foreach(println(_))
 
-    val sourceClassesWithListOfBestTranslations: RDD[(String, List[String], List[String])] = sourceClassesWithAllAvailableTranslations.map(x => (x._1,x._2,trans.GetBestTranslation(x._2))).cache()
+    val sourceClassesWithListOfBestTranslations = sourceClassesWithAllAvailableTranslations.map(x => (x._1,x._2,trans.GetBestTranslation(x._2))).cache()
     println("All sources with list of best translations ")
     sourceClassesWithListOfBestTranslations.take(70).foreach(println(_))
 //    sourceClassesWithListOfBestTranslations.coalesce(1).saveAsTextFile("src/main/resources/EvaluationDataset/German/translation")
 //    println("Translations should be validated by experts")
+    var listOfMatchedTerms: RDD[List[String]] = sourceClassesWithListOfBestTranslations.map(x => x._3.toString().split(",").toList).filter(y => y.last.exists(_.isDigit))
+    println("List of matched terms ")
+    listOfMatchedTerms.foreach(println(_))
 
-    val validSourceTranslationsByExperts: RDD[(String, String)] = sourceClassesWithListOfBestTranslations.map(x=>(x._1.toLowerCase,x._3.head.toString.toLowerCase))
+    val validSourceTranslationsByExperts: RDD[(String, String)] = sourceClassesWithListOfBestTranslations.map(x=>(x._1.toLowerCase,p.stringPreProcessing(x._3.head.toString.toLowerCase.split(",").head)))//.filter(!_.isDigit)
     /*Experts should validate the translations*/
   //arg(3) = src/main/resources/EvaluationDataset/Translations/ConferenceTranslations_W_R_T_SEO
 //    val validSourceTranslationsByExperts: RDD[(String, String)] = sparkSession1.sparkContext.textFile(args(3)).map(x=>x.split(",")).map(y=>(y.head.toLowerCase,y.last.toLowerCase))
@@ -196,6 +199,7 @@ object OntologyEnrichment {
     println("Target ontology without URIs")
     targetOntologyWithoutURI.foreach(println(_))
     val m = new MatchingTwoOntologies()
+    m.GetTriplesToBeEnriched(translatedSourceOntology,targetOntologyWithoutURI, targetClassesWithoutURIs,listOfMatchedTerms)
     var triplesForEnrichment: RDD[(String, String, String, Char)] = m.Match(translatedSourceOntology,targetOntologyWithoutURI, targetClassesWithoutURIs).distinct().cache()
     println("####################### source triples needed for enrichment #######################")
     println(triplesForEnrichment.count()+ " triples. Triples with flag 'E' are needed to enrich the target ontology. Triples with flag 'A' are new triples will be added to the target ontology.")

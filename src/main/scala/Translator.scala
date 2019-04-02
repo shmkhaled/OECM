@@ -10,12 +10,12 @@ def Translate (preprocessedSourceClasses: RDD[String], availableTranslations: RD
   sourceClassesWithTranslations
   }
 
-  def GetBestTranslation(listOfTranslations: List[String]): List[String]={
+  def GetBestTranslation(listOfTranslations: List[String]): List[Any]={
     val sp = SparkSession.builder.master("local[*]")
       .config("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
       .getOrCreate()
-//    var bestTranslation: List[Any] = List(" ", 0.0)
-    var bestTranslation: List[String] = List(" ")
+    var bestTranslation: List[Any] = List(" "," ", 0.0)
+//    var bestTranslation: List[String] = List(" ")
 
     val gS = new GetSimilarity()
     var t: RDD[String] = sp.sparkContext.parallelize(targetClasses.value.map(_._1).toList).cache()
@@ -27,9 +27,10 @@ def Translate (preprocessedSourceClasses: RDD[String], availableTranslations: RD
 //    sim = sim.map(x=>(x._1,x._2,gS.getJaccardStringSimilarity(x._1,x._2))).filter(y=>y._3>=0.6)
 //    sim = sim.map{case (x) => if (x._1.split(" ").length > 1 || x._2.split(" ").length > 1) (x._1,x._2,gS.getJaccardStringSimilarity(x._1,x._2)) else (x._1,x._2,x._3)}.filter(y=>y._3>=0.3)
 //    sim.foreach(println(_))
-    var matchedTerms: RDD[(String, Double)] = sim.map(x=>(x._2,x._3))
+//    var matchedTerms: RDD[(String, Double)] = sim.map(x=>(x._2,x._3))
+    var matchedTerms: RDD[(String, String, Double)] = sim//.map(x=>(x._2,x._3))
     if (!matchedTerms.isEmpty()){
-      bestTranslation = matchedTerms.collect().toList.map(x=>(x._1))
+      bestTranslation = matchedTerms.collect().toList//.map(x=>(x._1))
     }
     else bestTranslation = listOfTranslations
 
