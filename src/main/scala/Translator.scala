@@ -6,7 +6,7 @@ import org.apache.spark.sql.SparkSession
 class Translator (targetClasses: Broadcast[Map[String, Long]]) extends Serializable {
 def Translate (preprocessedSourceClasses: RDD[String], availableTranslations: RDD[(String, List[String])]): RDD[(String, List[String])]={
   var sourceClassesWithTranslations: RDD[(String, List[String])] = availableTranslations.keyBy(_._1).leftOuterJoin(preprocessedSourceClasses.zipWithIndex().keyBy((_._1))).map(x=>(x._1,x._2._1._2))
-//  sourceClassesWithTranslations.foreach(println(_))
+  sourceClassesWithTranslations.foreach(println(_))
   sourceClassesWithTranslations
   }
 

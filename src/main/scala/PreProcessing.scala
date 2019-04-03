@@ -9,20 +9,21 @@ import org.apache.spark.rdd.RDD
 
 
 class PreProcessing extends Serializable{
-  def RecreateSourceGermanOntologyWithClassLabels(ontologyTriples: RDD[graph.Triple]): RDD[(String, String, String)] = {
-    var classLabels: RDD[graph.Triple] = ontologyTriples.filter(x=>x.getPredicate.getLocalName == "label")
-//    println("classes with labels "+classLabels.count())
-//    classLabels.foreach(println(_))
-
-    var ontologyWithSubjectClass: RDD[(Node, Node, Node)] = ontologyTriples.keyBy(_.getSubject).join(classLabels.keyBy(_.getSubject)).map(x=>(x._2._2.getObject,x._2._1.getPredicate,x._2._1.getObject)).filter(x=>x._2.getLocalName != "label")
-//    println("After join")
-//    ontologyWithSubjectClass.foreach(println(_))
-
-    var ontologyWithSubjectAndObjectClass: RDD[(String, String, String)] = ontologyWithSubjectClass.keyBy(_._3).join(classLabels.keyBy(_.getSubject)).map(x=>(this.posTagForString(this.stringPreProcessing2(x._2._1._1.toString)),x._2._1._2.getLocalName,this.posTagForString(this.stringPreProcessing2(x._2._2.getObject.toString))))
-
-    ontologyWithSubjectAndObjectClass
-
-  }
+//  def RecreateSourceGermanOntologyWithClassLabels(ontologyTriples: RDD[graph.Triple]): RDD[(String, String, String)] = {
+//    var classLabels: RDD[graph.Triple] = ontologyTriples.filter(x=>x.getPredicate.getLocalName == "label")
+////    println("classes with labels "+classLabels.count())
+////    classLabels.foreach(println(_))
+//      var germanTagger: MaxentTagger = new MaxentTagger("edu/stanford/nlp/models/pos-tagger/german/german-fast.tagger") with Serializable
+//
+//    var ontologyWithSubjectClass: RDD[(Node, Node, Node)] = ontologyTriples.keyBy(_.getSubject).join(classLabels.keyBy(_.getSubject)).map(x=>(x._2._2.getObject,x._2._1.getPredicate,x._2._1.getObject)).filter(x=>x._2.getLocalName != "label")
+////    println("After join")
+////    ontologyWithSubjectClass.foreach(println(_))
+//
+//    var ontologyWithSubjectAndObjectClass: RDD[(String, String, String)] = ontologyWithSubjectClass.keyBy(_._3).join(classLabels.keyBy(_.getSubject)).map(x=>(this.germanPosTagForString(this.stringPreProcessing2(x._2._1._1.toString),germanTagger),x._2._1._2.getLocalName,this.germanPosTagForString(this.stringPreProcessing2(x._2._2.getObject.toString),germanTagger)))
+//
+//    ontologyWithSubjectAndObjectClass
+//
+//  }
   def RecreateOntologyWithClassLabels(ontologyTriples: RDD[graph.Triple]): RDD[(String, String, String)] = {
     var classLabels: RDD[graph.Triple] = ontologyTriples.filter(x=>x.getPredicate.getLocalName == "label")
     //    println("classes with labels "+classLabels.count())
@@ -43,16 +44,16 @@ class PreProcessing extends Serializable{
   }
   def stringPreProcessing(term: String): String = {
     //For SemSur and Edas and ekaw Datasets
-    var preProcessedString: String = term.replaceAll("""([\p{Punct}&&[^.]]|\b\p{IsLetter}{1,2}\b)\s*""", "").trim
-    var splittedString: String = splitCamelCase(preProcessedString).toLowerCase
-     splittedString
+    var splittedString: String = splitCamelCase(term).toLowerCase
+    var preProcessedString: String = splittedString.replaceAll("""([\p{Punct}])\s*""", "").trim
+//    var splittedString: String = splitCamelCase(preProcessedString).toLowerCase
 
     /*
     * for conference and cmt*/
 //    var preProcessedString: String = term.replaceAll("""([\p{Punct}&&[^.]]|\b\p{IsLetter}{1,2}\b)\s*""", " ").trim.toLowerCase
 //    var splittedString: String = splitCamelCase(preProcessedString).toLowerCase
-    splittedString
-//    preProcessedString
+//    splittedString
+    preProcessedString
   }
   def stringPreProcessing2(term: String): String = {
     /*For SemSur Dataset
@@ -106,12 +107,12 @@ class PreProcessing extends Serializable{
     str.map(x=>x.split("_").head).mkString(" ")
   }
 
-  def posTag(sourceClassesWithoutURIs: Array[String], germanTagger: MaxentTagger): Array[String]={
+  def germanPosTag(sourceClassesWithoutURIs: Array[String], germanTagger: MaxentTagger): Array[String]={
     var sourceC: Array[String] = sourceClassesWithoutURIs.filter(x => x.split(" ").length == 1)
     var sourceC2 = sourceClassesWithoutURIs diff sourceC
 //    println("####################### Subtraction results #######################")
 //    sourceC2.foreach(println(_))
-    var tags: Array[String] = sourceC2.map(x=>(germanTagger.tagString(x).split(" ")).filter(y=> y.contains("_ADJA") || y.contains("_NN")|| y.contains("_XY") || y.contains("_ADV")|| y.contains("_NE")).mkString(" "))
+    var tags: Array[String] = sourceC2.map(x=>(germanTagger.tagString(x).split(" ")).filter(y=> y.contains("_ADJA") || y.contains("_NN")|| y.contains("_XY") || y.contains("_ADV")|| y.contains("_NE") || y.contains("_ADJD")).mkString(" "))
     var removeTags: Array[String] = tags.map(x=>this.getStringWithoutTags(x.split(" ")))
 //    println("All Tags")
 //    tags.foreach(println(_))
@@ -123,15 +124,14 @@ class PreProcessing extends Serializable{
     preprocessedSourceClasses
 
   }
-  def posTagForString(classLabel: String): String={
-    var tokens = classLabel.split(" ")
-    var tagger = new MaxentTagger("src/main/resources/taggers/german-fast.tagger")
-    var strWithTags = tagger.tagTokenizedString(classLabel).split(" ").filter(y=> y.contains("_ADJA") || y.contains("_NN")|| y.contains("_XY") || y.contains("_ADV")|| y.contains("_NE"))//.mkString(" ")
-    var strWithoutTags = strWithTags.map(x=>x.split("_").head+" ").mkString
-    strWithoutTags
-//    strWithTags
-
-  }
+//  def germanPosTagForString(classLabel: String): String={
+//    var tokens = classLabel.split(" ")
+//    var strWithTags = germanTagger.tagTokenizedString(classLabel).split(" ").filter(y=> y.contains("_ADJA") || y.contains("_NN")|| y.contains("_XY") || y.contains("_ADV")|| y.contains("_NE") || y.contains("_ADJD"))//.mkString(" ")
+//    var strWithoutTags = strWithTags.map(x=>x.split("_").head+" ").mkString
+//    strWithoutTags
+////    strWithTags
+//
+//  }
   def sentenceLemmatization (sentence1: String):String={
     val doc = new Document(sentence1)
     var sent: Sentence = doc.sentences.get(0)

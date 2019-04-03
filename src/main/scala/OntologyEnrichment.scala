@@ -80,7 +80,6 @@ object OntologyEnrichment {
     //val inputTarget = "src/main/resources/CaseStudy/SEO_classes.nt"
     val inputTarget = args(1)
 
-
     val lang1: Lang = Lang.NTRIPLES
     val sourceOntology: RDD[graph.Triple] = sparkSession1.rdf(lang1)(inputSource)
     val targetOntology: RDD[graph.Triple] = sparkSession1.rdf(lang1)(inputTarget)
@@ -94,8 +93,9 @@ object OntologyEnrichment {
 
     println("########################## PreProcessing ##############################")
     val p = new PreProcessing()
+//    val sOntology: RDD[(String, String, String)] = p.RecreateSourceGermanOntologyWithClassLabels(sourceOntology).cache()
     val sOntology: RDD[(String, String, String)] = p.RecreateOntologyWithClassLabels(sourceOntology).cache()
-//    println("############################## Mapped Source Ontology ##############################"+ sOntology.count())
+        println("############################## Mapped Source Ontology ##############################"+ sOntology.count())
 //    sOntology.foreach(println(_))
 
     var tOntology: RDD[(String, String, String)] = p.RecreateOntologyWithClassLabels(targetOntology).cache() // should applied if the classes with codes and labels
@@ -148,12 +148,12 @@ object OntologyEnrichment {
     targetClassesWithoutURIs.foreach(println(_))
 
     var sourceClassesWithoutURIs = sourceOntology.filter(x=>x.getPredicate.getLocalName == "label").map(y=>y.getObject.getLiteral.getLexicalForm.split("@").head).distinct().collect()
-//      println("All classes in the source ontology Triples:" + sourceClassesWithoutURIs.size)
-//      sourceClassesWithoutURIs.foreach(println(_))
+      println("All classes in the source ontology Triples:" + sourceClassesWithoutURIs.size)
+      sourceClassesWithoutURIs.foreach(println(_))
     var germanTagger: MaxentTagger = new MaxentTagger("edu/stanford/nlp/models/pos-tagger/german/german-fast.tagger")
-    var preprocessedSourceClasses: RDD[String] = sparkSession1.sparkContext.parallelize(p.posTag(sourceClassesWithoutURIs,germanTagger)).filter(x=>x.isEmpty == false).cache()
-//  println("All source classes after preprocessing "+preprocessedSourceClasses.count())
-//  preprocessedSourceClasses.foreach(println(_))
+    var preprocessedSourceClasses: RDD[String] = sparkSession1.sparkContext.parallelize(p.germanPosTag(sourceClassesWithoutURIs,germanTagger)).filter(x=>x.isEmpty == false).cache()
+  println("All source classes after preprocessing "+preprocessedSourceClasses.count())
+  preprocessedSourceClasses.foreach(println(_))
 
       //Read one-to-many translations from csv file
 //    val src = Source.fromFile("src/main/resources/EvaluationDataset/Translations/Translations-conference-de_new.csv")
@@ -187,7 +187,7 @@ object OntologyEnrichment {
     validSourceTranslationsByExperts.take(70).foreach(println(_))
 
 
-    println("####################### Recreating the source ontologyTriples #####################################")
+    println("####################### Recreating the source ontology with using valid translations #####################################")
     val sor = new SourceOntologyReconstruction()
     var translatedSourceOntology = sor.ReconstructOntology(sOntology,validSourceTranslationsByExperts)//.filter(x=>x._2 != "disjointWith").cache()
 //
@@ -199,10 +199,11 @@ object OntologyEnrichment {
     println("Target ontology without URIs")
     targetOntologyWithoutURI.foreach(println(_))
     val m = new MatchingTwoOntologies()
-    m.GetTriplesToBeEnriched(translatedSourceOntology,targetOntologyWithoutURI, targetClassesWithoutURIs,listOfMatchedTerms)
-    var triplesForEnrichment: RDD[(String, String, String, Char)] = m.Match(translatedSourceOntology,targetOntologyWithoutURI, targetClassesWithoutURIs).distinct().cache()
-    println("####################### source triples needed for enrichment #######################")
-    println(triplesForEnrichment.count()+ " triples. Triples with flag 'E' are needed to enrich the target ontology. Triples with flag 'A' are new triples will be added to the target ontology.")
+//    var triplesForEnrichment: RDD[(String, String, String, Char)] = m.Match(translatedSourceOntology,targetOntologyWithoutURI, targetClassesWithoutURIs).distinct().cache()
+var triplesForEnrichment= m.GetTriplesToBeEnriched(translatedSourceOntology,targetOntologyWithoutURI, targetClassesWithoutURIs,listOfMatchedTerms).cache()
+
+    println("####################### source triples needed for enrichment ####################### " + triplesForEnrichment.count())
+//    println(triplesForEnrichment.count()+ " triples. Triples with flag 'E' are needed to enrich the target ontology. Triples with flag 'A' are new triples will be added to the target ontology.")
     triplesForEnrichment.foreach(println(_))
 //    translatedSourceOntology.coalesce(1).saveAsTextFile("Output/triplesForEnrichment(SEO-Conference)")
 

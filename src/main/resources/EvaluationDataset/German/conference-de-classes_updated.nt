@@ -46,7 +46,7 @@
 <http://conference_de#c-2225732-5117501> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-1025534-8292294> .
 <http://conference_de#c-2225732-5117501> <http://www.w3.org/2002/07/owl#disjointWith> <http://conference_de#c-7357618-1642646> .
 <http://conference_de#c-2326730-6671120> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://conference_de#c-2326730-6671120> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzbewerber"@de .
+<http://conference_de#c-2326730-6671120> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzbewerber früh gezahlt hat"@de .
 <http://conference_de#c-2326730-6671120> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-3096259-3019685> .
 <http://conference_de#c-2326730-6671120> <http://www.w3.org/2002/07/owl#disjointWith> <http://conference_de#c-9664517-5940464> .
 <http://conference_de#c-2365620-6793184> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -77,7 +77,7 @@
 <http://conference_de#c-3040625-6424461> <http://www.w3.org/2000/01/rdf-schema#label> "eingeladener Referent"@de .
 <http://conference_de#c-3040625-6424461> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-4615338-8666561> .
 <http://conference_de#c-3096259-3019685> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://conference_de#c-3096259-3019685> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzbewerber"@de .
+<http://conference_de#c-3096259-3019685> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzbewerber gezahlt hat"@de .
 <http://conference_de#c-3096259-3019685> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-5035120-4059294> .
 <http://conference_de#c-3407738-8040996> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://conference_de#c-3407738-8040996> <http://www.w3.org/2000/01/rdf-schema#label> "Präsentation"@de .
@@ -177,5 +177,5 @@
 <http://conference_de#c-9625814-4995879> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://conference_de#c-9625814-4995879> <http://www.w3.org/2000/01/rdf-schema#label> "Ausschuss"@de .
 <http://conference_de#c-9664517-5940464> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://conference_de#c-9664517-5940464> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzbewerber"@de .
+<http://conference_de#c-9664517-5940464> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzbewerber spät gezahlt hat"@de .
 <http://conference_de#c-9664517-5940464> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-3096259-3019685> .
