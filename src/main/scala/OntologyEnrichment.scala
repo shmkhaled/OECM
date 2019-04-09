@@ -16,17 +16,27 @@ import org.apache.spark.sql.SparkSession
 object OntologyEnrichment {
 
   def main(args: Array[String]): Unit = {
-//    val gS = new GetSimilarity()
+    var englishTagger: MaxentTagger = new MaxentTagger("edu/stanford/nlp/models/pos-tagger/english-left3words/english-left3words-distsim.tagger")
+    println(englishTagger.tagString("request to the conference that recently paid the conference fees"))
+    println(englishTagger.tagString("applicant conference who paid early conference fees"))
+    println(englishTagger.tagString("to"))
+    println(englishTagger.tagString("the"))
+    println(englishTagger.tagString("for"))
+
+    var pppp = new PreProcessing()
+    println(pppp.englishPosTagForString("request to the conference that recently paid the conference fees"))
+
+        val gS = new GetSimilarity()
 //
 //    var preee = new PreProcessing()
 //    println(preee.sentenceLemmatization("review preference"))
 //    println(preee.sentenceLemmatization("review question"))
-//    var sent1 = "review preference"
-//    var sent2 = "review question"
+    var sent1 = "request conference paid conference fees"
+    var sent2 = "conference"
 //
 //    println("Path similarity between "+sent1+" and "+sent2+" = "+gS.sentenceSimilarity(sent1,sent2))
 //    println("Path similarity between "+sent2+" and "+sent1+" = "+gS.sentenceSimilarity(sent2,sent1))
-//    println("Symmetric similarity = "+gS.symmetricSentenceSimilarity(sent1,sent2))
+    println("Symmetric similarity = "+gS.symmetricSentenceSimilarity(sent1,sent2))
 //
 //        println("Path similarity = "+gS.getPathSimilarity("review","question"))
 //        println("Path similarity = "+gS.getPathSimilarity("preference","review"))
@@ -81,8 +91,8 @@ object OntologyEnrichment {
     val inputTarget = args(1)
 
     val lang1: Lang = Lang.NTRIPLES
-    val sourceOntology: RDD[graph.Triple] = sparkSession1.rdf(lang1)(inputSource)
-    val targetOntology: RDD[graph.Triple] = sparkSession1.rdf(lang1)(inputTarget)
+    val sourceOntology: RDD[graph.Triple] = sparkSession1.rdf(lang1)(inputSource).distinct()
+    val targetOntology: RDD[graph.Triple] = sparkSession1.rdf(lang1)(inputTarget).distinct()
     val runTime = Runtime.getRuntime
 
     val ontStat = new OntologyStatistics()
@@ -135,40 +145,55 @@ object OntologyEnrichment {
 //    targetClasses.foreach(println(_))
 
     //####################### Translation #####################################
-      var targetClassesWithoutURIs: RDD[String] = targetOntology.map(y=>p.stringPreProcessing(y.getSubject.getLocalName)).distinct().union(targetOntology.map{case(x)=> if(x.getObject.isURI)(p.stringPreProcessing(x.getObject.getLocalName))else null}.filter(y => y != null && y != "class")).distinct()//for classes with local names ex:ekaw-en, edas and SEO ontologies
+//      var targetClassesWithoutURIs: RDD[String] = targetOntology.map(y=>p.stringPreProcessing(y.getSubject.getLocalName)).distinct().union(targetOntology.map{case(x)=> if(x.getObject.isURI)(p.stringPreProcessing(x.getObject.getLocalName))else null}.filter(y => y != null && y != "class")).distinct()//for classes with local names ex:ekaw-en, edas and SEO ontologies
 //    var tt: RDD[String] = targetOntology.map{case(x)=> if(!x.getObject.isLiteral)(p.stringPreProcessing(x.getObject.getLocalName))else null}.filter(y => y != null && y != "class").distinct()
 //    println("########## new ##############"+ tt.count())
 //    tt.foreach(println(_))
 //    println("########################")
 
+    // Retrieve class name for the source and target ontology (for classes with labels ex:cmt-en, confOf-de and sigkdd-de ontologies)
+    val OC = new OntologyClasses()
 
-    //    var targetClassesWithoutURIs: RDD[String] = targetOntology.filter(x=>x.getPredicate.getLocalName == "label").map(y=>y.getObject.getLiteral.getLexicalForm.split("@").head)//for classes with labels ex:cmt-en, confOf-de and sigkdd-de ontologies
+//    var targetClassesWithoutURIs: RDD[String] = OC.RetrieveClassesWithLabels(targetOntology)
+    var targetClassesWithoutURIs: RDD[String] = OC.RetrieveClassesWithoutLabels(targetOntology)
+
+    //          targetOntology.filter(x=>x.getPredicate.getLocalName == "label").map(y=>y.getObject.getLiteral.getLexicalForm.split("@").head)//for classes with labels ex:cmt-en, confOf-de and sigkdd-de ontologies
 
     println("All classes in the target ontology Triples:" + targetClassesWithoutURIs.count())
     targetClassesWithoutURIs.foreach(println(_))
 
-    var sourceClassesWithoutURIs = sourceOntology.filter(x=>x.getPredicate.getLocalName == "label").map(y=>y.getObject.getLiteral.getLexicalForm.split("@").head).distinct().collect()
-      println("All classes in the source ontology Triples:" + sourceClassesWithoutURIs.size)
+
+    var sourceClassesWithoutURIs = OC.RetrieveClassesWithLabels(sourceOntology)
+      //sourceOntology.filter(x=>x.getPredicate.getLocalName == "label").map(y=>y.getObject.getLiteral.getLexicalForm.split("@").head).distinct().collect()
+      println("All classes in the source ontology Triples:" + sourceClassesWithoutURIs.count())
       sourceClassesWithoutURIs.foreach(println(_))
-    var germanTagger: MaxentTagger = new MaxentTagger("edu/stanford/nlp/models/pos-tagger/german/german-fast.tagger")
-    var preprocessedSourceClasses: RDD[String] = sparkSession1.sparkContext.parallelize(p.germanPosTag(sourceClassesWithoutURIs,germanTagger)).filter(x=>x.isEmpty == false).cache()
-  println("All source classes after preprocessing "+preprocessedSourceClasses.count())
-  preprocessedSourceClasses.foreach(println(_))
+    if (args(0).contains("-de-")){
+      sourceClassesWithoutURIs = OC.RetrieveClassesWithLabelsForGerman(sourceOntology, sparkSession1)
+    }
+//    var germanTagger: MaxentTagger = new MaxentTagger("edu/stanford/nlp/models/pos-tagger/german/german-fast.tagger")
+//    var preprocessedSourceClasses: RDD[String] = sparkSession1.sparkContext.parallelize(p.germanPosTag(sourceClassesWithoutURIs,germanTagger)).filter(x=>x.isEmpty == false).cache()
+//  println("All source classes after preprocessing "+preprocessedSourceClasses.count())
+//  preprocessedSourceClasses.foreach(println(_))
 
       //Read one-to-many translations from csv file
 //    val src = Source.fromFile("src/main/resources/EvaluationDataset/Translations/Translations-conference-de_new.csv")
     //  val src = Source.fromFile("src/main/resources/EvaluationDataset/Translations/Translations-confOf-de.csv")
     //  val src = Source.fromFile("src/main/resources/EvaluationDataset/Translations/Translations-sigkdd-de.csv")
-    val availableTranslations: RDD[(String, List[String])] = sparkSession1.sparkContext.textFile(args(2)).map(_.split(",").toList).map(x=>(x.head, x.tail))
+//    val availableTranslations: RDD[(String, List[String])] = sparkSession1.sparkContext.textFile(args(2)).map(_.split(",").toList).map(x=>(x.head, x.tail))
+val availableTranslations: RDD[(String, List[String])] = sparkSession1.sparkContext.textFile(args(2)).map(_.split(",").toList).map(x=>(x.head, x.tail.map(y=>p.englishPosTagForString(y))))
+//    println("Translation")
 //      availableTranslations.foreach(println(_))
-//      println("Translation")
+//    println("###############################")
+
 
     val t = targetClassesWithoutURIs.zipWithIndex().collect().toMap
     val dc: Broadcast[Map[String, Long]] = sparkSession1.sparkContext.broadcast(t)
     val trans = new Translator(dc)
-    val sourceClassesWithAllAvailableTranslations: RDD[(String, List[String])] = trans.Translate(preprocessedSourceClasses, availableTranslations).distinct()
-//    println("All source with all translations "+sourceClassesWithAllAvailableTranslations.count())
-//    sourceClassesWithAllAvailableTranslations.foreach(println(_))
+//    val sourceClassesWithAllAvailableTranslations: RDD[(String, List[String])] = trans.Translate(preprocessedSourceClasses, availableTranslations).distinct()
+    val sourceClassesWithAllAvailableTranslations: RDD[(String, List[String])] = trans.Translate(sourceClassesWithoutURIs, availableTranslations).distinct()
+
+    println("All source with all translations "+sourceClassesWithAllAvailableTranslations.count())
+    sourceClassesWithAllAvailableTranslations.foreach(println(_))
 
     val sourceClassesWithListOfBestTranslations = sourceClassesWithAllAvailableTranslations.map(x => (x._1,x._2,trans.GetBestTranslation(x._2))).cache()
     println("All sources with list of best translations ")
@@ -194,10 +219,15 @@ object OntologyEnrichment {
     println("Source Ontology after translating subject and object classes "+ translatedSourceOntology.count())
     translatedSourceOntology.distinct().foreach(println(_))
     //############# ExactMatching #################
+/*
     println("####################### Matching Two Ontologies #######################")
-    var targetOntologyWithoutURI: RDD[(String, String, String)] = targetOntology.map{case(x)=> if (x.getObject.isLiteral)(p.stringPreProcessing(x.getSubject.getLocalName),x.getPredicate.getLocalName,p.stringPreProcessing(x.getObject.getLiteral.toString))else (p.stringPreProcessing(x.getSubject.getLocalName),x.getPredicate.getLocalName,p.stringPreProcessing(x.getObject.getLocalName))}//.filter(x=>x._2 != "type" || x._2 != "comment")
-    println("Target ontology without URIs")
-    targetOntologyWithoutURI.foreach(println(_))
+    var targetOntologyWithoutURI: RDD[(String, String, String)] = targetOntology.map{case(x)=> if (x.getObject.isURI)(p.stringPreProcessing(x.getSubject.getLocalName),x.getPredicate.getLocalName,p.stringPreProcessing(x.getObject.getLiteral.toString))else (p.stringPreProcessing(x.getSubject.getLocalName),x.getPredicate.getLocalName,p.stringPreProcessing(x.getObject.getLocalName))}//.filter(x=>x._2 != "type" || x._2 != "comment")
+
+//var targetOntologyWithoutURI: RDD[(String, String, String)] = targetOntology.map{case(x)=> if (!x.getObject.isURI)(p.stringPreProcessing(x.getSubject.getLocalName),x.getPredicate.getLocalName,p.stringPreProcessing(x.getObject.getLiteral.toString))else (p.stringPreProcessing(x.getSubject.getLocalName),x.getPredicate.getLocalName,p.stringPreProcessing(x.getObject.getLocalName))}
+    //var targetClassesWithoutURIs: RDD[String] = targetOntology.map(y=>p.stringPreProcessing(y.getSubject.getLocalName)).distinct().union(targetOntology.map{case(x)=> if(x.getObject.isURI)(p.stringPreProcessing(x.getObject.getLocalName))else null}.filter(y => y != null && y != "class")).distinct()//for classes with local names ex:ekaw-en, edas and SEO ontologies
+
+//    println("Target ontology without URIs")
+//    targetOntologyWithoutURI.foreach(println(_))
     val m = new MatchingTwoOntologies()
 //    var triplesForEnrichment: RDD[(String, String, String, Char)] = m.Match(translatedSourceOntology,targetOntologyWithoutURI, targetClassesWithoutURIs).distinct().cache()
 var triplesForEnrichment= m.GetTriplesToBeEnriched(translatedSourceOntology,targetOntologyWithoutURI, targetClassesWithoutURIs,listOfMatchedTerms).cache()
@@ -207,7 +237,7 @@ var triplesForEnrichment= m.GetTriplesToBeEnriched(translatedSourceOntology,targ
     triplesForEnrichment.foreach(println(_))
 //    translatedSourceOntology.coalesce(1).saveAsTextFile("Output/triplesForEnrichment(SEO-Conference)")
 
-
+*/
 
 
     val endTimeMillis = System.currentTimeMillis()

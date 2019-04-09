@@ -1,0 +1,186 @@
+<http://conference_ar> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<http://conference_ar#c-0125934-1416375> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-0125934-1416375> <http://www.w3.org/2000/01/rdf-schema#label> "وثيقة المؤتمر"@ar .
+<http://conference_ar#c-0175211-8599567> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-0175211-8599567> <http://www.w3.org/2000/01/rdf-schema#label> "المراجع"@ar .
+<http://conference_ar#c-0175211-8599567> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-3019441-0237831> .
+<http://conference_ar#c-0626471-1797386> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-0626471-1797386> <http://www.w3.org/2000/01/rdf-schema#label> "نسخة جاهزة للتصوير مساهمة"@ar .
+<http://conference_ar#c-0626471-1797386> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-2337113-9613630> .
+<http://conference_ar#c-0706106-6101935> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-0706106-6101935> <http://www.w3.org/2000/01/rdf-schema#label> "ملصق"@ar .
+<http://conference_ar#c-0706106-6101935> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-7923834-2744803> .
+<http://conference_ar#c-0706106-6101935> <http://www.w3.org/2002/07/owl#disjointWith> <http://conference_ar#c-3327332-2902048> .
+<http://conference_ar#c-0706106-6101935> <http://www.w3.org/2002/07/owl#disjointWith> <http://conference_ar#c-4992494-1216173> .
+<http://conference_ar#c-0764813-4496194> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-0764813-4496194> <http://www.w3.org/2000/01/rdf-schema#label> "منظم"@ar .
+<http://conference_ar#c-0764813-4496194> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-6138490-3576322> .
+<http://conference_ar#c-1265118-1481631> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-1265118-1481631> <http://www.w3.org/2000/01/rdf-schema#label> "اللجنة المنظمة"@ar .
+<http://conference_ar#c-1265118-1481631> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-4325776-1848358> .
+<http://conference_ar#c-1265118-1481631> <http://www.w3.org/2002/07/owl#disjointWith> <http://conference_ar#c-3698535-6373807> .
+<http://conference_ar#c-1265118-1481631> <http://www.w3.org/2002/07/owl#disjointWith> <http://conference_ar#c-4961675-7251726> .
+<http://conference_ar#c-1296813-5502022> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-1296813-5502022> <http://www.w3.org/2000/01/rdf-schema#label> "مشارك ايجابي في المؤتمر"@ar .
+<http://conference_ar#c-1296813-5502022> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-2718436-5859788> .
+<http://conference_ar#c-1296813-5502022> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-9580737-0090816> .
+<http://conference_ar#c-1296813-5502022> <http://www.w3.org/2002/07/owl#disjointWith> <http://conference_ar#c-4150917-3972000> .
+<http://conference_ar#c-1803328-8133276> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-1803328-8133276> <http://www.w3.org/2000/01/rdf-schema#label> "لاشيء"@ar .
+<http://conference_ar#c-1807363-8312901> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-1807363-8312901> <http://www.w3.org/2000/01/rdf-schema#label> "متحدث المدعو"@ar .
+<http://conference_ar#c-1807363-8312901> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-2718436-5859788> .
+<http://conference_ar#c-2288869-8161021> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-2288869-8161021> <http://www.w3.org/2000/01/rdf-schema#label> "الرئيس المشترك"@ar .
+<http://conference_ar#c-2288869-8161021> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-9955100-5659862> .
+<http://conference_ar#c-2304544-3010010> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-2304544-3010010> <http://www.w3.org/2000/01/rdf-schema#label> "معلومات للمشاركين"@ar .
+<http://conference_ar#c-2304544-3010010> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-0125934-1416375> .
+<http://conference_ar#c-2337113-9613630> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-2337113-9613630> <http://www.w3.org/2000/01/rdf-schema#label> "مساهمة مقبولة"@ar .
+<http://conference_ar#c-2337113-9613630> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-4457351-3163362> .
+<http://conference_ar#c-2337113-9613630> <http://www.w3.org/2002/07/owl#disjointWith> <http://conference_ar#c-9000252-9592999> .
+<http://conference_ar#c-2516973-9440788> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-2516973-9440788> <http://www.w3.org/2000/01/rdf-schema#label> "الناشر"@ar .
+<http://conference_ar#c-2664096-5719860> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-2664096-5719860> <http://www.w3.org/2000/01/rdf-schema#label> "المؤلف الأول للمساهمة"@ar .
+<http://conference_ar#c-2664096-5719860> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-5529754-6192352> .
+<http://conference_ar#c-2664096-5719860> <http://www.w3.org/2002/07/owl#disjointWith> <http://conference_ar#c-5866013-1545087> .
+<http://conference_ar#c-2696383-8112981> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-2696383-8112981> <http://www.w3.org/2000/01/rdf-schema#label> "مساهمة خطية"@ar .
+<http://conference_ar#c-2696383-8112981> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-7923834-2744803> .
+<http://conference_ar#c-2718436-5859788> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-2718436-5859788> <http://www.w3.org/2000/01/rdf-schema#label> "مساهمة للمؤتمر"@ar .
+<http://conference_ar#c-2718436-5859788> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-3019441-0237831> .
+<http://conference_ar#c-2967846-2281939> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-2967846-2281939> <http://www.w3.org/2000/01/rdf-schema#label> "مقدم الطلب مسجل"@ar .
+<http://conference_ar#c-2967846-2281939> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-8991961-5349722> .
+<http://conference_ar#c-2970345-8474794> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-2970345-8474794> <http://www.w3.org/2000/01/rdf-schema#label> "شبكة الإنترنت العنكبوتية للمؤتمر"@ar .
+<http://conference_ar#c-2970345-8474794> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-0125934-1416375> .
+<http://conference_ar#c-3019441-0237831> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-3019441-0237831> <http://www.w3.org/2000/01/rdf-schema#label> "شخص"@ar .
+<http://conference_ar#c-3316438-2919803> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-3316438-2919803> <http://www.w3.org/2000/01/rdf-schema#label> "مساهمة مرسلة"@ar .
+<http://conference_ar#c-3316438-2919803> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-2696383-8112981> .
+<http://conference_ar#c-3327332-2902048> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-3327332-2902048> <http://www.w3.org/2000/01/rdf-schema#label> "مساهمة منتظمة"@ar .
+<http://conference_ar#c-3327332-2902048> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-2696383-8112981> .
+<http://conference_ar#c-3327332-2902048> <http://www.w3.org/2002/07/owl#disjointWith> <http://conference_ar#c-4992494-1216173> .
+<http://conference_ar#c-3698535-6373807> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-3698535-6373807> <http://www.w3.org/2000/01/rdf-schema#label> "للجنة العلمية"@ar .
+<http://conference_ar#c-3698535-6373807> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-4325776-1848358> .
+<http://conference_ar#c-3698535-6373807> <http://www.w3.org/2002/07/owl#disjointWith> <http://conference_ar#c-4961675-7251726> .
+<http://conference_ar#c-3759244-0340516> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-3759244-0340516> <http://www.w3.org/2000/01/rdf-schema#label> "محضر المؤتمر"@ar .
+<http://conference_ar#c-3902476-0824732> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-3902476-0824732> <http://www.w3.org/2000/01/rdf-schema#label> "ملخص موسع"@ar .
+<http://conference_ar#c-3902476-0824732> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-3327332-2902048> .
+<http://conference_ar#c-3902476-0824732> <http://www.w3.org/2002/07/owl#disjointWith> <http://conference_ar#c-8611158-0499105> .
+<http://conference_ar#c-4056763-7951670> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-4056763-7951670> <http://www.w3.org/2000/01/rdf-schema#label> "تاريخ مهم"@ar .
+<http://conference_ar#c-4142413-0988847> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-4142413-0988847> <http://www.w3.org/2000/01/rdf-schema#label> "الموضوع"@ar .
+<http://conference_ar#c-4150917-3972000> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-4150917-3972000> <http://www.w3.org/2000/01/rdf-schema#label> "مشارك السلبي في المؤتمر"@ar .
+<http://conference_ar#c-4150917-3972000> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-9580737-0090816> .
+<http://conference_ar#c-4229534-4677341> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-4229534-4677341> <http://www.w3.org/2000/01/rdf-schema#label> "سلسله المؤتمر"@ar .
+<http://conference_ar#c-4229534-4677341> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-9851284-7234772> .
+<http://conference_ar#c-4325776-1848358> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-4325776-1848358> <http://www.w3.org/2000/01/rdf-schema#label> "اللجنة"@ar .
+<http://conference_ar#c-4457351-3163362> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-4457351-3163362> <http://www.w3.org/2000/01/rdf-schema#label> "مساهمة مراجعة"@ar .
+<http://conference_ar#c-4457351-3163362> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-3316438-2919803> .
+<http://conference_ar#c-4961675-7251726> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-4961675-7251726> <http://www.w3.org/2000/01/rdf-schema#label> "اللجنة التوجيهية"@ar .
+<http://conference_ar#c-4961675-7251726> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-4325776-1848358> .
+<http://conference_ar#c-4992494-1216173> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-4992494-1216173> <http://www.w3.org/2000/01/rdf-schema#label> "دعت الحديث"@ar .
+<http://conference_ar#c-4992494-1216173> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-8219515-5240767> .
+<http://conference_ar#c-5529754-6192352> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-5529754-6192352> <http://www.w3.org/2000/01/rdf-schema#label> "كاتب المساهمة"@ar .
+<http://conference_ar#c-5529754-6192352> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-2718436-5859788> .
+<http://conference_ar#c-5777648-3042243> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-5777648-3042243> <http://www.w3.org/2000/01/rdf-schema#label> "رسوم من اجل المؤتمر"@ar .
+<http://conference_ar#c-5866013-1545087> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-5866013-1545087> <http://www.w3.org/2000/01/rdf-schema#label> "الكاتب المشترك في المساهمة"@ar .
+<http://conference_ar#c-5866013-1545087> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-5529754-6192352> .
+<http://conference_ar#c-5964669-0394892> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-5964669-0394892> <http://www.w3.org/2000/01/rdf-schema#label> "إعلان المؤتمر"@ar .
+<http://conference_ar#c-5964669-0394892> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-0125934-1416375> .
+<http://conference_ar#c-6051142-3591148> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-6051142-3591148> <http://www.w3.org/2000/01/rdf-schema#label> "افضلية المراجع"@ar .
+<http://conference_ar#c-6051142-3591148> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-6138490-3576322> .
+<http://conference_ar#c-6138490-3576322> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-6138490-3576322> <http://www.w3.org/2000/01/rdf-schema#label> "لاشيء"@ar .
+<http://conference_ar#c-6736337-6165561> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-6736337-6165561> <http://www.w3.org/2000/01/rdf-schema#label> "طلب مقدم للمؤتمر الذي دفع مؤخرا رسوم المؤتمر"@ar .
+<http://conference_ar#c-6736337-6165561> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-8727034-9492569> .
+<http://conference_ar#c-6736337-6165561> <http://www.w3.org/2002/07/owl#disjointWith> <http://conference_ar#c-9492774-9575375> .
+<http://conference_ar#c-6863092-2727817> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-6863092-2727817> <http://www.w3.org/2000/01/rdf-schema#label> "مسار المؤتمر"@ar .
+<http://conference_ar#c-6863092-2727817> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-9908694-8119394> .
+<http://conference_ar#c-6863092-2727817> <http://www.w3.org/2002/07/owl#disjointWith> <http://conference_ar#c-8032682-8401452> .
+<http://conference_ar#c-6863092-2727817> <http://www.w3.org/2002/07/owl#disjointWith> <http://conference_ar#c-9936103-5863237> .
+<http://conference_ar#c-7203821-2802871> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-7203821-2802871> <http://www.w3.org/2000/01/rdf-schema#label> "دعوة للمشاركة"@ar .
+<http://conference_ar#c-7203821-2802871> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-0125934-1416375> .
+<http://conference_ar#c-7340991-9297285> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-7340991-9297285> <http://www.w3.org/2000/01/rdf-schema#label> "مراجعة"@ar .
+<http://conference_ar#c-7340991-9297285> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-0125934-1416375> .
+<http://conference_ar#c-7365880-4475104> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-7365880-4475104> <http://www.w3.org/2000/01/rdf-schema#label> "رئيس"@ar .
+<http://conference_ar#c-7365880-4475104> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-9955100-5659862> .
+<http://conference_ar#c-7572666-5228878> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-7572666-5228878> <http://www.w3.org/2000/01/rdf-schema#label> "الدعوة لتقديم الأبحاث"@ar .
+<http://conference_ar#c-7572666-5228878> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-0125934-1416375> .
+<http://conference_ar#c-7923834-2744803> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-7923834-2744803> <http://www.w3.org/2000/01/rdf-schema#label> "مساهمة المؤتمر"@ar .
+<http://conference_ar#c-7923834-2744803> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-0125934-1416375> .
+<http://conference_ar#c-8032682-8401452> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-8032682-8401452> <http://www.w3.org/2000/01/rdf-schema#label> "البرنامج التعليمي"@ar .
+<http://conference_ar#c-8032682-8401452> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-9908694-8119394> .
+<http://conference_ar#c-8032682-8401452> <http://www.w3.org/2002/07/owl#disjointWith> <http://conference_ar#c-9936103-5863237> .
+<http://conference_ar#c-8113141-9235245> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-8113141-9235245> <http://www.w3.org/2000/01/rdf-schema#label> "الملخص"@ar .
+<http://conference_ar#c-8113141-9235245> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-3902476-0824732> .
+<http://conference_ar#c-8219515-5240767> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-8219515-5240767> <http://www.w3.org/2000/01/rdf-schema#label> "العرض التقديمي"@ar .
+<http://conference_ar#c-8219515-5240767> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-7923834-2744803> .
+<http://conference_ar#c-8611158-0499105> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-8611158-0499105> <http://www.w3.org/2000/01/rdf-schema#label> "البحث"@ar .
+<http://conference_ar#c-8611158-0499105> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-3327332-2902048> .
+<http://conference_ar#c-8727034-9492569> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-8727034-9492569> <http://www.w3.org/2000/01/rdf-schema#label> "طلب مقدم للمؤتمر الذين دفعوا رسوم المؤتمر"@ar .
+<http://conference_ar#c-8727034-9492569> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-2967846-2281939> .
+<http://conference_ar#c-8991961-5349722> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-8991961-5349722> <http://www.w3.org/2000/01/rdf-schema#label> "طلب مقدم للمؤتمر"@ar .
+<http://conference_ar#c-8991961-5349722> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-3019441-0237831> .
+<http://conference_ar#c-9000252-9592999> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-9000252-9592999> <http://www.w3.org/2000/01/rdf-schema#label> "مساهمة مرفوضة"@ar .
+<http://conference_ar#c-9000252-9592999> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-4457351-3163362> .
+<http://conference_ar#c-9046016-5621296> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-9046016-5621296> <http://www.w3.org/2000/01/rdf-schema#label> "المنظمة"@ar .
+<http://conference_ar#c-9079156-2235573> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-9079156-2235573> <http://www.w3.org/2000/01/rdf-schema#label> "رئيس مسار ورشة العمل"@ar .
+<http://conference_ar#c-9079156-2235573> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-3019441-0237831> .
+<http://conference_ar#c-9492774-9575375> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-9492774-9575375> <http://www.w3.org/2000/01/rdf-schema#label> "مقدم الطلب المؤتمر الذي دفع في وقت مبكر رسوم المؤتمر"@ar .
+<http://conference_ar#c-9492774-9575375> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-8727034-9492569> .
+<http://conference_ar#c-9575593-9258464> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-9575593-9258464> <http://www.w3.org/2000/01/rdf-schema#label> "خبرة المراجع"@ar .
+<http://conference_ar#c-9575593-9258464> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-6138490-3576322> .
+<http://conference_ar#c-9580737-0090816> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-9580737-0090816> <http://www.w3.org/2000/01/rdf-schema#label> "المشارك في المؤتمر"@ar .
+<http://conference_ar#c-9580737-0090816> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-3019441-0237831> .
+<http://conference_ar#c-9851284-7234772> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-9851284-7234772> <http://www.w3.org/2000/01/rdf-schema#label> "المؤتمر"@ar .
+<http://conference_ar#c-9908694-8119394> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-9908694-8119394> <http://www.w3.org/2000/01/rdf-schema#label> "جزء من المؤتمر"@ar .
+<http://conference_ar#c-9936103-5863237> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-9936103-5863237> <http://www.w3.org/2000/01/rdf-schema#label> "ورشة عمل"@ar .
+<http://conference_ar#c-9936103-5863237> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-9908694-8119394> .
+<http://conference_ar#c-9955100-5659862> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://conference_ar#c-9955100-5659862> <http://www.w3.org/2000/01/rdf-schema#label> "عضو  في اللجنة"@ar .
+<http://conference_ar#c-9955100-5659862> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_ar#c-3019441-0237831> .

@@ -1360,7 +1360,6 @@
 <http://edas#Organization> <http://www.w3.org/2002/07/owl#disjointWith> <http://edas#ConferenceEvent> .
 <http://edas#Organization> <http://www.w3.org/2002/07/owl#disjointWith> <http://edas#Country> .
 <http://edas#Organization> <http://www.w3.org/2002/07/owl#disjointWith> <http://edas#Call> .
-<http://edas#Organization> <http://www.w3.org/2002/07/owl#disjointWith> <http://edas#Document> .
 <http://edas#Organization> <http://www.w3.org/2002/07/owl#disjointWith> <http://edas#ReviewRating> .
 <http://edas#Organization> <http://www.w3.org/2002/07/owl#disjointWith> <http://edas#ReviewForm> .
 <http://edas#Organization> <http://www.w3.org/2002/07/owl#disjointWith> <http://edas#PersonalHistory> .

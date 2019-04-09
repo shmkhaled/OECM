@@ -132,6 +132,15 @@ class PreProcessing extends Serializable{
 ////    strWithTags
 //
 //  }
+  def englishPosTagForString(classLabel: String): String={
+  var englishTagger: MaxentTagger = new MaxentTagger("edu/stanford/nlp/models/pos-tagger/english-left3words/english-left3words-distsim.tagger")
+    var tokens = classLabel.split(" ")
+    var strWithTags = englishTagger.tagTokenizedString(classLabel).split(" ").filter(y=> !y.contains("_DT") && !y.contains("_IN") && !y.contains("_TO") && !y.contains("_WDT") && !y.contains("_RB")&& !y.contains("_WP"))//.mkString(" ")
+    var strWithoutTags = strWithTags.map(x=>x.split("_").head+" ").mkString
+    strWithoutTags.toLowerCase
+//    strWithTags
+
+  }
   def sentenceLemmatization (sentence1: String):String={
     val doc = new Document(sentence1)
     var sent: Sentence = doc.sentences.get(0)
