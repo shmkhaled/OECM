@@ -89,7 +89,7 @@
 <http://conference_de#c-4481836-1173835> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-5562180-9263139> .
 <http://conference_de#c-4481836-1173835> <http://www.w3.org/2002/07/owl#disjointWith> <http://conference_de#c-8071281-1290388> .
 <http://conference_de#c-4615338-8666561> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://conference_de#c-4615338-8666561> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzteilnehmer"@de .
+<http://conference_de#c-4615338-8666561> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzteilnehmer Beitrag hat"@de .
 <http://conference_de#c-4615338-8666561> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://conference_de#c-2807153-3693543> .
 <http://conference_de#c-4650867-2477948> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://conference_de#c-4650867-2477948> <http://www.w3.org/2000/01/rdf-schema#label> "Angehörige des Ausschusses"@de .

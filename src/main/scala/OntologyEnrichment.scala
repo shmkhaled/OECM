@@ -1,5 +1,4 @@
 
-import edu.stanford.nlp.tagger.maxent.MaxentTagger
 import net.sansa_stack.rdf.spark.io._
 import org.apache.jena.graph
 import org.apache.jena.riot.Lang
@@ -16,28 +15,28 @@ import org.apache.spark.sql.SparkSession
 object OntologyEnrichment {
 
   def main(args: Array[String]): Unit = {
-    var englishTagger: MaxentTagger = new MaxentTagger("edu/stanford/nlp/models/pos-tagger/english-left3words/english-left3words-distsim.tagger")
-    println(englishTagger.tagString("request to the conference that recently paid the conference fees"))
-    println(englishTagger.tagString("applicant conference who paid early conference fees"))
-    println(englishTagger.tagString("to"))
-    println(englishTagger.tagString("the"))
-    println(englishTagger.tagString("for"))
-
-    var pppp = new PreProcessing()
-    println(pppp.englishPosTagForString("request to the conference that recently paid the conference fees"))
-
-        val gS = new GetSimilarity()
+//    var englishTagger: MaxentTagger = new MaxentTagger("edu/stanford/nlp/models/pos-tagger/english-left3words/english-left3words-distsim.tagger")
+//    println(englishTagger.tagString("request to the conference that recently paid the conference fees"))
+//    println(englishTagger.tagString("applicant conference who paid early conference fees"))
+//    println(englishTagger.tagString("early paid applicant"))
+//    println(englishTagger.tagString("the"))
+//    println(englishTagger.tagString("for"))
 //
-//    var preee = new PreProcessing()
-//    println(preee.sentenceLemmatization("review preference"))
-//    println(preee.sentenceLemmatization("review question"))
-    var sent1 = "request conference paid conference fees"
-    var sent2 = "conference"
+//    var pppp = new PreProcessing()
+//    println(pppp.englishPosTagForString("early paid applicant"))
 //
-//    println("Path similarity between "+sent1+" and "+sent2+" = "+gS.sentenceSimilarity(sent1,sent2))
-//    println("Path similarity between "+sent2+" and "+sent1+" = "+gS.sentenceSimilarity(sent2,sent1))
-    println("Symmetric similarity = "+gS.symmetricSentenceSimilarity(sent1,sent2))
-//
+//        val gS = new GetSimilarity()
+////
+////    var preee = new PreProcessing()
+////    println(preee.sentenceLemmatization("review preference"))
+////    println(preee.sentenceLemmatization("review question"))
+//    var sent1 = "request conference paid conference fees"
+//    var sent2 = "conference"
+////
+////    println("Path similarity between "+sent1+" and "+sent2+" = "+gS.sentenceSimilarity(sent1,sent2))
+////    println("Path similarity between "+sent2+" and "+sent1+" = "+gS.sentenceSimilarity(sent2,sent1))
+//    println("Symmetric similarity = "+gS.symmetricSentenceSimilarity(sent1,sent2))
+////
 //        println("Path similarity = "+gS.getPathSimilarity("review","question"))
 //        println("Path similarity = "+gS.getPathSimilarity("preference","review"))
 //        println("Path similarity = "+gS.getPathSimilarity("preference","question"))
@@ -70,7 +69,6 @@ object OntologyEnrichment {
 //
 //    println(semSim.symmetricSentenceSimilarity("workshop chair","workshop proposals"))
 
-    //    val sparkConf = new SparkConf().setMaster("spark://172.18.160.16:3077")
     Logger.getLogger("org").setLevel(Level.OFF)
     Logger.getLogger("akka").setLevel(Level.OFF)
     val sparkSession1 = SparkSession.builder
@@ -106,7 +104,7 @@ object OntologyEnrichment {
 //    val sOntology: RDD[(String, String, String)] = p.RecreateSourceGermanOntologyWithClassLabels(sourceOntology).cache()
     val sOntology: RDD[(String, String, String)] = p.RecreateOntologyWithClassLabels(sourceOntology).cache()
         println("############################## Mapped Source Ontology ##############################"+ sOntology.count())
-//    sOntology.foreach(println(_))
+    sOntology.foreach(println(_))
 
     var tOntology: RDD[(String, String, String)] = p.RecreateOntologyWithClassLabels(targetOntology).cache() // should applied if the classes with codes and labels
     //println("############################## Mapped Target Ontology ##############################" + tOntology.count())
@@ -154,8 +152,8 @@ object OntologyEnrichment {
     // Retrieve class name for the source and target ontology (for classes with labels ex:cmt-en, confOf-de and sigkdd-de ontologies)
     val OC = new OntologyClasses()
 
-//    var targetClassesWithoutURIs: RDD[String] = OC.RetrieveClassesWithLabels(targetOntology)
-    var targetClassesWithoutURIs: RDD[String] = OC.RetrieveClassesWithoutLabels(targetOntology)
+    var targetClassesWithoutURIs: RDD[String] = OC.RetrieveClassesWithLabels(targetOntology)
+//    var targetClassesWithoutURIs: RDD[String] = OC.RetrieveClassesWithoutLabels(targetOntology)
 
     //          targetOntology.filter(x=>x.getPredicate.getLocalName == "label").map(y=>y.getObject.getLiteral.getLexicalForm.split("@").head)//for classes with labels ex:cmt-en, confOf-de and sigkdd-de ontologies
 
@@ -163,14 +161,18 @@ object OntologyEnrichment {
     targetClassesWithoutURIs.foreach(println(_))
 
 
-    var sourceClassesWithoutURIs = OC.RetrieveClassesWithLabels(sourceOntology)
+//    var sourceClassesWithoutURIs: RDD[String] = OC.RetrieveClassesWithLabels(sourceOntology)
       //sourceOntology.filter(x=>x.getPredicate.getLocalName == "label").map(y=>y.getObject.getLiteral.getLexicalForm.split("@").head).distinct().collect()
-      println("All classes in the source ontology Triples:" + sourceClassesWithoutURIs.count())
-      sourceClassesWithoutURIs.foreach(println(_))
-    if (args(0).contains("-de-")){
-      sourceClassesWithoutURIs = OC.RetrieveClassesWithLabelsForGerman(sourceOntology, sparkSession1)
-    }
-//    var germanTagger: MaxentTagger = new MaxentTagger("edu/stanford/nlp/models/pos-tagger/german/german-fast.tagger")
+//      println("All classes in the source ontology Triples:" + sourceClassesWithoutURIs.count())
+//      sourceClassesWithoutURIs.foreach(println(_))
+//    if (args(0).contains("-de-")){
+//      sourceClassesWithoutURIs = OC.RetrieveClassesWithLabelsForGerman(sourceOntology, sparkSession1)
+//    }
+      var sourceClassesWithURIs = OC.RetrieveClassesWithURIsAndLabels(sourceOntology) //applied for german ontologies
+      println("All classes with URIs in the source ontology Triples:" + sourceClassesWithURIs.count())
+      sourceClassesWithURIs.foreach(println(_))
+
+      //    var germanTagger: MaxentTagger = new MaxentTagger("edu/stanford/nlp/models/pos-tagger/german/german-fast.tagger")
 //    var preprocessedSourceClasses: RDD[String] = sparkSession1.sparkContext.parallelize(p.germanPosTag(sourceClassesWithoutURIs,germanTagger)).filter(x=>x.isEmpty == false).cache()
 //  println("All source classes after preprocessing "+preprocessedSourceClasses.count())
 //  preprocessedSourceClasses.foreach(println(_))
@@ -180,23 +182,26 @@ object OntologyEnrichment {
     //  val src = Source.fromFile("src/main/resources/EvaluationDataset/Translations/Translations-confOf-de.csv")
     //  val src = Source.fromFile("src/main/resources/EvaluationDataset/Translations/Translations-sigkdd-de.csv")
 //    val availableTranslations: RDD[(String, List[String])] = sparkSession1.sparkContext.textFile(args(2)).map(_.split(",").toList).map(x=>(x.head, x.tail))
-val availableTranslations: RDD[(String, List[String])] = sparkSession1.sparkContext.textFile(args(2)).map(_.split(",").toList).map(x=>(x.head, x.tail.map(y=>p.englishPosTagForString(y))))
-//    println("Translation")
-//      availableTranslations.foreach(println(_))
-//    println("###############################")
+//val availableTranslations: RDD[(String, List[String])] = sparkSession1.sparkContext.textFile(args(2)).map(_.split(",").toList).map(x=>(x.head, x.tail.map(y=>p.englishPosTagForString(y))))
+val availableTranslations: RDD[(String, List[String])] = sparkSession1.sparkContext.textFile(args(2)).map(_.split(",").toList).map(x=>(x.head, x.tail.drop(1).map(y=>p.englishPosTagForString(y))))
+      println("Translations")
+      availableTranslations.foreach(println(_))
+    println("###############################")
 
 
     val t = targetClassesWithoutURIs.zipWithIndex().collect().toMap
     val dc: Broadcast[Map[String, Long]] = sparkSession1.sparkContext.broadcast(t)
     val trans = new Translator(dc)
 //    val sourceClassesWithAllAvailableTranslations: RDD[(String, List[String])] = trans.Translate(preprocessedSourceClasses, availableTranslations).distinct()
-    val sourceClassesWithAllAvailableTranslations: RDD[(String, List[String])] = trans.Translate(sourceClassesWithoutURIs, availableTranslations).distinct()
+//    val sourceClassesWithAllAvailableTranslations: RDD[(String, List[String])] = trans.Translate(sourceClassesWithoutURIs, availableTranslations).distinct()
+//
+//    println("All source with all translations "+sourceClassesWithAllAvailableTranslations.count())
+//    sourceClassesWithAllAvailableTranslations.foreach(println(_))
 
-    println("All source with all translations "+sourceClassesWithAllAvailableTranslations.count())
-    sourceClassesWithAllAvailableTranslations.foreach(println(_))
+//    val sourceClassesWithListOfBestTranslations = sourceClassesWithAllAvailableTranslations.map(x => (x._1,x._2,trans.GetBestTranslation(x._2))).cache()
+    val sourceClassesWithListOfBestTranslations = availableTranslations.map(x => (x._1,x._2,trans.GetBestTranslation(x._2))).cache()
 
-    val sourceClassesWithListOfBestTranslations = sourceClassesWithAllAvailableTranslations.map(x => (x._1,x._2,trans.GetBestTranslation(x._2))).cache()
-    println("All sources with list of best translations ")
+      println("All sources with list of best translations ")
     sourceClassesWithListOfBestTranslations.take(70).foreach(println(_))
 //    sourceClassesWithListOfBestTranslations.coalesce(1).saveAsTextFile("src/main/resources/EvaluationDataset/German/translation")
 //    println("Translations should be validated by experts")
@@ -204,14 +209,17 @@ val availableTranslations: RDD[(String, List[String])] = sparkSession1.sparkCont
     println("List of matched terms ")
     listOfMatchedTerms.foreach(println(_))
 
-    val validSourceTranslationsByExperts: RDD[(String, String)] = sourceClassesWithListOfBestTranslations.map(x=>(x._1.toLowerCase,p.stringPreProcessing(x._3.head.toString.toLowerCase.split(",").head)))//.filter(!_.isDigit)
-    /*Experts should validate the translations*/
+    val validSourceTranslationsByExperts: RDD[(String, String)] = sourceClassesWithListOfBestTranslations.map(x=>(x._1.toLowerCase,p.stringPreProcessing(x._3.head.toString.toLowerCase.split(",").head))).keyBy(_._1).join(sourceClassesWithURIs).map({case (u, ((uu, tt), s)) => (s,tt.trim.replaceAll(" +", " "))})//.filter(!_.isDigit)
+
+      /*Experts should validate the translations*/
   //arg(3) = src/main/resources/EvaluationDataset/Translations/ConferenceTranslations_W_R_T_SEO
 //    val validSourceTranslationsByExperts: RDD[(String, String)] = sparkSession1.sparkContext.textFile(args(3)).map(x=>x.split(",")).map(y=>(y.head.toLowerCase,y.last.toLowerCase))
     println("Validated translated source classes W.R.T SEO: ")
     validSourceTranslationsByExperts.take(70).foreach(println(_))
-
-
+//    println("####################### ")
+//    var tttttt: RDD[(String, String)] = sourceClassesWithListOfBestTranslations.map(x=>(x._1.toLowerCase,p.stringPreProcessing(x._3.head.toString.toLowerCase.split(",").head))).keyBy(_._1).join(sourceClassesWithURIs).map({
+//        case (u, ((uu, tt), s)) => (s,tt)})
+//      tttttt.foreach(println(_))
     println("####################### Recreating the source ontology with using valid translations #####################################")
     val sor = new SourceOntologyReconstruction()
     var translatedSourceOntology = sor.ReconstructOntology(sOntology,validSourceTranslationsByExperts)//.filter(x=>x._2 != "disjointWith").cache()

@@ -1,39 +1,39 @@
-مشارك,participant
-حدث الارسال,Transmitter event
-طالب,Student
-لاشيئ,nothing
-مأدبة,banquet
-طالب مشارك في المؤتمر,Associate student at the conference
-الموضوع,Subject
-مساهمة,Input
-شخص مشارك مع المؤتمر,A person with a conference participant
-حدث عملي,Practical event
-ملصق,a poster
-رحلة,Journey
-الحدث الإداري,Administrative Event
-حدث نتائج المراجعة,Event results of the review
-بحث,Search
-رئيس اللجنة العلمية,Chairman of the Scientific Committee
-متطوع في المؤتمر,Volunteer Conference
-منظمة,organization
-مشارك منتظم في المؤتمر,A regular participant in the conference
-استقبال,Recepion
-ورشة عمل,Workshop
-مؤتمر,conference
-الشركة,Company
-الجامعة,the University
-حدث تسجيل الحدث المشاركين,Event Event Registration of participants
-حدث المراجعة,Audit event
-المساعد,assistant
-شخص,Person
-حدث إرسال نسخة بعد اجراء التعديل جاهزة للتصوير,Send a copy of an event after an amendment ready-to-shoot
-الحدث,the event
-بحث قصير,Search short
-عضو في اللجنة العلمية,Member of the Scientific Committee
-عامل العلم,Flag factor
-البرنامج التعليمي,educationl programs
-المشرف,Supervisor
-المدينة,City
-الحدث الاجتماعي,Social Event
-الكاتب,Writer
-بلد,country
+c-8228583-9065800,مشارك,participant,entrant,
+c-3410727-9011110,حدث الارسال,Transmitter event,,
+c-6600468-8307220,طالب,Student,scholar,
+c-5702701-0515150,لاشيئ,nothing,,
+c-1586963-0840580,مأدبة,banquet,feast,
+c-3917342-9258011,طالب مشارك في المؤتمر,A student attending the conference,,
+c-9172091-4049531,الموضوع,Subject,topic,
+c-4724962-7476631,مساهمة,Contribution,,
+c-5569344-4487981,شخص مشارك مع المؤتمر,A person with a conference participant,,
+c-0862020-8340462,حدث عملي,Practical event,,
+c-5440227-3758372,ملصق,a poster,label,
+c-5885863-7973282,رحلة,Journey,trip,travel
+c-7705317-3828803,الحدث الإداري,Administrative Event,,
+c-5012824-3183223,حدث نتائج المراجعة,Event results of the review,,
+c-5038680-6943053,بحث,Search,study,
+c-0521105-6961953,رئيس اللجنة العلمية,Chairman of the Scientific Committee,,
+c-8184851-8689604,متطوع في المؤتمر,Volunteer Conference,,
+c-7554990-5957094,منظمة,organization,,
+c-8177838-4906405,مشارك منتظم في المؤتمر,A regular participant in the conference,,
+c-0772591-8415185,استقبال,Recepion,,
+c-1933050-6153726,ورشة عمل,Workshop,,
+c-4440801-7921036,مؤتمر,conference,,
+c-6587892-4374536,الشركة,Company,,
+c-7865913-2364546,الجامعة,the University,,
+c-3915519-2693956,حدث تسجيل الحدث المشاركين,Event registration of participants,,
+c-4405124-5235986,حدث المراجعة,Revision event,,
+c-4481908-2093796,المساعد,assistant,helper,aid
+c-5045922-1723896,شخص,Person,,
+c-9768391-7820417,حدث إرسال نسخة بعد اجراء التعديل جاهزة للتصوير,A copy has been sent after the edit is ready to shoot,,
+c-5209605-2294927,الحدث,the event,,
+c-3016107-4283437,بحث قصير,short search,,
+c-7975094-2645837,عضو في اللجنة العلمية,Member of the Scientific Committee,,
+c-4110948-1485047,عامل العلم,science factor,,
+c-2989178-4162367,البرنامج التعليمي,educationl programs,,
+c-1086463-2070678,المشرف,Supervisor,,
+c-6509469-7705009,المدينة,City,,
+c-3934764-9061319,الحدث الاجتماعي,Social Event,,
+c-1867912-9455919,الكاتب,Writer,,
+c-3217626-7724579,بلد,country,,
