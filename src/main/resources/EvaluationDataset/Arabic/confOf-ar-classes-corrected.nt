@@ -1,0 +1,154 @@
+<http://confOf_ar#c-8228583-9065800> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-8228583-9065800> <http://www.w3.org/2000/01/rdf-schema#label> "مشارك"@ar .
+<http://confOf_ar#c-8228583-9065800> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-5045922-1723896> .
+<http://confOf_ar#c-3410727-9011110> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-3410727-9011110> <http://www.w3.org/2000/01/rdf-schema#label> "حدث التسليم"@ar .
+<http://confOf_ar#c-3410727-9011110> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-7705317-3828803> .
+<http://confOf_ar#c-3410727-9011110> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-5012824-3183223> .
+<http://confOf_ar#c-3410727-9011110> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-3915519-2693956> .
+<http://confOf_ar#c-3410727-9011110> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-4405124-5235986> .
+<http://confOf_ar#c-3410727-9011110> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-9768391-7820417> .
+<http://confOf_ar#c-6600468-8307220> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-6600468-8307220> <http://www.w3.org/2000/01/rdf-schema#label> "طالب"@ar .
+<http://confOf_ar#c-6600468-8307220> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-5045922-1723896> .
+<http://confOf_ar#c-5702701-0515150> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-5702701-0515150> <http://www.w3.org/2000/01/rdf-schema#label> "لاشيئ"@ar .
+<http://confOf_ar#c-1586963-0840580> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-1586963-0840580> <http://www.w3.org/2000/01/rdf-schema#label> "مأدبة"@ar .
+<http://confOf_ar#c-1586963-0840580> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-3934764-9061319> .
+<http://confOf_ar#c-1586963-0840580> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-5885863-7973282> .
+<http://confOf_ar#c-1586963-0840580> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-0772591-8415185> .
+<http://confOf_ar#c-3917342-9258011> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-3917342-9258011> <http://www.w3.org/2000/01/rdf-schema#label> "طالب مشارك في المؤتمر"@ar .
+<http://confOf_ar#c-3917342-9258011> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-8228583-9065800> .
+<http://confOf_ar#c-9172091-4049531> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-9172091-4049531> <http://www.w3.org/2000/01/rdf-schema#label> "الموضوع"@ar .
+<http://confOf_ar#c-9172091-4049531> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-4724962-7476631> .
+<http://confOf_ar#c-9172091-4049531> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-7554990-5957094> .
+<http://confOf_ar#c-9172091-4049531> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-5045922-1723896> .
+<http://confOf_ar#c-9172091-4049531> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-5209605-2294927> .
+<http://confOf_ar#c-9172091-4049531> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-6509469-7705009> .
+<http://confOf_ar#c-9172091-4049531> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-3217626-7724579> .
+<http://confOf_ar#c-4724962-7476631> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-4724962-7476631> <http://www.w3.org/2000/01/rdf-schema#label> "مساهمة"@ar .
+<http://confOf_ar#c-4724962-7476631> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-5702701-0515150> .
+<http://confOf_ar#c-4724962-7476631> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-7554990-5957094> .
+<http://confOf_ar#c-4724962-7476631> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-5045922-1723896> .
+<http://confOf_ar#c-4724962-7476631> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-5209605-2294927> .
+<http://confOf_ar#c-4724962-7476631> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-6509469-7705009> .
+<http://confOf_ar#c-4724962-7476631> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-3217626-7724579> .
+<http://confOf_ar#c-5569344-4487981> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-5569344-4487981> <http://www.w3.org/2000/01/rdf-schema#label> "عضو"@ar .
+<http://confOf_ar#c-5569344-4487981> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-8228583-9065800> .
+<http://confOf_ar#c-0862020-8340462> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-0862020-8340462> <http://www.w3.org/2000/01/rdf-schema#label> "حدث عملي"@ar .
+<http://confOf_ar#c-0862020-8340462> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-5209605-2294927> .
+<http://confOf_ar#c-0862020-8340462> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-7705317-3828803> .
+<http://confOf_ar#c-0862020-8340462> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-3934764-9061319> .
+<http://confOf_ar#c-5440227-3758372> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-5440227-3758372> <http://www.w3.org/2000/01/rdf-schema#label> "ملصق"@ar .
+<http://confOf_ar#c-5440227-3758372> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-4724962-7476631> .
+<http://confOf_ar#c-5440227-3758372> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-5038680-6943053> .
+<http://confOf_ar#c-5440227-3758372> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-3016107-4283437> .
+<http://confOf_ar#c-5885863-7973282> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-5885863-7973282> <http://www.w3.org/2000/01/rdf-schema#label> "رحلة"@ar .
+<http://confOf_ar#c-5885863-7973282> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-3934764-9061319> .
+<http://confOf_ar#c-5885863-7973282> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-0772591-8415185> .
+<http://confOf_ar#c-7705317-3828803> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-7705317-3828803> <http://www.w3.org/2000/01/rdf-schema#label> "الحدث الإداري"@ar .
+<http://confOf_ar#c-7705317-3828803> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-5209605-2294927> .
+<http://confOf_ar#c-7705317-3828803> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-3934764-9061319> .
+<http://confOf_ar#c-5012824-3183223> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-5012824-3183223> <http://www.w3.org/2000/01/rdf-schema#label> "حدث نتائج المراجعة"@ar .
+<http://confOf_ar#c-5012824-3183223> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-7705317-3828803> .
+<http://confOf_ar#c-5012824-3183223> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-3915519-2693956> .
+<http://confOf_ar#c-5012824-3183223> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-4405124-5235986> .
+<http://confOf_ar#c-5012824-3183223> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-9768391-7820417> .
+<http://confOf_ar#c-5038680-6943053> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-5038680-6943053> <http://www.w3.org/2000/01/rdf-schema#label> "ورقة"@ar .
+<http://confOf_ar#c-5038680-6943053> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-4724962-7476631> .
+<http://confOf_ar#c-5038680-6943053> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-3016107-4283437> .
+<http://confOf_ar#c-0521105-6961953> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-0521105-6961953> <http://www.w3.org/2000/01/rdf-schema#label> "رئيس لجنة البرنامج"@ar .
+<http://confOf_ar#c-0521105-6961953> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-5045922-1723896> .
+<http://confOf_ar#c-8184851-8689604> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-8184851-8689604> <http://www.w3.org/2000/01/rdf-schema#label> "متطوع"@ar .
+<http://confOf_ar#c-8184851-8689604> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-5045922-1723896> .
+<http://confOf_ar#c-7554990-5957094> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-7554990-5957094> <http://www.w3.org/2000/01/rdf-schema#label> "منظمة"@ar .
+<http://confOf_ar#c-7554990-5957094> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-5045922-1723896> .
+<http://confOf_ar#c-7554990-5957094> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-5209605-2294927> .
+<http://confOf_ar#c-7554990-5957094> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-6509469-7705009> .
+<http://confOf_ar#c-7554990-5957094> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-3217626-7724579> .
+<http://confOf_ar#c-8177838-4906405> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-8177838-4906405> <http://www.w3.org/2000/01/rdf-schema#label> "مشارك منتظم في المؤتمر"@ar .
+<http://confOf_ar#c-8177838-4906405> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-8228583-9065800> .
+<http://confOf_ar#c-0772591-8415185> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-0772591-8415185> <http://www.w3.org/2000/01/rdf-schema#label> "استقبال"@ar .
+<http://confOf_ar#c-0772591-8415185> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-3934764-9061319> .
+<http://confOf_ar#c-1933050-6153726> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-1933050-6153726> <http://www.w3.org/2000/01/rdf-schema#label> "ورشة عمل"@ar .
+<http://confOf_ar#c-1933050-6153726> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-0862020-8340462> .
+<http://confOf_ar#c-1933050-6153726> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-4440801-7921036> .
+<http://confOf_ar#c-1933050-6153726> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-2989178-4162367> .
+<http://confOf_ar#c-4440801-7921036> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-4440801-7921036> <http://www.w3.org/2000/01/rdf-schema#label> "مؤتمر"@ar .
+<http://confOf_ar#c-4440801-7921036> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-0862020-8340462> .
+<http://confOf_ar#c-4440801-7921036> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-2989178-4162367> .
+<http://confOf_ar#c-6587892-4374536> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-6587892-4374536> <http://www.w3.org/2000/01/rdf-schema#label> "الشركة"@ar .
+<http://confOf_ar#c-6587892-4374536> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-7554990-5957094> .
+<http://confOf_ar#c-6587892-4374536> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-7865913-2364546> .
+<http://confOf_ar#c-7865913-2364546> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-7865913-2364546> <http://www.w3.org/2000/01/rdf-schema#label> "الجامعة"@ar .
+<http://confOf_ar#c-7865913-2364546> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-7554990-5957094> .
+<http://confOf_ar#c-3915519-2693956> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-3915519-2693956> <http://www.w3.org/2000/01/rdf-schema#label> "حدث تسجيل المشاركين"@ar .
+<http://confOf_ar#c-3915519-2693956> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-7705317-3828803> .
+<http://confOf_ar#c-3915519-2693956> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-4405124-5235986> .
+<http://confOf_ar#c-3915519-2693956> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-9768391-7820417> .
+<http://confOf_ar#c-4405124-5235986> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-4405124-5235986> <http://www.w3.org/2000/01/rdf-schema#label> "حدث المراجعة"@ar .
+<http://confOf_ar#c-4405124-5235986> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-7705317-3828803> .
+<http://confOf_ar#c-4405124-5235986> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-9768391-7820417> .
+<http://confOf_ar#c-4481908-2093796> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-4481908-2093796> <http://www.w3.org/2000/01/rdf-schema#label> "المساعد"@ar .
+<http://confOf_ar#c-4481908-2093796> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-5045922-1723896> .
+<http://confOf_ar#c-5045922-1723896> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-5045922-1723896> <http://www.w3.org/2000/01/rdf-schema#label> "شخص"@ar .
+<http://confOf_ar#c-5045922-1723896> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-5702701-0515150> .
+<http://confOf_ar#c-5045922-1723896> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-5209605-2294927> .
+<http://confOf_ar#c-5045922-1723896> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-6509469-7705009> .
+<http://confOf_ar#c-5045922-1723896> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-3217626-7724579> .
+<http://confOf_ar#c-9768391-7820417> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-9768391-7820417> <http://www.w3.org/2000/01/rdf-schema#label> "حدث إرسال نسخة بعد اجراء التعديل جاهزة للتصوير"@ar .
+<http://confOf_ar#c-9768391-7820417> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-7705317-3828803> .
+<http://confOf_ar#c-5209605-2294927> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-5209605-2294927> <http://www.w3.org/2000/01/rdf-schema#label> "الحدث"@ar .
+<http://confOf_ar#c-5209605-2294927> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-6509469-7705009> .
+<http://confOf_ar#c-5209605-2294927> <http://www.w3.org/2002/07/owl#disjointWith> <http://confOf_ar#c-3217626-7724579> .
+<http://confOf_ar#c-3016107-4283437> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-3016107-4283437> <http://www.w3.org/2000/01/rdf-schema#label> "ورقة قصيرة"@ar .
+<http://confOf_ar#c-3016107-4283437> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-4724962-7476631> .
+<http://confOf_ar#c-7975094-2645837> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-7975094-2645837> <http://www.w3.org/2000/01/rdf-schema#label> "عضو في اللجنة العلمية"@ar .
+<http://confOf_ar#c-7975094-2645837> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-5045922-1723896> .
+<http://confOf_ar#c-4110948-1485047> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-4110948-1485047> <http://www.w3.org/2000/01/rdf-schema#label> "عامل العلوم"@ar .
+<http://confOf_ar#c-4110948-1485047> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-5045922-1723896> .
+<http://confOf_ar#c-2989178-4162367> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-2989178-4162367> <http://www.w3.org/2000/01/rdf-schema#label> "البرنامج التعليمي"@ar .
+<http://confOf_ar#c-2989178-4162367> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-0862020-8340462> .
+<http://confOf_ar#c-1086463-2070678> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-1086463-2070678> <http://www.w3.org/2000/01/rdf-schema#label> "المشرف"@ar .
+<http://confOf_ar#c-1086463-2070678> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-5045922-1723896> .
+<http://confOf_ar#c-6509469-7705009> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-6509469-7705009> <http://www.w3.org/2000/01/rdf-schema#label> "المدينة"@ar .
+<http://confOf_ar#c-3934764-9061319> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-3934764-9061319> <http://www.w3.org/2000/01/rdf-schema#label> "الحدث الاجتماعي"@ar .
+<http://confOf_ar#c-3934764-9061319> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-5209605-2294927> .
+<http://confOf_ar#c-1867912-9455919> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-1867912-9455919> <http://www.w3.org/2000/01/rdf-schema#label> "الكاتب"@ar .
+<http://confOf_ar#c-1867912-9455919> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://confOf_ar#c-5045922-1723896> .
+<http://confOf_ar#c-3217626-7724579> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://confOf_ar#c-3217626-7724579> <http://www.w3.org/2000/01/rdf-schema#label> "بلد"@ar .

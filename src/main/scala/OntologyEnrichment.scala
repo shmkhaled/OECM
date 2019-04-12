@@ -25,13 +25,14 @@ object OntologyEnrichment {
 //    var pppp = new PreProcessing()
 //    println(pppp.englishPosTagForString("early paid applicant"))
 //
-//        val gS = new GetSimilarity()
+        val gS = new GetSimilarity()
 ////
 ////    var preee = new PreProcessing()
 ////    println(preee.sentenceLemmatization("review preference"))
 ////    println(preee.sentenceLemmatization("review question"))
-//    var sent1 = "request conference paid conference fees"
-//    var sent2 = "conference"
+    var sent1 = "president"
+    var sent2 = "chairman"
+    println(gS.getSimilarity(sent1,sent2))
 ////
 ////    println("Path similarity between "+sent1+" and "+sent2+" = "+gS.sentenceSimilarity(sent1,sent2))
 ////    println("Path similarity between "+sent2+" and "+sent1+" = "+gS.sentenceSimilarity(sent2,sent1))

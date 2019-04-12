@@ -238,7 +238,7 @@
     <orderEntry type="library" name="Maven: org.ow2.asm:asm:5.0.4" level="project" />
     <orderEntry type="library" name="Maven: com.typesafe:config:1.3.1" level="project" />
     <orderEntry type="library" name="Maven: com.ibm.sparktc.sparkbench:sparkbench:2.3.0_0.4.0" level="project" />
-    <orderEntry type="library" name="Maven: info.debatty:java-string-similarity:1.1.0" level="project" />
+    <orderEntry type="library" name="Maven: info.debatty:java-string-similarity:1.2.1" level="project" />
     <orderEntry type="library" name="Maven: net.jcip:jcip-annotations:1.0" level="project" />
     <orderEntry type="library" name="Maven: edu.stanford.nlp:stanford-corenlp:3.9.2" level="project" />
     <orderEntry type="library" name="Maven: com.apple:AppleJavaExtensions:1.4" level="project" />
