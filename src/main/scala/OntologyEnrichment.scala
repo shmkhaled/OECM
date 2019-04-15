@@ -16,28 +16,30 @@ object OntologyEnrichment {
 
   def main(args: Array[String]): Unit = {
 //    var englishTagger: MaxentTagger = new MaxentTagger("edu/stanford/nlp/models/pos-tagger/english-left3words/english-left3words-distsim.tagger")
-//    println(englishTagger.tagString("request to the conference that recently paid the conference fees"))
-//    println(englishTagger.tagString("applicant conference who paid early conference fees"))
-//    println(englishTagger.tagString("early paid applicant"))
-//    println(englishTagger.tagString("the"))
-//    println(englishTagger.tagString("for"))
-//
+//    println(englishTagger.tagString("speaker is invited"))
+////    println(englishTagger.tagString("applicant conference who paid early conference fees"))
+////    println(englishTagger.tagString("early paid applicant"))
+////    println(englishTagger.tagString("the"))
+////    println(englishTagger.tagString("for"))
+////
 //    var pppp = new PreProcessing()
-//    println(pppp.englishPosTagForString("early paid applicant"))
+//    println(pppp.englishPosTagForString("speaker is invited"))
+//////
+//        val gS = new GetSimilarity()
+////////
+////////    var preee = new PreProcessing()
+////////    println(preee.sentenceLemmatization("review preference"))
+////////    println(preee.sentenceLemmatization("review question"))
+//    var sent1 = "proceeding"
+//    var sent2 = "conference proceeding"
+////    println(gS.getSimilarity(pppp.stringPreProcessing(sent1),pppp.stringPreProcessing(sent2)))
+//      println(gS.getPathSimilarity("proceeding","conference"))
+//      println(gS.getPathSimilarity("proceed","conference"))
 //
-        val gS = new GetSimilarity()
-////
-////    var preee = new PreProcessing()
-////    println(preee.sentenceLemmatization("review preference"))
-////    println(preee.sentenceLemmatization("review question"))
-    var sent1 = "president"
-    var sent2 = "chairman"
-    println(gS.getSimilarity(sent1,sent2))
-////
-////    println("Path similarity between "+sent1+" and "+sent2+" = "+gS.sentenceSimilarity(sent1,sent2))
-////    println("Path similarity between "+sent2+" and "+sent1+" = "+gS.sentenceSimilarity(sent2,sent1))
+//    println("Path similarity between "+sent1+" and "+sent2+" = "+gS.sentenceSimilarity(sent1,sent2))
+//    println("Path similarity between "+sent2+" and "+sent1+" = "+gS.sentenceSimilarity(sent2,sent1))
 //    println("Symmetric similarity = "+gS.symmetricSentenceSimilarity(sent1,sent2))
-////
+//////
 //        println("Path similarity = "+gS.getPathSimilarity("review","question"))
 //        println("Path similarity = "+gS.getPathSimilarity("preference","review"))
 //        println("Path similarity = "+gS.getPathSimilarity("preference","question"))
@@ -161,9 +163,9 @@ object OntologyEnrichment {
     println("All classes in the target ontology Triples:" + targetClassesWithoutURIs.count())
     targetClassesWithoutURIs.foreach(println(_))
 
+      //sourceOntology.filter(x=>x.getPredicate.getLocalName == "label").map(y=>y.getObject.getLiteral.getLexicalForm.split("@").head).distinct().collect()
 
 //    var sourceClassesWithoutURIs: RDD[String] = OC.RetrieveClassesWithLabels(sourceOntology)
-      //sourceOntology.filter(x=>x.getPredicate.getLocalName == "label").map(y=>y.getObject.getLiteral.getLexicalForm.split("@").head).distinct().collect()
 //      println("All classes in the source ontology Triples:" + sourceClassesWithoutURIs.count())
 //      sourceClassesWithoutURIs.foreach(println(_))
 //    if (args(0).contains("-de-")){

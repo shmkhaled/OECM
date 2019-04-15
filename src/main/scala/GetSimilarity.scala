@@ -14,14 +14,14 @@ class GetSimilarity extends Serializable{
     var jaccardSim = 1.0
     if (sim != 1)
       sim = this.symmetricSentenceSimilarity(sentence1,sentence2)
-    if (sentence1.split(" ").length > 1 && sentence2.split(" ").length >1 && sim == 1)
-      jaccardSim = this.getJaccardStringSimilarity(sentence1,sentence2)
-    else if (sentence1.split(" ").length == 1 && sentence2.split(" ").length >1 && sim == 1)
-      jaccardSim = this.getJaccardStringSimilarity(sentence1,sentence2)
-    else if (sentence1.split(" ").length > 1 && sentence2.split(" ").length == 1 && sim == 1)
-      jaccardSim = this.getJaccardStringSimilarity(sentence1,sentence2)
-    if (jaccardSim != 1.0)
-      sim = 0.5
+//    else if (sentence1.split(" ").length > 1 && sentence2.split(" ").length >1 && sim == 1)
+//      jaccardSim = this.getJaccardStringSimilarity(sentence1,sentence2)
+//    else if (sentence1.split(" ").length == 1 && sentence2.split(" ").length >1 && sim == 1)
+//      jaccardSim = this.getJaccardStringSimilarity(sentence1,sentence2)
+//    else if (sentence1.split(" ").length > 1 && sentence2.split(" ").length == 1 && sim == 1)
+//      jaccardSim = this.getJaccardStringSimilarity(sentence1,sentence2)
+//    if (jaccardSim != 1.0)
+//      sim = 0.5
 
     sim
   }
@@ -80,10 +80,12 @@ def getPathSimilarity(word1: String, word2: String): Double={
       if (bestSroce.length > 1)
         s = max(bestSroce)
       else s = bestSroce.head
-      if (s != -2){
-        simScoure += s.asInstanceOf[Double]
-        count += 1
-      }
+//      if (s != -2){
+//        simScoure += s.asInstanceOf[Double]
+//        count += 1
+//      }
+      simScoure += s.asInstanceOf[Double]
+      count += 1
     }
     simScoure = Math.round((simScoure / count)*1000)/1000.0
     //    println(sentence1 + " ##### "+ sentence2 +" = "+ simScoure)
@@ -99,7 +101,8 @@ def getPathSimilarity(word1: String, word2: String): Double={
   def max(lst: List[Double]): Double={
     var maxValue = lst.max
     if (maxValue == lst.head && maxValue == lst.last)
-      maxValue = -2
+//      maxValue = -2
+      maxValue = 0
     maxValue
   }
 }

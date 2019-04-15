@@ -23,6 +23,8 @@ class Translator (targetClasses: Broadcast[Map[String, Long]]) extends Serializa
     var t: RDD[String] = sp.sparkContext.parallelize(targetClasses.value.map(_._1).toList).cache()
     var translations = sp.sparkContext.parallelize(listOfTranslations)
     var crossRDD: RDD[(String, String)] = translations.cartesian(t)
+//    println("The cross RDD is:")
+//    crossRDD.foreach(println(_))
 //    var sim: RDD[(String, String, Double)] = crossRDD.map(x=>(x._1,x._2,gS.getJaccardStringSimilarity(x._1,x._2))).filter(y=>y._3>=0.3)
 //    var sim: RDD[(String, String, Double)] = crossRDD.map(x=>(x._1,x._2,semSim.getPathSimilarity(x._1.split(" ").last,x._2.split(" ").last))).filter(y=>y._3>=0.6)
     var sim: RDD[(String, String, Double)] = crossRDD.map(x=>(x._1,x._2,gS.getSimilarity(x._1,x._2))).filter(y=>y._3>0.7)
