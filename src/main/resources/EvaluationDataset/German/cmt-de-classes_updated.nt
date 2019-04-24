@@ -1,4 +1,3 @@
-<http://cmt_de> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
 <http://cmt_de#c-0277212-8406046> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://cmt_de#c-0277212-8406046> <http://www.w3.org/2000/01/rdf-schema#label> "Konferenzbeitrag"@de .
 <http://cmt_de#c-0277212-8406046> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_de#c-3386094-8929437> .

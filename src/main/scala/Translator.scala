@@ -27,7 +27,7 @@ class Translator (targetClasses: Broadcast[Map[String, Long]]) extends Serializa
 //    crossRDD.foreach(println(_))
 //    var sim: RDD[(String, String, Double)] = crossRDD.map(x=>(x._1,x._2,gS.getJaccardStringSimilarity(x._1,x._2))).filter(y=>y._3>=0.3)
 //    var sim: RDD[(String, String, Double)] = crossRDD.map(x=>(x._1,x._2,semSim.getPathSimilarity(x._1.split(" ").last,x._2.split(" ").last))).filter(y=>y._3>=0.6)
-    var sim: RDD[(String, String, Double)] = crossRDD.map(x=>(x._1,x._2,gS.getSimilarity(x._1,x._2))).filter(y=>y._3>0.7)
+    var sim: RDD[(String, String, Double)] = crossRDD.map(x=>(x._1.toLowerCase,x._2.toLowerCase,gS.getSimilarity(x._1,x._2))).filter(y=>y._3>0.9)
 //var sim: RDD[(String, String, Double)] = crossRDD.map(x=>(x._1,x._2,gS.getJaccardStringSimilarity(x._1,x._2)))//.filter(y=>y._3>0.5)
     //    sim = sim.map(x=>(x._1,x._2,gS.getJaccardStringSimilarity(x._1,x._2))).filter(y=>y._3>=0.6)
 //    sim = sim.map{case (x) => if (x._1.split(" ").length > 1 || x._2.split(" ").length > 1) (x._1,x._2,gS.getJaccardStringSimilarity(x._1,x._2)) else (x._1,x._2,x._3)}.filter(y=>y._3>=0.3)

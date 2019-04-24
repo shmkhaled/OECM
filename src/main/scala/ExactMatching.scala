@@ -34,7 +34,7 @@ class ExactMatching {
 //    var source :RDD[graph.Triple] = sourceOntology.map(t=>t._1,t.)
 
     var matchScore = 0.0
-//   var s = sourceSubOntology.take(sourceSubOntology.count().toInt).apply(1)
+//   var s = sOntology.take(sOntology.count().toInt).apply(1)
 //    println("s = "+ s)
 //    var t = targetOntology.take(targetOntology.count().toInt).apply(0)
 //    println("t = "+ t)

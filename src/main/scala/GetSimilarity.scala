@@ -10,10 +10,12 @@ class GetSimilarity extends Serializable{
   val db = new NictWordNet with Serializable
   val processing = new PreProcessing()
   def getSimilarity(sentence1: String, sentence2: String): Double={
-    var sim = this.getJaccardStringSimilarity(sentence1, sentence2)
-    var jaccardSim = 1.0
+    var sent1 = processing.sentenceLemmatization(sentence1)
+    var sent2 = processing.sentenceLemmatization(sentence2)
+    var sim = this.getJaccardStringSimilarity(sent1, sent2)
+//    var jaccardSim = 1.0
     if (sim != 1)
-      sim = this.symmetricSentenceSimilarity(sentence1,sentence2)
+      sim = this.symmetricSentenceSimilarity(sent1,sent2)
 //    else if (sentence1.split(" ").length > 1 && sentence2.split(" ").length >1 && sim == 1)
 //      jaccardSim = this.getJaccardStringSimilarity(sentence1,sentence2)
 //    else if (sentence1.split(" ").length == 1 && sentence2.split(" ").length >1 && sim == 1)
@@ -92,10 +94,10 @@ def getPathSimilarity(word1: String, word2: String): Double={
     simScoure
   }
   def symmetricSentenceSimilarity(sentence1: String, sentence2: String): Double ={
-    var sent1 = processing.sentenceLemmatization(sentence1)
-    var sent2 = processing.sentenceLemmatization(sentence2)
-//    var sim = (sentenceSimilarity(sentence1,sentence2) + sentenceSimilarity(sentence2,sentence1))/2
-    var sim = (sentenceSimilarity(sent1,sent2) + sentenceSimilarity(sent2,sent1))/2
+//    var sent1 = processing.sentenceLemmatization(sentence1)
+//    var sent2 = processing.sentenceLemmatization(sentence2)
+    var sim = (sentenceSimilarity(sentence1,sentence2) + sentenceSimilarity(sentence2,sentence1))/2
+//    var sim = (sentenceSimilarity(sent1,sent2) + sentenceSimilarity(sent2,sent1))/2
     sim
   }
   def max(lst: List[Double]): Double={

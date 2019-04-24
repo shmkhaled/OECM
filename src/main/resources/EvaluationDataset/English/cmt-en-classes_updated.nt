@@ -1,4 +1,3 @@
-<http://cmt_en> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
 <http://cmt_en#c-0430420-0075813> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://cmt_en#c-0430420-0075813> <http://www.w3.org/2000/01/rdf-schema#label> "abstract paper"@en .
 <http://cmt_en#c-0430420-0075813> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cmt_en#c-5409377-9286012> .
