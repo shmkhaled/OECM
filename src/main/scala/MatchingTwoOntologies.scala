@@ -84,23 +84,35 @@ class MatchingTwoOntologies(sp: SparkSession) {
   }
 def GetTriplesToBeEnriched(sOntology: RDD[(String, String, String)], targetClassesWithoutURIs: RDD[String], listOfMatchedTerms: RDD[List[String]]): RDD[(String, String, String)]={
     val matchedTerms: RDD[String] = listOfMatchedTerms.map(x=>x(1))
-    var classes = matchedTerms
+    var newClasses = matchedTerms
     var triples = sp.sparkContext.emptyRDD[(String, String, String)]
     var sourceOntology: RDD[(String, String, String)] = sOntology
     var i = 1
-    while (classes.count() != 0){
+    while (newClasses.count() != 0){
+      val startTimeMillis = System.currentTimeMillis()
       println("Iteration number "+i)
       //Get all triples from the source ontology which has the matched terms as subject or object
-      var tempTriples = sourceOntology.keyBy(_._1).join(classes.zipWithIndex()).map({case(a,((s,p,o),b))=> (s,p,o)}).union(sourceOntology.keyBy(_._3).join(classes.zipWithIndex()).map({case(a,((s,p,o),b))=> (s,p,o)})).distinct()
+      var rdd1 = sourceOntology.keyBy(_._1).join(newClasses.zipWithIndex())
+      var rdd11 = rdd1.map({case(a,((s,p,o),b))=> (s,p,o)})
+      var rdd2 = sourceOntology.keyBy(_._3).join(newClasses.zipWithIndex())
+      var rdd22 = rdd2.map({case(a,((s,p,o),b))=> (s,p,o)})
+      var tempTriples = rdd11.union(rdd22).distinct()
       if (i == 1)
         tempTriples = tempTriples.filter(x=>x._2!= "type")
       println("New triples:")
       tempTriples.foreach(println(_))
       sourceOntology = sourceOntology.subtract(tempTriples)
-      classes = tempTriples.map(x=>x._1).union(tempTriples.map(x=>x._3)).subtract(classes).distinct().filter(x => x != "Class")
+      var subjectClass = tempTriples.map(x=>x._1)
+      var objectClass = tempTriples.map(x=>x._3)
+      var allClasses = subjectClass.union(objectClass)
+      newClasses = allClasses.subtract(newClasses).distinct().filter(x => x != "Class")
+//      newClasses = tempTriples.map(x=>x._1).union(tempTriples.map(x=>x._3)).subtract(newClasses).distinct().filter(x => x != "Class")
       println("New classes are:")
-      classes.foreach(println(_))
+      newClasses.foreach(println(_))
       triples = triples.union(tempTriples)
+      val endTimeMillis = System.currentTimeMillis()
+      val durationSeconds = (endTimeMillis - startTimeMillis) / 1000
+      println("runtime of iteration number "+i+" = "+durationSeconds+ " seconds")
       i = i + 1
     }
 
