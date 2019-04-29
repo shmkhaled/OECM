@@ -154,8 +154,8 @@ object OntologyEnrichment {
 
     // Retrieve class name for the source and target ontology (for classes with labels ex:cmt-en, confOf-de and sigkdd-de ontologies)
     val OC = new OntologyClasses()
-//    var targetClassesWithoutURIs: RDD[String] = OC.RetrieveClassesWithLabels(targetOntology)
-    var targetClassesWithoutURIs: RDD[String] = OC.RetrieveClassesWithoutLabels(targetOntology)
+    var targetClassesWithoutURIs: RDD[String] = OC.RetrieveClassesWithLabels(targetOntology)
+//    var targetClassesWithoutURIs: RDD[String] = OC.RetrieveClassesWithoutLabels(targetOntology)
 
     //          targetOntology.filter(x=>x.getPredicate.getLocalName == "label").map(y=>y.getObject.getLiteral.getLexicalForm.split("@").head)//for classes with labels ex:cmt-en, confOf-de and sigkdd-de ontologies
 
@@ -190,7 +190,6 @@ object OntologyEnrichment {
 val availableTranslations: RDD[(String, List[String])] = sparkSession1.sparkContext.textFile(args(2)).map(_.split(",").toList).map(x=>(x.head, x.tail.drop(1).map(y=>p.englishPosTagForString(y))))
       println("Translations")
       availableTranslations.foreach(println(_))
-    println("###############################")
 
 
     val t = targetClassesWithoutURIs.zipWithIndex().collect().toMap
@@ -209,28 +208,25 @@ val availableTranslations: RDD[(String, List[String])] = sparkSession1.sparkCont
     sourceClassesWithListOfBestTranslations.take(70).foreach(println(_))
 //    sourceClassesWithListOfBestTranslations.coalesce(1).saveAsTextFile("src/main/resources/EvaluationDataset/German/translation")
 //    println("Translations should be validated by experts")
+
     var listOfMatchedTerms: RDD[List[String]] = sourceClassesWithListOfBestTranslations.map(x => x._3.toString().toLowerCase.split(",").toList).filter(y => y.last.exists(_.isDigit))
     println("List of matched terms ")
     listOfMatchedTerms.foreach(println(_))
 
-    val validSourceTranslationsByExperts: RDD[(String, String)] = sourceClassesWithListOfBestTranslations.map(x=>(x._1.toLowerCase,p.stringPreProcessing(x._3.head.toString.toLowerCase.split(",").head))).keyBy(_._1).join(sourceClassesWithURIs).map({case (u, ((uu, tt), s)) => (s,tt.trim.replaceAll(" +", " "))})//.filter(!_.isDigit)
+    val validSourceTranslations: RDD[(String, String)] = sourceClassesWithListOfBestTranslations.map(x=>(x._1.toLowerCase,p.stringPreProcessing(x._3.head.toString.toLowerCase.split(",").head))).keyBy(_._1).join(sourceClassesWithURIs).map({case (u, ((uu, tt), s)) => (s,tt.trim.replaceAll(" +", " "))})//.filter(!_.isDigit)
 
       /*Experts should validate the translations*/
   //arg(3) = src/main/resources/EvaluationDataset/Translations/ConferenceTranslations_W_R_T_SEO
-//    val validSourceTranslationsByExperts: RDD[(String, String)] = sparkSession1.sparkContext.textFile(args(3)).map(x=>x.split(",")).map(y=>(y.head.toLowerCase,y.last.toLowerCase))
+//    val validSourceTranslations: RDD[(String, String)] = sparkSession1.sparkContext.textFile(args(3)).map(x=>x.split(",")).map(y=>(y.head.toLowerCase,y.last.toLowerCase))
     println("Validated translated source classes W.R.T SEO: ")
-    validSourceTranslationsByExperts.take(70).foreach(println(_))
-//    println("####################### ")
-//    var tttttt: RDD[(String, String)] = sourceClassesWithListOfBestTranslations.map(x=>(x._1.toLowerCase,p.stringPreProcessing(x._3.head.toString.toLowerCase.split(",").head))).keyBy(_._1).join(sourceClassesWithURIs).map({
-//        case (u, ((uu, tt), s)) => (s,tt)})
-//      tttttt.foreach(println(_))
+    validSourceTranslations.take(70).foreach(println(_))
+
     println("####################### Recreating the source ontology with using valid translations #####################################")
     val sor = new SourceOntologyReconstruction()
-    var translatedSourceOntology = sor.ReconstructOntology(sOntology,validSourceTranslationsByExperts)//.filter(x=>x._2 != "disjointWith").cache()
+    var translatedSourceOntology = sor.ReconstructOntology(sOntology,validSourceTranslations)//.filter(x=>x._2 != "disjointWith").cache()
 //
     println("Source Ontology after translating subject and object classes "+ translatedSourceOntology.count())
     translatedSourceOntology.distinct().foreach(println(_))
-    //############# ExactMatching #################
 
     println("####################### Matching Two Ontologies #######################")
 //    var targetOntologyWithoutURI: RDD[(String, String, String)] = targetOntology.map{case(x)=> if (x.getObject.isURI)(p.stringPreProcessing(x.getSubject.getLocalName),x.getPredicate.getLocalName,p.stringPreProcessing(x.getObject.getLiteral.toString))else (p.stringPreProcessing(x.getSubject.getLocalName),x.getPredicate.getLocalName,p.stringPreProcessing(x.getObject.getLocalName))}//.filter(x=>x._2 != "type" || x._2 != "comment") //for SEO.nt first version
@@ -242,17 +238,20 @@ val availableTranslations: RDD[(String, List[String])] = sparkSession1.sparkCont
     val m = new MatchingTwoOntologies(sparkSession1)
 //    var triplesForEnrichment: RDD[(String, String, String, Char)] = m.Match(translatedSourceOntology,targetOntologyWithoutURI, targetClassesWithoutURIs).distinct().cache()
 //var triplesForEnrichment= m.GetTriplesToBeEnriched(translatedSourceOntology,targetOntologyWithoutURI, targetClassesWithoutURIs,listOfMatchedTerms).cache()
-    var triplesForEnrichment= m.GetTriplesToBeEnriched(translatedSourceOntology, targetClassesWithoutURIs,listOfMatchedTerms)
-
-
-    println("####################### source triples needed for enrichment ####################### " + triplesForEnrichment.count())
-//    println(triplesForEnrichment.count()+ " triples. Triples with flag 'E' are needed to enrich the target ontology. Triples with flag 'A' are new triples will be added to the target ontology.")
+    var monolingualTriplesForEnrichment: RDD[(String, String, String)] = m.GetTriplesToBeEnriched(translatedSourceOntology, targetClassesWithoutURIs,listOfMatchedTerms).cache()
+//    println("####################### monolingual source triples needed for enrichment ####################### " +     monolingualTriplesForEnrichment.count())
+//    monolingualTriplesForEnrichment.foreach(println(_))
+//  translatedSourceOntology.coalesce(1).saveAsTextFile("Output/triplesForEnrichment(SEO-Conference)")
+    println("####################### Generate multilingual Triples #######################")
+    val multilingual = new RetriveMultilingualInfo()
+    val foreignLanguageTriples = multilingual.getForeignLangTriples(monolingualTriplesForEnrichment, validSourceTranslations)
+    val triplesForEnrichment = monolingualTriplesForEnrichment.union(foreignLanguageTriples)
+    println("Number of triples = "+triplesForEnrichment.count())
     triplesForEnrichment.foreach(println(_))
-//    translatedSourceOntology.coalesce(1).saveAsTextFile("Output/triplesForEnrichment(SEO-Conference)")
 
     val endTimeMillis = System.currentTimeMillis()
-    val durationSeconds = (endTimeMillis - startTimeMillis) / 1000
-    println("runtime = "+durationSeconds+ " seconds")
+    val durationMinutes = (endTimeMillis - startTimeMillis) / (1000*60)
+    println("runtime = "+durationMinutes+ " minutes")
 
     sparkSession1.stop
   }

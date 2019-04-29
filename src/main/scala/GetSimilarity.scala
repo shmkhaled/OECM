@@ -15,7 +15,8 @@ class GetSimilarity extends Serializable{
     var sim = this.getJaccardStringSimilarity(sent1, sent2)
 //    var jaccardSim = 1.0
     if (sim != 1)
-      sim = this.symmetricSentenceSimilarity(sent1,sent2)
+      sim = (this.sentenceSimilarity(sent1,sent2)+this.sentenceSimilarity(sent2,sent1))/2
+//      sim = this.symmetricSentenceSimilarity(sent1,sent2)
 //    else if (sentence1.split(" ").length > 1 && sentence2.split(" ").length >1 && sim == 1)
 //      jaccardSim = this.getJaccardStringSimilarity(sentence1,sentence2)
 //    else if (sentence1.split(" ").length == 1 && sentence2.split(" ").length >1 && sim == 1)
