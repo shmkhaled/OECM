@@ -1,0 +1,40 @@
+contribution first author,subClassOf,regular author
+passive conference participant,disjointWith,active conference participant
+regular author,type,Class
+invited speaker,type,Class
+active conference participant,type,Class
+contribution co author,subClassOf,regular author
+passive conference participant,type,Class
+chairman,type,Class
+paid applicant,subClassOf,registered applicant
+registered applicant,type,Class
+deputy chairman,type,Class
+early paid applicant,subClassOf,paid applicant
+paid applicant,type,Class
+late paid applicant,subClassOf,paid applicant
+contribution co author,type,Class
+contribution co author,disjointWith,contribution first author
+contribution first author,type,Class
+early paid applicant,disjointWith,late paid applicant
+early paid applicant,type,Class
+late paid applicant,type,Class
+conference contributor,subClassOf,person
+conference applicant,subClassOf,person
+conference participant,subClassOf,person
+reviewer,subClassOf,person
+committee member,subClassOf,person
+workshop chair,type,Class
+workshop chair,subClassOf,person
+passive conference participant,subClassOf,conference participant
+active conference participant,subClassOf,conference contributor
+conference applicant,type,Class
+reviewer,type,Class
+committee member,type,Class
+deputy chairman,subClassOf,committee member
+chairman,subClassOf,committee member
+registered applicant,subClassOf,conference applicant
+invited speaker,subClassOf,conference contributor
+conference contributor,type,Class
+regular author,subClassOf,conference contributor
+active conference participant,subClassOf,conference participant
+conference participant,type,Class
