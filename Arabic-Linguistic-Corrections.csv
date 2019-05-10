@@ -1,0 +1,33 @@
+ConfOf,,,,
+wrong,wrong translation,should be,right translation,English ontology
+رئيس اللجنة الغلمية,Chairman of the Scientific Committee,رئيس لجنة البرنامج,Chairman of the Program Committee,Chair_PC
+عضو في اللجنة العلمية,Member of the Scientific Committee,عضو في لجنة البرنامج,Member of the Program Committee,Member_PC
+حدث الارسال,Transmit event,حدث التسليم,delivery event,submission event
+شخص مشارك مع المؤتمر,A person with a conference participant,عضو,member,member
+بحث,"study, research",ورقة,the paper,paper
+متطوع في المؤتمر,Volunteer at the conference,متطوع,volunteer,volunteer
+حدث تسجيل الحدث المشاركين,The participants event registration event occurred,حدث تسجيل المشاركين,event registration of participants,Registration_of_participants_event
+حدث إرسال نسخة بعد اجراء التعديل جاهزة للتصوير,A copy has been sent after the edit is ready to shoot,??,??,camera ready event
+بحث قصير,short search,ورقة قصيرة,Short paper,short paper
+عامل العلم,science factor,عامل العلوم,Science worker,Science worker
+البرنامج التعليمي,educational program,,,tutorial
+,,,,
+Conference,,,,
+wrong,wrong translation,should be,right translation,English ontology
+نسخة جاهزة للتصوير مساهمة,a ready-made camera input,??,??,Camera_ready_contribution
+مقدم الطلب المؤتمر الذي دفع في وقت مبكر رسوم المؤتمر,applicant conference who paid early conference fees,مقدم الطلب الذي دفع الرسوم مبكرا,Applicant who paid the fees early,early paid applicant
+مقدم الطلب مسجل,applicant registered,مقدم الطلب المسجل,applicant registered,Registered Applicant
+طلب مقدم للمؤتمر,application to the conference,مقدم الطلب في المؤتمر,applicant to the conference,conference applicant
+دعت الحديث,called,حديث مدعو,a welcome talk,invited talk
+متحدث المدعو,called speaker,متحدث مدعو,a speaker is invited,invited speaker
+مساهمة للمؤتمر,Contribution to the Conference,مساهم في المؤتمر,contributer to the conference,conference contributer
+رسوم من اجل المؤتمر,fees for the conference,رسوم المؤتمر,conference fees,conference fees
+دعوة للمشاركة,invitation to participate,نداء للمشاركة,call for participation,Call for participation
+الكاتب المشترك في المساهمة,joint author in the contribution,الكاتب المشارك في المساهمة,co-author of the contribution,Contribution_co-author
+الرئيس المشترك,joint chairman,الرئيس المشارك,Co-Chair,Co-Chair
+محضر المؤتمر,minutes of the conference,وقائع المؤتمر,Proceedings of the Conference,conference proceedings
+مشارك ايجابي في المؤتمر,positive participant in the conference,مشارك نشط في المؤتمر,An active participant in the Conference,active conference participant
+طلب مقدم للمؤتمر الذي دفع مؤخرا رسوم المؤتمر,request to the conference that recently paid the conference fees,مقدم الطلب الذي دفع الرسوم متأخرا,Applicant who paid fees late,late paid applicant
+طلب مقدم للمؤتمر الذين دفعوا رسوم المؤتمر,request to the conference who paid the conference fees,مقدم الطلب الذي دفع الرسوم,Applicant who paid the fees,paid applicant
+اللجنة العلمية,scientific committee,لجنة البرنامج,Program Committee,Program Committee
+البحث,"study, research",ورقة,the paper,paper
