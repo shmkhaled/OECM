@@ -154,8 +154,8 @@ object OntologyEnrichment {
 
     // Retrieve class name for the source and target ontology (for classes with labels ex:cmt-en, confOf-de and sigkdd-de ontologies)
     val OC = new OntologyClasses()
-//    var targetClassesWithoutURIs: RDD[String] = OC.RetrieveClassesWithLabels(targetOntology) //For SEO2
-    var targetClassesWithoutURIs: RDD[String] = OC.RetrieveClassesWithoutLabels(targetOntology) //for SEO before enrichment
+    var targetClassesWithoutURIs: RDD[String] = OC.RetrieveClassesWithLabels(targetOntology) //For SEO2
+//    var targetClassesWithoutURIs: RDD[String] = OC.RetrieveClassesWithoutLabels(targetOntology) //for SEO before enrichment
 
 //    //######################## Second Enrichment from Arabic Ontology ########################
 //      val e = new SecondEnrichment(sparkSession1)

@@ -31,3 +31,17 @@ wrong,wrong translation,should be,right translation,English ontology
 طلب مقدم للمؤتمر الذين دفعوا رسوم المؤتمر,request to the conference who paid the conference fees,مقدم الطلب الذي دفع الرسوم,Applicant who paid the fees,paid applicant
 اللجنة العلمية,scientific committee,لجنة البرنامج,Program Committee,Program Committee
 البحث,"study, research",ورقة,the paper,paper
+,,,,
+Sigkdd,,,,
+wrong,wrong translation,should be,right translation,English ontology
+اللجنة التحضيرية,The Preparatory Commission,اللجنة المنظمة,Organizing Committee,Organizing Committee
+رئيس اللجنة العلمية,Chairman of the Scientific Committee,رئيس لجنة البرنامج,Chairman of the Program Committee,Program Chair
+عضو اللجنة التحضيرية,Member of the Preparatory Committee,عضو اللجنة المنظمة,Member of the Organizing Committee,Organizing Committee member
+عضو اللجنة العلمية,Member of the Scientific Committee,عضو في لجنة البرنامج,Member of the Program Committee,Program Committee member
+مراجع الحسابات المؤتمر,Accounts Conference References,المتحدث,Speaker,Speaker
+كاتب البحث,Search author,كاتب الورقة,The writer of the paper,Author of paper
+اللجنة العلمية,scientific Committee,لجنة البرنامج,Program Committee,Program Committee
+sig رسوم التسجيل للاشخاص الذين ليسوا أعضاء,sig registration fee to people who are not members,تسجيل غير الأعضاء,Non-member registration,Registration_Non-Member
+البحث,search,ورقة,the paper,paper
+المحاضر المدعو,Lecturer called,متحدث مدعو,a speaker is invited,invited speaker
+الراعي كمقدم,Sponsor as Provider,??,??,Exhibitor
