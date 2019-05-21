@@ -7,14 +7,12 @@ wrong,wrong translation,should be,right translation,English ontology
 بحث,"study, research",ورقة,the paper,paper
 متطوع في المؤتمر,Volunteer at the conference,متطوع,volunteer,volunteer
 حدث تسجيل الحدث المشاركين,The participants event registration event occurred,حدث تسجيل المشاركين,event registration of participants,Registration_of_participants_event
-حدث إرسال نسخة بعد اجراء التعديل جاهزة للتصوير,A copy has been sent after the edit is ready to shoot,??,??,camera ready event
 بحث قصير,short search,ورقة قصيرة,Short paper,short paper
 عامل العلم,science factor,عامل العلوم,Science worker,Science worker
 البرنامج التعليمي,educational program,,,tutorial
 ,,,,
 Conference,,,,
 wrong,wrong translation,should be,right translation,English ontology
-نسخة جاهزة للتصوير مساهمة,a ready-made camera input,??,??,Camera_ready_contribution
 مقدم الطلب المؤتمر الذي دفع في وقت مبكر رسوم المؤتمر,applicant conference who paid early conference fees,مقدم الطلب الذي دفع الرسوم مبكرا,Applicant who paid the fees early,early paid applicant
 مقدم الطلب مسجل,applicant registered,مقدم الطلب المسجل,applicant registered,Registered Applicant
 طلب مقدم للمؤتمر,application to the conference,مقدم الطلب في المؤتمر,applicant to the conference,conference applicant
@@ -44,4 +42,3 @@ wrong,wrong translation,should be,right translation,English ontology
 sig رسوم التسجيل للاشخاص الذين ليسوا أعضاء,sig registration fee to people who are not members,تسجيل غير الأعضاء,Non-member registration,Registration_Non-Member
 البحث,search,ورقة,the paper,paper
 المحاضر المدعو,Lecturer called,متحدث مدعو,a speaker is invited,invited speaker
-الراعي كمقدم,Sponsor as Provider,??,??,Exhibitor
