@@ -24,22 +24,28 @@ class PreProcessing extends Serializable{
 //    ontologyWithSubjectAndObjectClass
 //
 //  }
-  def RecreateOntologyWithClassLabels(ontologyTriples: RDD[graph.Triple]): RDD[(String, String, String)] = {
-    var classLabels: RDD[graph.Triple] = ontologyTriples.filter(x=>x.getPredicate.getLocalName == "label")
-    //    println("classes with labels "+classLabels.count())
-    //    classLabels.foreach(println(_))
+  def RecreateOntologyWithLabels(ontologyTriples: RDD[graph.Triple]): RDD[(String, String, String)] = {
+    println("Number of triples before mapping is "+ontologyTriples.count())
+    val Labels: RDD[graph.Triple] = ontologyTriples.filter(x=>x.getPredicate.getLocalName == "label")
+//    println("All labels "+Labels.count())
+//    Labels.foreach(println(_))
 
-    var ontologyWithSubjectClass: RDD[(Node, Node, Node)] = ontologyTriples.keyBy(_.getSubject).join(classLabels.keyBy(_.getSubject)).map(x=>(x._2._2.getObject,x._2._1.getPredicate,x._2._1.getObject)).filter(x=>x._2.getLocalName != "label")
-//    println("After join")
-//    ontologyWithSubjectClass.foreach(println(_))
-//
-//    println("Classes only")
-    var triplesWitTypeClass: RDD[(String, String, String)] = ontologyWithSubjectClass.filter(x=>x._2.getLocalName=="type").map(x=>(this.stringPreProcessing2(x._1.toString.toLowerCase),x._2.getLocalName,x._3.getLocalName))
-//    triplesWitTypeClass.foreach(println(_))
+//  val xx = ontologyTriples.keyBy(_.getSubject).leftOuterJoin(Labels.keyBy(_.getSubject)).map(x=>(x._2.))
+//    //.map(x=>(x._2._2.getObject,x._2._1.getPredicate,x._2._1.getObject)).filter(x=>x._2.getLocalName != "label")
+//  println("After left outer join" + xx.count())
+//  xx.foreach(println(_))
 
-    var ontologyWithSubjectAndObjectClass: RDD[(String, String, String)] = ontologyWithSubjectClass.keyBy(_._3).join(classLabels.keyBy(_.getSubject)).map(x=>(this.stringPreProcessing2(x._2._1._1.toString).toLowerCase,x._2._1._2.getLocalName,this.stringPreProcessing2(x._2._2.getObject.toString).toLowerCase)).union(triplesWitTypeClass)
+    val ontologyWithSubjectLabel: RDD[(Node, Node, Node)] = ontologyTriples.keyBy(_.getSubject).join(Labels.keyBy(_.getSubject)).map(x=>(x._2._2.getObject,x._2._1.getPredicate,x._2._1.getObject)).filter(x=>x._2.getLocalName != "label")
+    println("After join" + ontologyWithSubjectLabel.count())
+    ontologyWithSubjectLabel.foreach(println(_))
 
-    ontologyWithSubjectAndObjectClass
+    val triplesWitType: RDD[(String, String, String)] = ontologyWithSubjectLabel.filter(x=>x._2.getLocalName=="type").map(x=>(this.stringPreProcessing2(x._1.toString.toLowerCase),x._2.getLocalName,x._3.getLocalName))
+  println("With type predicate only "+triplesWitType.count())
+    triplesWitType.foreach(println(_))
+
+    val ontologyWithSubjectAndObjectLabel: RDD[(String, String, String)] = ontologyWithSubjectLabel.keyBy(_._3).join(Labels.keyBy(_.getSubject)).map(x=>(this.stringPreProcessing2(x._2._1._1.toString).toLowerCase,x._2._1._2.getLocalName,this.stringPreProcessing2(x._2._2.getObject.toString).toLowerCase)).union(triplesWitType)
+
+    ontologyWithSubjectAndObjectLabel
 
   }
   def stringPreProcessing(term: String): String = {
