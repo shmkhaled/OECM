@@ -1,12 +1,12 @@
 
 import net.sansa_stack.rdf.spark.io._
 import org.apache.jena.graph
-import org.apache.jena.graph.Node
 import org.apache.jena.riot.Lang
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.broadcast.Broadcast
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
+
 //import net.sansa_stack.ml.common.nlp.wordnet
 
 /*
@@ -35,57 +35,19 @@ object OntologyEnrichment {
     val ontStat = new OntologyStatistics()
     println("################### Statistics of the Source Ontology ###########################")
     ontStat.GetStatistics(sourceOntology)
-//    println("################### Statistics of the Target Ontology ###########################")
-//    ontStat.GetStatistics(targetOntology)
+    println("################### Statistics of the Target Ontology ###########################")
+    ontStat.GetStatistics(targetOntology)
 
-    println("########################## PreProcessing ##############################")
-    val labels: Map[Node, graph.Triple] = sourceOntology.filter(x=>x.getPredicate.getLocalName == "label").keyBy(_.getSubject).collect().toMap
-    println("All labels ")
-    labels.foreach(println(_))
-    val labelBroadcasting: Broadcast[Map[Node, graph.Triple]] = sparkSession1.sparkContext.broadcast(labels)
-    val ontoWithLabels = new OntologyWithLabels(labelBroadcasting)
+    println("########################## Replacing classes and properties with their labels ##############################")
+    val ontoRebuild = new OntologyRebuilding(sparkSession1)
     val p = new PreProcessing()
-//    val sOntology: RDD[(String, String, String)] = p.RecreateSourceGermanOntologyWithClassLabels(sourceOntology).cache()
-//    val sOntology: RDD[(String, String, String)] = p.RecreateOntologyWithLabels(sourceOntology).cache()
-    val sOntology: RDD[(String, String, String)] = ontoWithLabels.RecreateOntologyWithLabels(sourceOntology).cache()
-        println("############################## Mapped Source Ontology ##############################"+ sOntology.count())
+    val sOntology: RDD[(String, String, String)] = ontoRebuild.RebuildOntologyWithLabels(sourceOntology)
+    println("############################## Mapped Source Ontology ##############################"+ sOntology.count())
     sOntology.foreach(println(_))
-
-    var tOntology: RDD[(String, String, String)] = p.RecreateOntologyWithLabels(targetOntology).cache() // should applied if the classes with codes and labels
+    val tOntology: RDD[(String, String, String)] = ontoRebuild.RebuildOntologyWithLabels(targetOntology)
     println("############################## Mapped Target Ontology ##############################" + tOntology.count())
     tOntology.foreach(println(_))
 
-    //    println("======================================")
-    //    println("|        Predefined Properties       |")
-    //    println("======================================")
-    //    println("All available predicates in the source ontology:")
-        val sourcePredicatesWithoutURIs = sourceOntology.map(_.getPredicate.getLocalName).distinct()
-    //    sourcePredicatesWithoutURIs.foreach(println(_))
-    //    println("Please enter the properties without URIs separated by ',':")
-    //    val line=scala.io.StdIn.readLine()
-    //    val predefinedProperty: Array[String] = line.split(',')
-        val predefinedProperty: Array[String] = Array("subClassOf", "type")//line.split(',')
-    //    predefinedProperty.foreach(println(_))
-    //    println(predefinedProperty.take(predefinedProperty.length).apply(0) +" and " +predefinedProperty.take(predefinedProperty.length).apply(1))
-    //    val uPredicate1 = predefinedProperty.take(predefinedProperty.length).apply(0)
-    //    val uPredicate2 = predefinedProperty.take(predefinedProperty.length).apply(1)
-
-        //############# Subgraph Extraction #################
-        val subGrapgh = new SubgraphExtraction()
-        val subOntology = subGrapgh.extract(sOntology, predefinedProperty)
-    //    println("############# Sub-source Ontology ################# "+subOntology.count())
-    //    subOntology.foreach(println(_))
-    //    var sourceClasses: RDD[Node] = subOntology.getSubjects.union(subOntology.getObjects().filter(x=>x.isURI)).distinct()
-    //    println("All classes with URIs in the source ontology Triples:")
-    //    sourceClasses.foreach(println(_))
-    //    println("All classes in the source ontologyTriples:")
-    //    var classes: RDD[String] = sourceClasses.map(_.getLocalName).distinct()
-    //  classes.foreach(println(_))
-
-
-    //    var targetClasses: RDD[String] = targetOntology.getSubjects.map(_.getLocalName).distinct()
-    //    println("All classes in the target ontologyTriples:")
-    //    targetClasses.foreach(println(_))
 
          //####################### Translation #####################################
       //      var targetClassesWithoutURIs: RDD[String] = targetOntology.map(y=>p.stringPreProcessing(y.getSubject.getLocalName)).distinct().union(targetOntology.map{case(x)=> if(x.getObject.isURI)(p.stringPreProcessing(x.getObject.getLocalName))else null}.filter(y => y != null && y != "class")).distinct()//for classes with local names ex:ekaw-en, edas and SEO ontologies
@@ -94,9 +56,11 @@ object OntologyEnrichment {
       //    tt.foreach(println(_))
       //    println("########################")
 
+
  // Retrieve class name for the source and target ontology (for classes with labels ex:cmt-en, confOf-de and sigkdd-de ontologies)
           val OC = new OntologyClasses()
-          var targetClassesWithoutURIs: RDD[String] = OC.RetrieveClassesWithLabels(targetOntology) //For SEO2
+//          var targetClassesWithoutURIs: RDD[String] = OC.RetrieveClassesWithLabels(targetOntology) //For SEO2
+      val targetClassesWithoutURIs: RDD[String] = ontStat.RetrieveClassesWithLabels(targetOntology) //For SEO
       //    var targetClassesWithoutURIs: RDD[String] = OC.RetrieveClassesWithoutLabels(targetOntology) //for SEO before enrichment
 
       //    //######################## Second Enrichment from Arabic Ontology ########################
