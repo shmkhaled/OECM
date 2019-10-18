@@ -3,19 +3,19 @@ import org.apache.spark.broadcast.Broadcast
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
 
-class Translator (targetClasses: Broadcast[Map[String, Long]]) extends Serializable {
-//def Translate (preprocessedSourceClasses: RDD[String], availableTranslations: RDD[(String, List[String])]): RDD[(String, List[String])]={
+class Translator (targetClasses: Broadcast[Map[String, Long]], sp: SparkSession) extends Serializable {
+//def GettingAllAvailableTranslations (preprocessedSourceClasses: RDD[String], availableTranslations: RDD[(String, List[String])]): RDD[(String, List[String])]={
 //  var sourceClassesWithTranslations: RDD[(String, List[String])] = availableTranslations.keyBy(_._1).leftOuterJoin(preprocessedSourceClasses.zipWithIndex().keyBy((_._1))).map(x=>(x._1,x._2._1._2))
 ////  sourceClassesWithTranslations.foreach(println(_))
 //  sourceClassesWithTranslations
 //  }
 
   def GetBestTranslation(listOfTranslations: List[String]): List[Any]={
-    val sp = SparkSession.builder
-//      .master("spark://172.18.160.16:3090")
-      .master("local[*]")
-      .config("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
-      .getOrCreate()
+//    val sp = SparkSession.builder
+////      .master("spark://172.18.160.16:3090")
+//      .master("local[*]")
+//      .config("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
+//      .getOrCreate()
     var bestTranslation: List[Any] = List(" "," ", 0.0)
 //    var bestTranslation: List[String] = List(" ")
 

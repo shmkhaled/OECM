@@ -1,10 +1,13 @@
 
+import net.sansa_stack.rdf.spark.model._
 import org.apache.jena.graph
 import org.apache.jena.graph.NodeFactory
 import org.apache.spark.rdd.RDD
-import net.sansa_stack.rdf.spark.model._
+import org.apache.spark.sql.SparkSession
 
-class OntologyStatistics {
+import scala.util.control.Exception.allCatch
+
+class OntologyStatistics (sparkSession: SparkSession) {
   def GetStatistics (ontologyTriples: RDD[graph.Triple])={
     println("======================================")
     println("|       Ontology Statistics      |")
@@ -50,14 +53,32 @@ class OntologyStatistics {
 ////    triplesWithSubClassAndDisJoint.foreach(println(_))
 
   }
-  def RetrieveClassesWithLabels (ontologyTriples: RDD[graph.Triple]): RDD[String]={
-//    val classesWithoutURIs = ontologyTriples.filter(x=>x.getPredicate.getLocalName == "label" && x.getObject.getLocalName == "Class")
-//      .map(y=>y.getObject.getLiteral.getLexicalForm.split("@").head).distinct()
-    val z: RDD[String] = ontologyTriples.find(None, None, Some(NodeFactory.createURI("http://www.w3.org/2002/07/owl#Class")))
+  def RetrieveClasses (ontologyTriples: RDD[graph.Triple]): RDD[(String, String)]={
+    val firstClass = ontologyTriples.find(None, None, Some(NodeFactory.createURI("http://www.w3.org/2002/07/owl#Class"))).first().getSubject.getLocalName
+    var classes = sparkSession.sparkContext.emptyRDD[(String, String)]
+    if (isNumber(firstClass))
+      classes = RetrieveClassesWithURIsAndLabels (ontologyTriples: RDD[graph.Triple])
+    else
+      classes = RetrieveClassesWithLabels (ontologyTriples: RDD[graph.Triple]).zipWithIndex().map(x=>(x._1,x._2.toString))
+    classes
+  }
+  def isNumber(s: String): Boolean = (allCatch opt s.toDouble).isDefined
+  def isAllDigits(x: String): Boolean = x forall Character.isDigit
+  def RetrieveClassesWithLabels (ontologyTriples: RDD[graph.Triple]): RDD[String]={ //will be applied for ontologies without codes like SEO
+    val classesWithoutURIs: RDD[String] = ontologyTriples.find(None, None, Some(NodeFactory.createURI("http://www.w3.org/2002/07/owl#Class")))
       .map(x => x.getSubject.getLocalName)
-//    println("Classes are "+z.count())
-//    z.foreach(println(_))
-//    classesWithoutURIs
-    z
+    classesWithoutURIs
+  }
+  def RetrieveClassesWithURIsAndLabels (ontologyTriples: RDD[graph.Triple]): RDD[(String, String)]={ //will be applied for ontologies with codes like Multifarm ontologies
+    var classes = ontologyTriples.find(None, None, Some(NodeFactory.createURI("http://www.w3.org/2002/07/owl#Class"))).keyBy(_.getSubject.getLocalName)
+      .join(ontologyTriples.keyBy(_.getSubject.getLocalName))
+      .filter(x=> x._2._2.getPredicate.getLocalName == "label")
+      .map(y=> (y._1, y._2._2.getObject.getLiteral.getLexicalForm.split("@").head)).distinct()
+    classes
+  }
+  def RetrieveClassesWithoutLabels (o: RDD[graph.Triple]): RDD[String]={
+    val p = new PreProcessing()
+    var classesWithoutURIs: RDD[String] = o.map(y=>p.stringPreProcessing(y.getSubject.getLocalName)).distinct().union(o.map{case(x)=> if(x.getObject.isURI)(p.stringPreProcessing(x.getObject.getLocalName))else null}.filter(y => y != null && y != "class")).distinct()//for classes with local names ex:ekaw-en, edas and SEO ontologies
+    classesWithoutURIs
   }
 }

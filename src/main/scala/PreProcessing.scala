@@ -68,7 +68,7 @@ class PreProcessing extends Serializable{
      splittedString
     * */
     var preProcessedString: String = term.split("@").head.replace("\"", "")//.replaceAll("""([\p{Punct}&&[^.]]|\b\p{IsLetter}{1,2}\b)\s*""", " ").trim.toLowerCase
-    var splittedString: String = splitCamelCase(preProcessedString).toLowerCase
+    var splittedString: String = splitCamelCase(preProcessedString)//.toLowerCase
     //    splittedString
     preProcessedString
   }

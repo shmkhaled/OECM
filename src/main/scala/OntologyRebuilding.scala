@@ -3,6 +3,9 @@ import org.apache.jena.graph.Node
 import org.apache.spark.broadcast.Broadcast
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
+/*
+* Created by Shimaa 14.oct.2019
+* */
 
 class OntologyRebuilding (sparkSession: SparkSession) {
   def RebuildOntologyWithLabels(ontologyTriples: RDD[graph.Triple]): RDD[(String, String, String)] = {
