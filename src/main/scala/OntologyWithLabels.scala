@@ -18,7 +18,6 @@ class OntologyWithLabels(labelBroadcasting: Broadcast[Map[Node, graph.Triple]])e
     val onto: RDD[(String, String, String)] = ontologyWithSubjectANDObjectLabels.map(x => if (x._3.isURI)(x._1, x._2.getLocalName, x._3.getLocalName) else (x._1, x._2.getLocalName, processing.stringPreProcessing2(x._3.toString)))
       .map(y => if (y._1.isURI) (y._1.getLocalName, y._2, y._3) else (processing.stringPreProcessing2(y._1.toString), y._2, y._3))
 //    onto.foreach(println(_))
-
     onto
 
   }

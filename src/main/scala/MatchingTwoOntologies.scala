@@ -1,5 +1,6 @@
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
+import org.apache.spark.storage.StorageLevel
 /*
 * Created by Shimaa 7.11.2018
 * */
@@ -36,13 +37,13 @@ def GetTriplesToBeEnriched(sOntology: RDD[(String, String, String)], targetClass
     var i = 1
     while (newClasses.count() != 0){
       val startTimeMillis = System.currentTimeMillis()
-//      println("Iteration number "+i)
+      println("Iteration number "+i)
       //Get all triples from the source ontology which has the matched terms as subject or object
       var rdd1 = sourceOntology.keyBy(_._1).join(newClasses.zipWithIndex())
       var rdd11 = rdd1.map({case(a,((s,p,o),b))=> (s,p,o)})
       var rdd2 = sourceOntology.keyBy(_._3).join(newClasses.zipWithIndex())
       var rdd22 = rdd2.map({case(a,((s,p,o),b))=> (s,p,o)})
-      var tempTriples = rdd11.union(rdd22).distinct()
+      var tempTriples = rdd11.union(rdd22).distinct(2)
       if (i == 1)
         tempTriples = tempTriples.filter(x=>x._2!= "type")
 //      println("New triples:")
@@ -50,14 +51,14 @@ def GetTriplesToBeEnriched(sOntology: RDD[(String, String, String)], targetClass
       sourceOntology = sourceOntology.subtract(tempTriples)
       var subjectClass = tempTriples.map(x=>x._1)
       var objectClass = tempTriples.map(x=>x._3)
-      var allClasses = subjectClass.union(objectClass).cache()
-      newClasses = allClasses.subtract(newClasses).distinct().filter(x => x != "Class").cache()
-//      println("New classes are:")
-//      newClasses.foreach(println(_))
+      var allClasses = subjectClass.union(objectClass).persist(StorageLevel.MEMORY_AND_DISK)
+      newClasses = allClasses.subtract(newClasses).distinct(2).filter(x => x != "Class").persist(StorageLevel.MEMORY_AND_DISK)
+      println("New classes are:")
+      newClasses.foreach(println(_))
       triples = triples.union(tempTriples)
       val endTimeMillis = System.currentTimeMillis()
-      val durationSeconds = (endTimeMillis - startTimeMillis) / 1000
-      println("runtime of iteration number "+i+" = "+durationSeconds+ " seconds")
+      val durationMilliSeconds = (endTimeMillis - startTimeMillis)
+      println("runtime of iteration number "+i+" = "+durationMilliSeconds+ " ms")
       i = i + 1
     }
 
