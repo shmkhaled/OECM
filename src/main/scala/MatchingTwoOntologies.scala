@@ -29,9 +29,9 @@ class MatchingTwoOntologies(sp: SparkSession) {
     //.map({case(a,((s,p,o),b))=> if(!a.isEmpty()) (s,p,o,'E') else if (a.isEmpty()) (s,p,o,'A')})
     tripelsForEnrichment
   }
-def GetTriplesToBeEnriched(sOntology: RDD[(String, String, String)], targetClassesWithoutURIs: RDD[String], listOfMatchedTerms: RDD[List[String]]): RDD[(String, String, String)]={
-    val matchedTerms: RDD[String] = listOfMatchedTerms.map(x=>x(1))
-    var newClasses: RDD[String] = matchedTerms
+def GetTriplesToBeEnriched(sOntology: RDD[(String, String, String)], targetClassesWithoutURIs: RDD[String], listOfMatchedClasses: RDD[List[String]]): RDD[(String, String, String)]={
+    val matchedClasses: RDD[String] = listOfMatchedClasses.map(x=>x(1))
+    var newClasses: RDD[String] = matchedClasses
     var triples = sp.sparkContext.emptyRDD[(String, String, String)]
     var sourceOntology: RDD[(String, String, String)] = sOntology
     var i = 1
@@ -62,7 +62,7 @@ def GetTriplesToBeEnriched(sOntology: RDD[(String, String, String)], targetClass
       i = i + 1
     }
 
-//    val newClasses = matchedTerms.subtract(listOfMatchedTerms.map(x=>x(1)))
+//    val newClasses = matchedClasses.subtract(listOfMatchedClasses.map(x=>x(1)))
 //    println("List of new classes: "+newClasses.count())
 //    newClasses.foreach(println(_))
     triples

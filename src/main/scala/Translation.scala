@@ -7,10 +7,16 @@ class Translation (sparkSession: SparkSession) extends Serializable{
   def GettingAllAvailableTranslations(filePathForOfflineTranslation: String): RDD[(String, List[String])]= {
     val p = new PreProcessing()
     RedwoodConfiguration.current.clear.apply()
-    val availableTranslations: RDD[(String, List[String])] = sparkSession.sparkContext.textFile(filePathForOfflineTranslation).map(_.split(",").toList).map(x => (x.head, x.tail.drop(1).map(y => p.englishPosTagForString(y))))
+//    val availableTranslations: RDD[(String, List[String])] = sparkSession.sparkContext.textFile(filePathForOfflineTranslation)
+//      .map(_.split(",").toList)
+//      .map(x => (x.head, x.tail.drop(1)
+//        .map(y => p.englishPosTagForString(y))))
+    val availableTranslations: RDD[(String, List[String])] = sparkSession.sparkContext.textFile(filePathForOfflineTranslation)
+      .map(_.split(",").toList)
+      .map(x => (x.head, x.tail.drop(1)))
     availableTranslations
   }
-  def GetBestTranslation(listOfTranslations: List[String],targetClassesBroadcasting: Broadcast[Map[String, Long]]): List[Any]={
+  def GetBestTranslationForClass(listOfTranslations: List[String], targetClassesBroadcasting: Broadcast[Map[String, Long]]): List[Any]={
     val sp = SparkSession.builder
       //      .master("spark://172.18.160.16:3090")
       .master("local[*]")
@@ -36,5 +42,9 @@ class Translation (sparkSession: SparkSession) extends Serializable{
     else bestTranslation = listOfTranslations
 
     bestTranslation
+  }
+  def GetTranslationForRelation(availableTranslations: RDD[(String, List[String])], sourceRelations: RDD[(String, String)]): RDD[(String, String)]={
+    val relationsWithTranslation: RDD[(String, String)] = sourceRelations.keyBy(_._1).join(availableTranslations.keyBy(_._1)).map(x => (x._2._1._2, x._2._2._2.head.toLowerCase))
+    relationsWithTranslation
   }
 }

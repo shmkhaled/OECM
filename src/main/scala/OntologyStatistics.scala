@@ -14,9 +14,8 @@ class OntologyStatistics (sparkSession: SparkSession) {
     val ontoName = ontologyTriples.filter(x => x.getPredicate.getLocalName == "type" && x.getObject.getLocalName == "Ontology")
       .map(x => x.getSubject.getLocalName).first()
     println("Ontology name is: "+ontoName)
-//    ontoName.foreach(println(_))
     println("Number of triples in the "+ontoName+" ontology = "+ontologyTriples.count())
-    //ontologyTriples.foreach(println(_))
+//    ontologyTriples.foreach(println(_))
 
     val sObjectProperty = ontologyTriples.filter(q => q.getObject.isURI && q.getObject.getLocalName == "ObjectProperty").distinct(2)
     println("Number of object properties is "+sObjectProperty.count())
@@ -34,27 +33,10 @@ class OntologyStatistics (sparkSession: SparkSession) {
     println("Number of classes is "+sClass.count())
 //    sClass.foreach(println(_))
 
-    val listOfPredicates = ontologyTriples.map(x => x.getPredicate.getLocalName).distinct()
+    val listOfPredicates = ontologyTriples.map(x => x.getPredicate.getLocalName).distinct(2)
     println("List of predicates in the ontology: ")
     listOfPredicates.foreach(println(_))
-//    println("All predicates without URIs:")
-//    val targetPredicatesWithoutURIs = ontologyTriples.map(_.getPredicate.getLocalName).distinct()
-//    targetPredicatesWithoutURIs.foreach(println(_))
-//
-//    var triplesWithSubClassAndDisJoint = ontologyTriples.filter(x=>x.getPredicate.getLocalName == "subClassOf" || x.getPredicate.getLocalName == "disjointWith")
-////    println("Ontology triples "+triplesWithSubClassAndDisJoint.count())
-////    triplesWithSubClassAndDisJoint.foreach(println(_))
-
   }
-//  def RetrieveClasses (ontologyTriples: RDD[graph.Triple]): RDD[(String, String)]={
-//    val firstClass = ontologyTriples.find(None, None, Some(NodeFactory.createURI("http://www.w3.org/2002/07/owl#Class"))).first().getSubject.getLocalName
-//    var classes = sparkSession.sparkContext.emptyRDD[(String, String)]
-//    if (isNumber(firstClass))
-//      classes = RetrieveClassesWithURIsAndLabels (ontologyTriples: RDD[graph.Triple])
-//    else
-//      classes = RetrieveClassesWithLabels (ontologyTriples: RDD[graph.Triple]).zipWithIndex().map(x=>(x._1,x._2.toString))
-//    classes
-//  }
   def OntologyWithCodeOrText (ontologyTriples: RDD[graph.Triple]): Boolean={
     val classes = ontologyTriples.filter(q => q.getSubject.isURI && q.getObject.isURI && q.getObject.getLocalName == "Class").distinct(2)
     var hasCode = false
@@ -85,12 +67,11 @@ class OntologyStatistics (sparkSession: SparkSession) {
     val prop: RDD[(String, String)] = ontologyTriples.filter(q => (q.getObject.isURI && q.getObject.getLocalName == "ObjectProperty") || (q.getObject.isURI && q.getObject.getLocalName == "AnnotationProperty") || (q.getObject.isURI && q.getObject.getLocalName == "DatatypeProperty")|| (q.getObject.isURI && q.getObject.getLocalName == "FunctionalProperty")|| (q.getObject.isURI && q.getObject.getLocalName == "InverseFunctionalProperty")).distinct(2).map(x => (x.getSubject.getLocalName,x.getObject.getLocalName)).distinct(2)
     prop
   }
-  def RetrieveRelationsWithURIs(sourceLabelBroadcasting: Broadcast[Map[Node, graph.Triple]],ontologyTriples: RDD[graph.Triple])={
+  def RetrieveRelationsWithURIs(sourceLabelBroadcasting: Broadcast[Map[Node, graph.Triple]],ontologyTriples: RDD[graph.Triple]): RDD[(String, String)]={
     val prop: RDD[graph.Triple] = ontologyTriples.filter(q => (q.getObject.isURI && q.getObject.getLocalName == "ObjectProperty") || (q.getObject.isURI && q.getObject.getLocalName == "AnnotationProperty") || (q.getObject.isURI && q.getObject.getLocalName == "DatatypeProperty")|| (q.getObject.isURI && q.getObject.getLocalName == "FunctionalProperty")|| (q.getObject.isURI && q.getObject.getLocalName == "InverseFunctionalProperty")).distinct(2)
-    println("prop =============>")
-    prop.take(10).foreach(println(_))
-    val relations = prop.map(x => if (sourceLabelBroadcasting.value.contains(x.getSubject))(x.getSubject.getLocalName, sourceLabelBroadcasting.value(x.getSubject).getObject.getLiteral.toString().split("@").head)).distinct(2).filter(row => row != null)
-    println("relations"+relations.count())
-    relations.foreach(println(_))
+//    println("prop =============>")
+//    prop.foreach(println(_))
+    val relations: RDD[(String, String)] = prop.map(x => if (sourceLabelBroadcasting.value.contains(x.getSubject))(x.getSubject.getLocalName, sourceLabelBroadcasting.value(x.getSubject).getObject.getLiteral.toString().split("@").head) else (x.getSubject.getLocalName, x.getObject.getLocalName)).distinct(2)
+    relations
   }
 }
