@@ -4,7 +4,7 @@ import org.apache.spark.storage.StorageLevel
 /*
 * Created by Shimaa 7.11.2018
 * */
-class MatchingTwoOntologies(sp: SparkSession) {
+class HierarchicalEnrichment(sp: SparkSession) {
   def Match(sourceSubOntology: RDD[(String, String, String)], targetOntology: RDD[(String, String, String)], targetClassesWithoutURIs: RDD[String]): RDD[(String, String, String, Char)] ={
     /*
     * divide the source ontology into two sub-ontologies, the first one with all triples that have pridicate 'type', i.e. classes. The second one has the rest*/
@@ -14,22 +14,22 @@ class MatchingTwoOntologies(sp: SparkSession) {
     var sourceOntology: RDD[(String, String, String)] = sourceSubOntology.subtract(matchOntology).filter(x=>x._2 != "type")//remove full matched triples from the source ontologyTriples
 //    sourceOntology.foreach(println(_))
 
-    var tripelsForEnrichment: RDD[(String, String, String, Char)] = sourceOntology.keyBy(_._1).join(targetClassesWithoutURIs.zipWithIndex().keyBy(_._1)).map({case(a,((s,p,o),b))=> (s,p,o,'E')})
+    var triplesForEnrichment: RDD[(String, String, String, Char)] = sourceOntology.keyBy(_._1).join(targetClassesWithoutURIs.zipWithIndex().keyBy(_._1)).map({case(a,((s,p,o),b))=> (s,p,o,'E')})
 //    println("############### Triples to enrich ###############################")
-//    tripelsForEnrichment.foreach(println(_))
+//    triplesForEnrichment.foreach(println(_))
 //    println("###########################################################")
-    var tripelsForAdd = tripelsForEnrichment.keyBy(_._3).join(sourceSubOntology.keyBy(_._1)).map({case(a,((b,c,d,e),(s,p,o)))=> (s,p,o,'A')}).union(sourceOntology.keyBy(_._3).join(targetClassesWithoutURIs.zipWithIndex().keyBy(_._1)).map({case(a,((s,p,o),b))=> (s,p,o,'A')})).distinct().cache()
+    var tripelsForAdd = triplesForEnrichment.keyBy(_._3).join(sourceSubOntology.keyBy(_._1)).map({case(a,((b,c,d,e),(s,p,o)))=> (s,p,o,'A')}).union(sourceOntology.keyBy(_._3).join(targetClassesWithoutURIs.zipWithIndex().keyBy(_._1)).map({case(a,((s,p,o),b))=> (s,p,o,'A')})).distinct().cache()
     tripelsForAdd = tripelsForAdd.keyBy(_._1).join(sourceSubOntology.keyBy(_._1)).map({case(a,((b,c,d,e),(s,p,o)))=> (s,p,o,'A')}).distinct()//.persist(StorageLevel.DISK_ONLY)
 //    println("############### Triples to add ###############################")
 //    tripelsForAdd.foreach(println(_))
 //    println("###########################################################")
 
-    tripelsForEnrichment = tripelsForEnrichment.union(tripelsForAdd)
+    triplesForEnrichment = triplesForEnrichment.union(tripelsForAdd)
 
     //.map({case(a,((s,p,o),b))=> if(!a.isEmpty()) (s,p,o,'E') else if (a.isEmpty()) (s,p,o,'A')})
-    tripelsForEnrichment
+    triplesForEnrichment
   }
-def GetTriplesToBeEnriched(sOntology: RDD[(String, String, String)], targetClassesWithoutURIs: RDD[String], listOfMatchedClasses: RDD[List[String]]): RDD[(String, String, String)]={
+def GetTriplesForClassesToBeEnriched(sOntology: RDD[(String, String, String)], targetClassesWithoutURIs: RDD[String], listOfMatchedClasses: RDD[List[String]]): RDD[(String, String, String)]={
     val matchedClasses: RDD[String] = listOfMatchedClasses.map(x=>x(1))
     var newClasses: RDD[String] = matchedClasses
     var triples = sp.sparkContext.emptyRDD[(String, String, String)]
@@ -52,7 +52,8 @@ def GetTriplesToBeEnriched(sOntology: RDD[(String, String, String)], targetClass
       var subjectClass = tempTriples.map(x=>x._1)
       var objectClass = tempTriples.map(x=>x._3)
       var allClasses = subjectClass.union(objectClass).persist(StorageLevel.MEMORY_AND_DISK)
-      newClasses = allClasses.subtract(newClasses).distinct(2).filter(x => x != "Class").persist(StorageLevel.MEMORY_AND_DISK)
+      newClasses = allClasses.subtract(newClasses).distinct(2)
+        .filter(x => x != "Class").persist(StorageLevel.MEMORY_AND_DISK)
       println("New classes are:")
       newClasses.foreach(println(_))
       triples = triples.union(tempTriples)

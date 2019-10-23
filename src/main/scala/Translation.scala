@@ -43,8 +43,8 @@ class Translation (sparkSession: SparkSession) extends Serializable{
 
     bestTranslation
   }
-  def GetTranslationForRelation(availableTranslations: RDD[(String, List[String])], sourceRelations: RDD[(String, String)]): RDD[(String, String)]={
-    val relationsWithTranslation: RDD[(String, String)] = sourceRelations.keyBy(_._1).join(availableTranslations.keyBy(_._1)).map(x => (x._2._1._2, x._2._2._2.head.toLowerCase))
+  def GetTranslationForRelation(availableTranslations: RDD[(String, List[String])], sourceRelations: RDD[(String, String)]): RDD[(String, String, String)]={
+    val relationsWithTranslation: RDD[(String, String, String)] = sourceRelations.keyBy(_._1).join(availableTranslations.keyBy(_._1)).map(x => (x._1, x._2._1._2, x._2._2._2.head.toLowerCase))
     relationsWithTranslation
   }
 }

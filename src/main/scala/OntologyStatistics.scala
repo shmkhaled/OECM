@@ -51,7 +51,7 @@ class OntologyStatistics (sparkSession: SparkSession) {
       .map(x => x.getSubject.getLocalName)
     classesWithoutURIs
   }
-  def RetrieveClassesWithURIsAndLabels (ontologyTriples: RDD[graph.Triple]): RDD[(String, String)]={ //will be applied for ontologies with codes like Multifarm ontologies
+  def RetrieveClassesWithCodesAndLabels(ontologyTriples: RDD[graph.Triple]): RDD[(String, String)]={ //will be applied for ontologies with codes like Multifarm ontologies
     var classes = ontologyTriples.find(None, None, Some(NodeFactory.createURI("http://www.w3.org/2002/07/owl#Class"))).keyBy(_.getSubject.getLocalName)
       .join(ontologyTriples.keyBy(_.getSubject.getLocalName))
       .filter(x=> x._2._2.getPredicate.getLocalName == "label")
@@ -63,11 +63,11 @@ class OntologyStatistics (sparkSession: SparkSession) {
     val classesWithoutURIs: RDD[String] = o.map(y=>p.stringPreProcessing(y.getSubject.getLocalName)).distinct().union(o.map{case(x)=> if(x.getObject.isURI)(p.stringPreProcessing(x.getObject.getLocalName))else null}.filter(y => y != null && y != "class")).distinct()
     classesWithoutURIs
   }
-  def RetrieveRelationsWithoutURIs(ontologyTriples: RDD[graph.Triple]): RDD[(String, String)]={
+  def RetrieveRelationsWithoutCodes(ontologyTriples: RDD[graph.Triple]): RDD[(String, String)]={
     val prop: RDD[(String, String)] = ontologyTriples.filter(q => (q.getObject.isURI && q.getObject.getLocalName == "ObjectProperty") || (q.getObject.isURI && q.getObject.getLocalName == "AnnotationProperty") || (q.getObject.isURI && q.getObject.getLocalName == "DatatypeProperty")|| (q.getObject.isURI && q.getObject.getLocalName == "FunctionalProperty")|| (q.getObject.isURI && q.getObject.getLocalName == "InverseFunctionalProperty")).distinct(2).map(x => (x.getSubject.getLocalName,x.getObject.getLocalName)).distinct(2)
     prop
   }
-  def RetrieveRelationsWithURIs(sourceLabelBroadcasting: Broadcast[Map[Node, graph.Triple]],ontologyTriples: RDD[graph.Triple]): RDD[(String, String)]={
+  def RetrieveRelationsWithCodes(sourceLabelBroadcasting: Broadcast[Map[Node, graph.Triple]], ontologyTriples: RDD[graph.Triple]): RDD[(String, String)]={
     val prop: RDD[graph.Triple] = ontologyTriples.filter(q => (q.getObject.isURI && q.getObject.getLocalName == "ObjectProperty") || (q.getObject.isURI && q.getObject.getLocalName == "AnnotationProperty") || (q.getObject.isURI && q.getObject.getLocalName == "DatatypeProperty")|| (q.getObject.isURI && q.getObject.getLocalName == "FunctionalProperty")|| (q.getObject.isURI && q.getObject.getLocalName == "InverseFunctionalProperty")).distinct(2)
 //    println("prop =============>")
 //    prop.foreach(println(_))
