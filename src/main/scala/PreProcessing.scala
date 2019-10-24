@@ -95,10 +95,15 @@ class PreProcessing extends Serializable{
 //    val parts: util.List[String] = splitter.splitWord(s)
 //    parts
 //  }
-  def ToCamel(s: String): String = {
+  def ToCamelForClass(s: String): String = {
     val split = s.split(" ")
     val tail = split.tail.map { x => x.head.toUpper + x.tail }
     split.head.capitalize+ tail.mkString
+  }
+  def ToCamelForRelation(s: String): String = {
+    val split = s.split(" ")
+    val tail = split.tail.map { x => x.head.toUpper + x.tail }
+    split.head+ tail.mkString
   }
 
   def getLastBitFromUrI(urI: String): String = {
@@ -116,17 +121,11 @@ class PreProcessing extends Serializable{
   def germanPosTag(sourceClassesWithoutURIs: Array[String], germanTagger: MaxentTagger): Array[String]={
     var sourceC: Array[String] = sourceClassesWithoutURIs.filter(x => x.split(" ").length == 1)
     var sourceC2 = sourceClassesWithoutURIs diff sourceC
-//    println("####################### Subtraction results #######################")
-//    sourceC2.foreach(println(_))
+
     var tags: Array[String] = sourceC2.map(x=>(germanTagger.tagString(x).split(" ")).filter(y=> y.contains("_ADJA") || y.contains("_NN")|| y.contains("_XY") || y.contains("_ADV")|| y.contains("_NE") || y.contains("_ADJD")).mkString(" "))
     var removeTags: Array[String] = tags.map(x=>this.getStringWithoutTags(x.split(" ")))
-//    println("All Tags")
-//    tags.foreach(println(_))
-//    println("Removing Tags")
-//    removeTags.foreach(println(_))
+
     var preprocessedSourceClasses: Array[String] = sourceC.union(removeTags)
-//    println("All source classes after preprocessing")
-//    preprocessedSourceClasses.foreach(println(_))
     preprocessedSourceClasses
 
   }

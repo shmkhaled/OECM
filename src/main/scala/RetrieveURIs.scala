@@ -1,68 +1,73 @@
+import java.io
+
 import org.apache.jena.graph
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
 
-class RetrieveURIs(sparkSession: SparkSession) {
-  //  def getTripleURIs(sourceOntology: RDD[graph.Triple], recordedTranslations: RDD[(String, String)],translatedTriples: RDD[(String, String, String)]): RDD[(String, String, String)] ={
-  //    var sourceSubjectsURIs: RDD[(String, String)] = sourceOntology.map(x=>(x.getSubject.getURI,x.getSubject.getLocalName)).distinct()//.cache()
-  ////    println("Subject URIs")
-  ////    sourceSubjectsURIs.foreach(println(_))
-  //    var sourceObjectsURIs = sourceOntology.filter(x=>x.getObject.isURI).map(x=> (x.getObject.getURI,x.getObject.getLocalName)).distinct()//.cache()
-  ////    println("Object URIs")
-  ////    sourceObjectsURIs.foreach(println(_))
-  //    var sourcePredicateURIs: RDD[(String, String)] = sourceOntology.map(x=>(x.getPredicate.getURI,x.getPredicate.getLocalName)).distinct()//.cache()
-  //    //    sourcePredicateURIs.foreach(println(_))
+class RetrieveURIs(sparkSession: SparkSession, sourceOntology: RDD[graph.Triple]) {
+  val sourceSubjectURIs = sourceOntology.map(x => (x.getSubject.getNameSpace, x.getSubject.getLocalName))
+
+  val sourcePredicateURIs = sourceOntology.filter(x => x.getPredicate.isURI).map(y => (y.getPredicate.getNameSpace, y.getPredicate.getLocalName))
+
+  val sourceObjectURIs = sourceOntology.filter(x => x.getObject.isURI).map(y => (y.getObject.getNameSpace, y.getObject.getLocalName))
+
+  val AllSourceURIs: RDD[(String, String)] = sourceSubjectURIs.union(sourcePredicateURIs).union(sourceObjectURIs).distinct(2) //    println("All source ontology URIs")
+  //    AllSourceURIs.foreach(println(_))
+  //  def getTripleURIs(sourceOntology: RDD[graph.Triple], sourceClassesWithBestTranslation: RDD[(String, String, String)], relationsWithTranslation: RDD[(String, String, String)], triplesForEnrichment: RDD[(String, String, String)], triplesFor: String): RDD[(String, String, String)] = { //triplesFor is a flage which can take "classes" or "relations"
   //
-  ////        println("################# All recorded translations ################")
-  ////      recordedTranslations.foreach(println(_))
-  //    val p = new PreProcessing()
-  ////    println("sourceTranslatedSubjectsWithURI")
-  //    var sourceTranslatedSubjectsWithURI = recordedTranslations.keyBy(_._1).join(sourceSubjectsURIs.keyBy(_._2)).distinct().map(x=>(p.getURIWithoutLastString(x._2._2._1)+x._2._1._2,x._2._1._2)).distinct()//.cache()
-  ////    sourceTranslatedSubjectsWithURI.foreach(println(_))
+  //    val ontologyElementsWithCodes: RDD[(String, String, String)] = sourceClassesWithBestTranslation.union(relationsWithTranslation)
   //
-  //    //    System.out.println(p.getURIWithoutLastString("http://purl.org/semsur/Publikation"))
-  ////    println("################# translated triples with Subject URIs ################")
-  //    var translatedTriplesWithSubjectURIs = translatedTriples.keyBy(_._1).join(sourceTranslatedSubjectsWithURI.keyBy(_._2)).map(x=>(x._2._2._1,x._2._1._2,x._2._1._3))//.cache()
-  ////    translatedTriplesWithSubjectURIs.foreach(println(_))
+  //    val ontologyElementsWithCodesAndURIs: RDD[(String, io.Serializable, io.Serializable, String)] = ontologyElementsWithCodes.keyBy(_._1).rightOuterJoin(AllSourceURIs.keyBy(_._2)).map { case (code1, (Some((code2, foreignLabel, englishLabel)), (uri, code3))) => (uri, code1, foreignLabel, englishLabel)
+  //    case (s, (None, (urii, o))) => (urii, None, None, o)
+  //    }
   //
-  ////    println("sourceTranslatedObjectsWithURI")
-  //    var sourceTranslatedObjectsWithURI: RDD[(String, String)] = recordedTranslations.keyBy(_._1).join(sourceObjectsURIs.keyBy(_._2)).distinct().map(x=>(p.getURIWithoutLastString(x._2._2._1)+x._2._1._2,x._2._1._2)).distinct().union(sourceObjectsURIs.filter(x=>x._2 == "Class"))//.cache()
-  ////    sourceTranslatedObjectsWithURI.foreach(println(_))
+  //    //    println("Ontology Elements with codes and URIs " +ontologyElementsWithCodesAndURIs.count()+" ontologyElementsWithCodes number is "+ontologyElementsWithCodes.count())
+  //    //
+  //    //    ontologyElementsWithCodesAndURIs.foreach(println(_))
+  //    val ontologyElementsWithCodesAndURIsBroadcasting = sparkSession.sparkContext.broadcast(ontologyElementsWithCodesAndURIs.keyBy(_._4).collect().toMap)
   //
-  ////    println("################# translated triples with Subject and Objects URIs ################")
-  //    var translatedTriplesWithObjectURIs = translatedTriplesWithSubjectURIs.keyBy(_._3).leftOuterJoin(sourceTranslatedObjectsWithURI.keyBy(_._2)).map{case(x)=> if (x._2._2.isEmpty)(x._2._1) else (x._2._1._1,x._2._1._2,x._2._2.last._1)}//.cache()
-  ////    translatedTriplesWithObjectURIs.foreach(println(_))
+  //    val prePross = new PreProcessing()
   //
-  //
-  ////    println("Fully translated triples with All URIs")
-  //    var sourceTranslatedPredicatesWithURI= translatedTriplesWithObjectURIs.keyBy(_._2).join(sourcePredicateURIs.keyBy(_._2)).distinct().map(x=>(x._2._1._1,x._2._2._1,x._2._1._3))
-  ////    sourceTranslatedPredicatesWithURI.foreach(println(_))
-  //    sourceTranslatedPredicatesWithURI
-  //
+  //    var triplesForEnrichmentWithURIs = sparkSession.sparkContext.emptyRDD[(String, String, String)]
+  //    if (triplesFor == "classes") {
+  //      triplesForEnrichmentWithURIs = triplesForEnrichment.map(x => if (ontologyElementsWithCodesAndURIsBroadcasting.value.contains(x._1) || ontologyElementsWithCodesAndURIsBroadcasting.value.contains(x._2) || ontologyElementsWithCodesAndURIsBroadcasting.value.contains(x._3)) (ontologyElementsWithCodesAndURIsBroadcasting.value(x._1)._1.concat(prePross.ToCamelForClass(x._1)), ontologyElementsWithCodesAndURIsBroadcasting.value(x._2)._1.concat(x._2), ontologyElementsWithCodesAndURIsBroadcasting.value(x._3)._1.concat(prePross.ToCamelForClass(x._3))) else (ontologyElementsWithCodesAndURIsBroadcasting.value(x._1)._1.concat(prePross.ToCamelForClass(x._1)), prePross.ToCamelForClass(x._2), prePross.ToCamelForClass(x._3)))
+  //    }
+  //    else
+  //      triplesForEnrichmentWithURIs = triplesForEnrichment.map(x => if (ontologyElementsWithCodesAndURIsBroadcasting.value.contains(x._1) || ontologyElementsWithCodesAndURIsBroadcasting.value.contains(x._2) || ontologyElementsWithCodesAndURIsBroadcasting.value.contains(x._3)) (ontologyElementsWithCodesAndURIsBroadcasting.value(x._1)._1.concat(prePross.ToCamelForRelation(x._1)), ontologyElementsWithCodesAndURIsBroadcasting.value(x._2)._1.concat(x._2), ontologyElementsWithCodesAndURIsBroadcasting.value(x._3)._1.concat(prePross.ToCamelForClass(x._3))) else (ontologyElementsWithCodesAndURIsBroadcasting.value(x._1)._1.concat(prePross.ToCamelForRelation(x._1)), prePross.ToCamelForClass(x._2), prePross.ToCamelForClass(x._3)))
+  //    triplesForEnrichmentWithURIs
   //  }
-  def getTripleURIs(sourceOntology: RDD[graph.Triple],sourceClassesWithBestTranslation: RDD[(String, String, String)],relationsWithTranslation: RDD[(String, String, String)],triplesForEnrichment: RDD[(String, String, String)]) = {
-    val sourceSubjectURIs = sourceOntology.map(x => (x.getSubject.getNameSpace, x.getSubject.getLocalName))
-    //    println("sourceSubjectURIs")
-    //    sourceSubjectURIs.foreach(println(_))
-    val sourceObjectURIs = sourceOntology.filter(x => x.getObject.isURI).map(y => (y.getObject.getNameSpace, y.getObject.getLocalName))
-    //    println("sourceObjectURIs")
-    //    sourceObjectURIs.foreach(println(_))
-    val AllSourceURIs: RDD[(String, String)] = sourceSubjectURIs.union(sourceObjectURIs).distinct(2)
-//    println("All source ontology URIs")
-//    AllSourceURIs.foreach(println(_))
+  def getTripleURIsForHierarchicalEnrichment(sourceClassesWithBestTranslation: RDD[(String, String, String)], triplesForEnrichment: RDD[(String, String, String)]): RDD[(String, String, String)] = {
 
-    val ontologyElementsWithCodes: RDD[(String, String, String)] = sourceClassesWithBestTranslation.union(relationsWithTranslation)
-    val ontologyElementsWithCodesAndURIs: RDD[(String, String, String, String)] = ontologyElementsWithCodes.keyBy(_._1).join(AllSourceURIs.keyBy(_._2))
-      .map{case (code1,((code2, foreignLabel, englishLabel),(uri,code3)))=> (uri,code1,foreignLabel,englishLabel)}
-    println("Ontology Elements with codes and URIs " +ontologyElementsWithCodesAndURIs.count()+" ontologyElementsWithCodes number is "+ontologyElementsWithCodes.count())
-    ontologyElementsWithCodesAndURIs.foreach(println(_))
+    val ontologyClassesWithCodesAndURIs: RDD[(String, io.Serializable, io.Serializable, String)] = sourceClassesWithBestTranslation.keyBy(_._1).rightOuterJoin(AllSourceURIs.keyBy(_._2)).map { case (code1, (Some((code2, foreignLabel, englishLabel)), (uri, code3))) => (uri, code1, foreignLabel, englishLabel)
+    case (s, (None, (urii, o))) => (urii, None, None, o)
+    }
 
-    val ontologyElementsWithCodesAndURIsBroadcasting =  sparkSession.sparkContext.broadcast(ontologyElementsWithCodesAndURIs.keyBy(_._4).collect().toMap)
-    val triplesForEnrichmentWithURIs= triplesForEnrichment.map(x => if (ontologyElementsWithCodesAndURIsBroadcasting.value.contains(x._1) || ontologyElementsWithCodesAndURIsBroadcasting.value.contains(x._3)) (ontologyElementsWithCodesAndURIsBroadcasting.value(x._1)._1.concat(x._1),x._2,ontologyElementsWithCodesAndURIsBroadcasting.value(x._3)._1.concat(x._3)) else (ontologyElementsWithCodesAndURIsBroadcasting.value(x._1)._1.concat(x._1),x._2,x._3))
-    println("Triples for enrichment with URIs")
-    triplesForEnrichmentWithURIs.foreach(println(_))
-//    val ontologyWithSubjectLabels: RDD[(Node, Node, Node)] = ontologyTriples.filter(x=>x.getPredicate.getLocalName != "label")
-//      .map(x => if(labelBroadcasting.value.contains(x.getSubject)) (labelBroadcasting.value(x.getSubject).getObject, x.getPredicate, x.getObject) else (x.getSubject, x.getPredicate, x.getObject))
+    val ontologyClassesWithCodesAndURIsBroadcasting = sparkSession.sparkContext.broadcast(ontologyClassesWithCodesAndURIs.keyBy(_._4).collect().toMap)
+
+    val prePross = new PreProcessing()
+
+    val triplesForEnrichmentWithURIs = triplesForEnrichment.map(x => if (ontologyClassesWithCodesAndURIsBroadcasting.value.contains(x._1) || ontologyClassesWithCodesAndURIsBroadcasting.value.contains(x._2) || ontologyClassesWithCodesAndURIsBroadcasting.value.contains(x._3)) (ontologyClassesWithCodesAndURIsBroadcasting.value(x._1)._1.concat(prePross.ToCamelForClass(x._1)), ontologyClassesWithCodesAndURIsBroadcasting.value(x._2)._1.concat(x._2), ontologyClassesWithCodesAndURIsBroadcasting.value(x._3)._1.concat(prePross.ToCamelForClass(x._3))) else (ontologyClassesWithCodesAndURIsBroadcasting.value(x._1)._1.concat(prePross.ToCamelForClass(x._1)), x._2, prePross.ToCamelForClass(x._3)))
+
+    triplesForEnrichmentWithURIs
   }
 
+  def getTripleURIsForRelationalEnrichment(relationsWithTranslation: RDD[(String, String, String)], sourceClassesWithBestTranslation: RDD[(String, String, String)], triplesForEnrichment: RDD[(String, String, String)]): RDD[(String, String, String)] = {
+
+    val ontologyElementsWithCodes: RDD[(String, String, String)] = sourceClassesWithBestTranslation.union(relationsWithTranslation)
+
+    val ontologyElementsWithCodesAndURIs: RDD[(String, io.Serializable, io.Serializable, String)] = ontologyElementsWithCodes.keyBy(_._1).rightOuterJoin(AllSourceURIs.keyBy(_._2)).map { case (code1, (Some((code2, foreignLabel, englishLabel)), (uri, code3))) => (uri, code1, foreignLabel, englishLabel)
+    case (s, (None, (urii, o))) => (urii, None, None, o)
+    }
+
+    val ontologyElementsWithCodesAndURIsBroadcasting = sparkSession.sparkContext.broadcast(ontologyElementsWithCodesAndURIs.keyBy(_._4).collect().toMap)
+
+    val prePross = new PreProcessing()
+
+    val subjectCapitalization = triplesForEnrichment.map(x => if (ontologyElementsWithCodesAndURIsBroadcasting.value.contains(x._1) || ontologyElementsWithCodesAndURIsBroadcasting.value.contains(x._2) || ontologyElementsWithCodesAndURIsBroadcasting.value.contains(x._3)) (ontologyElementsWithCodesAndURIsBroadcasting.value(x._1)._1.concat(prePross.ToCamelForRelation(x._1)), ontologyElementsWithCodesAndURIsBroadcasting.value(x._2)._1.concat(x._2), ontologyElementsWithCodesAndURIsBroadcasting.value(x._3)._1.concat(x._3)) else (ontologyElementsWithCodesAndURIsBroadcasting.value(x._1)._1.concat(prePross.ToCamelForRelation(x._1)), x._2, x._3))
+
+    val sourceClassesWithBestTranslationBroadcasting = sparkSession.sparkContext.broadcast(sourceClassesWithBestTranslation.keyBy(_._3).collect().toMap)
+
+    val triplesForEnrichmentWithURIs = subjectCapitalization.map(x => if (sourceClassesWithBestTranslationBroadcasting.value.contains(x._3.split("#").last)) (x._1, x._2, x._3.split("#").head.concat("#" + prePross.ToCamelForClass(x._3.split("#").last))) else (x._1, x._2, x._3.split("#").head.concat("#" + prePross.ToCamelForRelation(x._3.split("#").last))))
+    triplesForEnrichmentWithURIs
+  }
 }

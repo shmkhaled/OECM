@@ -37,7 +37,7 @@ def GetTriplesForClassesToBeEnriched(sOntology: RDD[(String, String, String)], t
     var i = 1
     while (newClasses.count() != 0){
       val startTimeMillis = System.currentTimeMillis()
-      println("Iteration number "+i)
+//      println("Iteration number "+i)
       //Get all triples from the source ontology which has the matched terms as subject or object
       var rdd1 = sourceOntology.keyBy(_._1).join(newClasses.zipWithIndex())
       var rdd11 = rdd1.map({case(a,((s,p,o),b))=> (s,p,o)})
@@ -54,12 +54,12 @@ def GetTriplesForClassesToBeEnriched(sOntology: RDD[(String, String, String)], t
       var allClasses = subjectClass.union(objectClass).persist(StorageLevel.MEMORY_AND_DISK)
       newClasses = allClasses.subtract(newClasses).distinct(2)
         .filter(x => x != "Class").persist(StorageLevel.MEMORY_AND_DISK)
-      println("New classes are:")
-      newClasses.foreach(println(_))
+//      println("New classes are:")
+//      newClasses.foreach(println(_))
       triples = triples.union(tempTriples)
       val endTimeMillis = System.currentTimeMillis()
       val durationMilliSeconds = (endTimeMillis - startTimeMillis)
-      println("runtime of iteration number "+i+" = "+durationMilliSeconds+ " ms")
+//      println("runtime of iteration number "+i+" = "+durationMilliSeconds+ " ms")
       i = i + 1
     }
 
