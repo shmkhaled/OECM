@@ -11,31 +11,8 @@ class RetrieveURIs(sparkSession: SparkSession, sourceOntology: RDD[graph.Triple]
 
   val sourceObjectURIs = sourceOntology.filter(x => x.getObject.isURI).map(y => (y.getObject.getNameSpace, y.getObject.getLocalName))
 
-  val AllSourceURIs: RDD[(String, String)] = sourceSubjectURIs.union(sourcePredicateURIs).union(sourceObjectURIs).distinct(2) //    println("All source ontology URIs")
-  //    AllSourceURIs.foreach(println(_))
-  //  def getTripleURIs(sourceOntology: RDD[graph.Triple], sourceClassesWithBestTranslation: RDD[(String, String, String)], relationsWithTranslation: RDD[(String, String, String)], triplesForEnrichment: RDD[(String, String, String)], triplesFor: String): RDD[(String, String, String)] = { //triplesFor is a flage which can take "classes" or "relations"
-  //
-  //    val ontologyElementsWithCodes: RDD[(String, String, String)] = sourceClassesWithBestTranslation.union(relationsWithTranslation)
-  //
-  //    val ontologyElementsWithCodesAndURIs: RDD[(String, io.Serializable, io.Serializable, String)] = ontologyElementsWithCodes.keyBy(_._1).rightOuterJoin(AllSourceURIs.keyBy(_._2)).map { case (code1, (Some((code2, foreignLabel, englishLabel)), (uri, code3))) => (uri, code1, foreignLabel, englishLabel)
-  //    case (s, (None, (urii, o))) => (urii, None, None, o)
-  //    }
-  //
-  //    //    println("Ontology Elements with codes and URIs " +ontologyElementsWithCodesAndURIs.count()+" ontologyElementsWithCodes number is "+ontologyElementsWithCodes.count())
-  //    //
-  //    //    ontologyElementsWithCodesAndURIs.foreach(println(_))
-  //    val ontologyElementsWithCodesAndURIsBroadcasting = sparkSession.sparkContext.broadcast(ontologyElementsWithCodesAndURIs.keyBy(_._4).collect().toMap)
-  //
-  //    val prePross = new PreProcessing()
-  //
-  //    var triplesForEnrichmentWithURIs = sparkSession.sparkContext.emptyRDD[(String, String, String)]
-  //    if (triplesFor == "classes") {
-  //      triplesForEnrichmentWithURIs = triplesForEnrichment.map(x => if (ontologyElementsWithCodesAndURIsBroadcasting.value.contains(x._1) || ontologyElementsWithCodesAndURIsBroadcasting.value.contains(x._2) || ontologyElementsWithCodesAndURIsBroadcasting.value.contains(x._3)) (ontologyElementsWithCodesAndURIsBroadcasting.value(x._1)._1.concat(prePross.ToCamelForClass(x._1)), ontologyElementsWithCodesAndURIsBroadcasting.value(x._2)._1.concat(x._2), ontologyElementsWithCodesAndURIsBroadcasting.value(x._3)._1.concat(prePross.ToCamelForClass(x._3))) else (ontologyElementsWithCodesAndURIsBroadcasting.value(x._1)._1.concat(prePross.ToCamelForClass(x._1)), prePross.ToCamelForClass(x._2), prePross.ToCamelForClass(x._3)))
-  //    }
-  //    else
-  //      triplesForEnrichmentWithURIs = triplesForEnrichment.map(x => if (ontologyElementsWithCodesAndURIsBroadcasting.value.contains(x._1) || ontologyElementsWithCodesAndURIsBroadcasting.value.contains(x._2) || ontologyElementsWithCodesAndURIsBroadcasting.value.contains(x._3)) (ontologyElementsWithCodesAndURIsBroadcasting.value(x._1)._1.concat(prePross.ToCamelForRelation(x._1)), ontologyElementsWithCodesAndURIsBroadcasting.value(x._2)._1.concat(x._2), ontologyElementsWithCodesAndURIsBroadcasting.value(x._3)._1.concat(prePross.ToCamelForClass(x._3))) else (ontologyElementsWithCodesAndURIsBroadcasting.value(x._1)._1.concat(prePross.ToCamelForRelation(x._1)), prePross.ToCamelForClass(x._2), prePross.ToCamelForClass(x._3)))
-  //    triplesForEnrichmentWithURIs
-  //  }
+  val AllSourceURIs: RDD[(String, String)] = sourceSubjectURIs.union(sourcePredicateURIs).union(sourceObjectURIs).distinct(2)
+
   def getTripleURIsForHierarchicalEnrichment(sourceClassesWithBestTranslation: RDD[(String, String, String)], triplesForEnrichment: RDD[(String, String, String)]): RDD[(String, String, String)] = {
 
     val ontologyClassesWithCodesAndURIs: RDD[(String, io.Serializable, io.Serializable, String)] = sourceClassesWithBestTranslation.keyBy(_._1).rightOuterJoin(AllSourceURIs.keyBy(_._2)).map { case (code1, (Some((code2, foreignLabel, englishLabel)), (uri, code3))) => (uri, code1, foreignLabel, englishLabel)

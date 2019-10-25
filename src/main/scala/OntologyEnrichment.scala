@@ -183,13 +183,24 @@ object OntologyEnrichment {
 
 //    triplesForRelationalEnrichmentWithURIs.coalesce(1, shuffle = true).saveAsTextFile("Output/triplesForRelationalEnrichmentWithURIs(SEO-Conference)")
 
-    val gCreate = new GraphCreating()
-    val outputGraph: RDD[graph.Triple] = gCreate.createGraph(triplesForRelationalEnrichmentWithURIs)
+    val gCreate = new GraphCreating(sparkSession1)
+    val triplesToBeEnrichedAsGraph: RDD[graph.Triple] = gCreate.createGraph(triplesForHierarchicalEnrichmentWithURIs).union(gCreate.createGraph(triplesForRelationalEnrichmentWithURIs))
+    val enrichedTargetOntology = targetOntology.union(triplesToBeEnrichedAsGraph)
 
-    outputGraph.coalesce(1, shuffle = true).saveAsNTriplesFile("Output/Graph")
-    println("Graph printing")
-    outputGraph.foreach(println(_))
+//    triplesToBeEnrichedAsGraph.coalesce(1, shuffle = true).saveAsNTriplesFile("Output/TriplesToBeEnrichedGraph")
+    println("Graph printing"+triplesToBeEnrichedAsGraph.count())
+    triplesToBeEnrichedAsGraph.foreach(println(_))
+//    enrichedTargetOntology.coalesce(1, shuffle = true).saveAsNTriplesFile("Output/EnrichedTargetOntology")
+    println("Enriched Target Ontology: "+ enrichedTargetOntology.count())
+    enrichedTargetOntology.foreach(println(_))
 
+    val triplesToBeEnrichedAsGraphWithForeignClassLabels = gCreate.createMultilingualGraphLabelsForClasses(triplesForHierarchicalEnrichmentWithURIs,sourceClassesWithBestTranslation)
+    println("Foreign labels for classes")
+    triplesToBeEnrichedAsGraphWithForeignClassLabels.foreach(println(_))
+
+    val triplesToBeEnrichedAsGraphWithForeignRelationsLabels = gCreate.createMultilingualGraphLabelsForRelations(triplesForRelationalEnrichmentWithURIs,relationsWithTranslation)
+    println("Foreign labels for relations")
+    triplesToBeEnrichedAsGraphWithForeignRelationsLabels.foreach(println(_))
 
 
 
