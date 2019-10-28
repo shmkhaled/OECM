@@ -47,8 +47,23 @@ class EnrichmentStatistics(sparkSession: SparkSession) {
 
     val dereferenceableUrisBeforeEnrichment = QA.DereferenceableUris(targetOntology)
     val dereferenceableUrisAfterEnrichment = QA.DereferenceableUris(enrichedTargetOntology)
-    val dereferenceableUrisRatio = ((dereferenceableUrisAfterEnrichment-dereferenceableUrisBeforeEnrichment)/dereferenceableUrisBeforeEnrichment)*100
-    println("Dereferenceable Uris before enrichment = "+ontoStat.Round(dereferenceableUrisBeforeEnrichment)+" after enrichment = "+ontoStat.Round(dereferenceableUrisAfterEnrichment)+ " i.e. increased by "+ ontoStat.Round(dereferenceableUrisRatio)+ " %")
+    println("Dereferenceable Uris before enrichment = "+ontoStat.Round(dereferenceableUrisBeforeEnrichment)+" after enrichment = "+ontoStat.Round(dereferenceableUrisAfterEnrichment))
+
+    val coverageDetailBeforeEnrichment = QA.CoverageDetail(targetOntology)
+    val coverageDetailAfterEnrichment = QA.CoverageDetail(enrichedTargetOntology)
+    println("Coverage Detail before enrichment = "+ontoStat.Round(coverageDetailBeforeEnrichment)+" after enrichment = "+ontoStat.Round(coverageDetailAfterEnrichment))
+
+    val amountOfTriplesBeforeEnrichment = QA.AmountOfTriples(targetOntology)
+    val amountOfTriplesAfterEnrichment = QA.AmountOfTriples(enrichedTargetOntology)
+    println("Amount of Triples before enrichment = "+ontoStat.Round(amountOfTriplesBeforeEnrichment)+" after enrichment = "+ontoStat.Round(amountOfTriplesAfterEnrichment))
+
+    val noHashUrisBeforeEnrichment = QA.NoHashUris(targetOntology)
+    val noHashUrisAfterEnrichment = QA.NoHashUris(enrichedTargetOntology)
+    println("No Hash Uris before enrichment = "+ontoStat.Round(noHashUrisBeforeEnrichment)+" after enrichment = "+ontoStat.Round(noHashUrisAfterEnrichment))
+
+    val labeledResourcesEnrichment = QA.LabeledResources(targetOntology)
+    val labeledResourcesAfterEnrichment = QA.LabeledResources(enrichedTargetOntology)
+    println("Labeled Resources before enrichment = "+ontoStat.Round(labeledResourcesEnrichment)+" after enrichment = "+ontoStat.Round(labeledResourcesAfterEnrichment))
 
   }
 

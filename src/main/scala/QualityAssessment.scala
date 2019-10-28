@@ -22,6 +22,22 @@ class QualityAssessment(sparkSession: SparkSession) {
     val dereferenceableUris: Double = ontologyTriples.assessDereferenceableUris()
     dereferenceableUris
   }
+  def CoverageDetail(ontologyTriples: RDD[graph.Triple]): Double={
+    val coverageDetail: Double = ontologyTriples.assessCoverageDetail()
+    coverageDetail
+  }
+  def AmountOfTriples(ontologyTriples: RDD[graph.Triple]): Double={
+    val amountOfTriples: Double = ontologyTriples.assessAmountOfTriples()
+    amountOfTriples
+  }
+  def NoHashUris(ontologyTriples: RDD[graph.Triple]): Double={
+    val noHashUris: Double = ontologyTriples.assessNoHashUris()
+    noHashUris
+  }
+  def LabeledResources(ontologyTriples: RDD[graph.Triple]): Double={
+    val labeledResources: Double = ontologyTriples.assessLabeledResources()
+    labeledResources
+  }
   def assessSchemaCompleteness(dataset: RDD[Triple]): Double = {
     /**
       * -->Rule->Filter-->
