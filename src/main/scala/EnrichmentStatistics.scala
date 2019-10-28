@@ -1,0 +1,55 @@
+import org.apache.jena.graph
+import org.apache.spark.rdd.RDD
+import org.apache.spark.sql.SparkSession
+
+/*
+* Created by Shimaa Ibrahim 28 October 2019
+* */
+
+class EnrichmentStatistics(sparkSession: SparkSession) {
+  def getEnrichmentStatistics(targetOntology: RDD[graph.Triple], enrichedTargetOntology: RDD[graph.Triple])={
+    val ontoStat = new OntologyStatistics(sparkSession)
+    val QA = new QualityAssessment(sparkSession)
+    val numOfClassesBeforeEnrichment = ontoStat.GetNumberOfClasses(targetOntology)
+    val numOfClassesAfterEnrichment = ontoStat.GetNumberOfClasses(enrichedTargetOntology)
+    val enrichmentRatioForClasses = ((numOfClassesAfterEnrichment-numOfClassesBeforeEnrichment)/numOfClassesBeforeEnrichment)*100
+    println("Number of classes before enrichment = "+ numOfClassesBeforeEnrichment+" after enrichment = "+numOfClassesAfterEnrichment+ " i.e. enrichment by "+ enrichmentRatioForClasses.round + " %")
+
+    val numOfRelationsBeforeEnrichment = ontoStat.GetNumberOfRelations(targetOntology)
+    val numOfRelationsAfterEnrichment = ontoStat.GetNumberOfRelations(enrichedTargetOntology)
+    val enrichmentRatioForRelations = ((numOfRelationsAfterEnrichment-numOfRelationsBeforeEnrichment)/numOfRelationsBeforeEnrichment)*100
+    println("Number of relations before enrichment = "+numOfRelationsBeforeEnrichment+" after enrichment = "+numOfRelationsAfterEnrichment+ " i.e. enrichment by "+ enrichmentRatioForRelations.round + " %")
+
+    val numOfTriplesBeforeEnrichment = targetOntology.count()
+    val numOfTriplesAfterEnrichment = enrichedTargetOntology.count()
+    val triplesRatio = ((numOfTriplesAfterEnrichment-numOfTriplesBeforeEnrichment)/numOfTriplesBeforeEnrichment)*100
+    println("Number of triples before enrichment = "+numOfTriplesBeforeEnrichment+" after enrichment = "+numOfTriplesAfterEnrichment+ " i.e. increased by "+ triplesRatio.round + " %")
+
+    val relationshipRichnessBeforeEnrichment = QA.RelationshipRichness(targetOntology)
+    val relationshipRichnessAfterEnrichment = QA.RelationshipRichness(enrichedTargetOntology)
+    val enrichmentRatioForRelationshipRichness = ((relationshipRichnessAfterEnrichment-relationshipRichnessBeforeEnrichment)/relationshipRichnessBeforeEnrichment)*100
+    println("Relationship richness before enrichment = "+ontoStat.Round(relationshipRichnessBeforeEnrichment)+" after enrichment = "+ontoStat.Round(relationshipRichnessAfterEnrichment)+ " i.e. increased by "+ ontoStat.Round(enrichmentRatioForRelationshipRichness)+ " %")
+
+    val inheritanceRichnessBeforeEnrichment = QA.InheritanceRichness(targetOntology)
+    val inheritanceRichnessAfterEnrichment = QA.InheritanceRichness(enrichedTargetOntology)
+    val inheritanceRichnessRatio = ((inheritanceRichnessAfterEnrichment-inheritanceRichnessBeforeEnrichment)/inheritanceRichnessBeforeEnrichment)*100
+    println("Inheritance richness before enrichment = "+ontoStat.Round(inheritanceRichnessBeforeEnrichment)+" after enrichment = "+ontoStat.Round(inheritanceRichnessAfterEnrichment)+ " i.e. increased by "+ ontoStat.Round(inheritanceRichnessRatio)+ " %")
+
+    val schemaCompletenessBeforeEnrichment = QA.SchemaCompleteness(targetOntology)
+    val schemaCompletenessAfterEnrichment = QA.SchemaCompleteness(enrichedTargetOntology)
+    val schemaCompletenessRatio = ((schemaCompletenessAfterEnrichment-schemaCompletenessBeforeEnrichment)/schemaCompletenessBeforeEnrichment)*100
+    println("Schema Completeness before enrichment = "+ontoStat.Round(schemaCompletenessBeforeEnrichment)+" after enrichment = "+ontoStat.Round(schemaCompletenessAfterEnrichment)+ " i.e. increased by "+ ontoStat.Round(schemaCompletenessRatio)+ " %")
+
+    val interlinkingCompBeforeEnrichment = QA.InterlinkingCompleteness(targetOntology)
+    val interlinkingCompAfterEnrichment = QA.InterlinkingCompleteness(enrichedTargetOntology)
+    val interlinkingCompRatio = ((interlinkingCompAfterEnrichment-interlinkingCompBeforeEnrichment)/interlinkingCompBeforeEnrichment)*100
+    println("Interlinking Completeness before enrichment = "+ontoStat.Round(interlinkingCompBeforeEnrichment)+" after enrichment = "+ontoStat.Round(interlinkingCompAfterEnrichment)+ " i.e. increased by "+ ontoStat.Round(interlinkingCompRatio)+ " %")
+
+    val dereferenceableUrisBeforeEnrichment = QA.DereferenceableUris(targetOntology)
+    val dereferenceableUrisAfterEnrichment = QA.DereferenceableUris(enrichedTargetOntology)
+    val dereferenceableUrisRatio = ((dereferenceableUrisAfterEnrichment-dereferenceableUrisBeforeEnrichment)/dereferenceableUrisBeforeEnrichment)*100
+    println("Dereferenceable Uris before enrichment = "+ontoStat.Round(dereferenceableUrisBeforeEnrichment)+" after enrichment = "+ontoStat.Round(dereferenceableUrisAfterEnrichment)+ " i.e. increased by "+ ontoStat.Round(dereferenceableUrisRatio)+ " %")
+
+  }
+
+}

@@ -37,6 +37,38 @@ class OntologyStatistics (sparkSession: SparkSession) {
     println("List of predicates in the ontology: ")
     listOfPredicates.foreach(println(_))
   }
+  def GetNumberOfClasses(ontologyTriples: RDD[graph.Triple]): Double={
+    val numOfClasses = ontologyTriples.filter(q => q.getSubject.isURI && q.getObject.isURI && q.getObject.getLocalName == "Class").distinct(2).count()
+    numOfClasses
+  }
+  def GetNumberOfRelations(ontologyTriples: RDD[graph.Triple]): Double={
+    val numOfRelations = ontologyTriples.filter(q => q.getObject.isURI && q.getObject.getLocalName == "ObjectProperty").distinct(2).count()
+
+    numOfRelations
+  }
+  def GetNumberOfAttributes(ontologyTriples: RDD[graph.Triple]): Double={
+    val numOfAttributes = ontologyTriples.filter(q => q.getObject.isURI && q.getObject.getLocalName == "DatatypeProperty").distinct(2).count()
+
+    numOfAttributes
+  }
+  def GetNumberOfSubClasses(ontologyTriples: RDD[graph.Triple]): Double={
+    val numOfSubClasses = ontologyTriples.filter(q => q.getSubject.isURI && q.getObject.isURI && q.getPredicate.getLocalName == "subClassOf").distinct(2).count()
+//    println("Number of SubClasses "+numOfSubClasses)
+    numOfSubClasses
+
+  }
+//  def GetNumberOfRelations(ontologyTriples: RDD[graph.Triple]): Double={
+//    val numOfObjectProperty = ontologyTriples.filter(q => q.getObject.isURI && q.getObject.getLocalName == "ObjectProperty").distinct(2).count()
+//
+//    val numOfAnnotationProperty = ontologyTriples.filter(q => q.getObject.isURI && q.getObject.getLocalName == "AnnotationProperty").distinct(2).count()
+//    //    sAnnotationProperty.foreach(println(_))
+//
+//    val numOfDatatypeProperty = ontologyTriples.filter(q => q.getObject.isURI && q.getObject.getLocalName == "DatatypeProperty").distinct(2).count()
+//
+//    val numOfRelations = numOfObjectProperty + numOfAnnotationProperty + numOfDatatypeProperty
+//
+//    numOfRelations
+//  }
   def OntologyWithCodeOrText (ontologyTriples: RDD[graph.Triple]): Boolean={
     val classes = ontologyTriples.filter(q => q.getSubject.isURI && q.getObject.isURI && q.getObject.getLocalName == "Class").distinct(2)
     var hasCode = false
@@ -73,5 +105,8 @@ class OntologyStatistics (sparkSession: SparkSession) {
 //    prop.foreach(println(_))
     val relations: RDD[(String, String)] = prop.map(x => if (sourceLabelBroadcasting.value.contains(x.getSubject))(x.getSubject.getLocalName, sourceLabelBroadcasting.value(x.getSubject).getObject.getLiteral.toString().split("@").head) else (x.getSubject.getLocalName, x.getObject.getLocalName)).distinct(2)
     relations
+  }
+  def Round(num: Double):Double={
+    (num * 100).round / 100.toDouble
   }
 }

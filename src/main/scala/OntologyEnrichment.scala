@@ -1,6 +1,6 @@
 import net.sansa_stack.rdf.spark.io._
 import org.apache.jena.graph
-import org.apache.jena.graph.{Node, NodeFactory}
+import org.apache.jena.graph.Node
 import org.apache.jena.riot.Lang
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.broadcast.Broadcast
@@ -29,18 +29,7 @@ object OntologyEnrichment {
     val runTime = Runtime.getRuntime
     //    sourceOntology.saveAsNTriplesFile("/home/shimaa/OECM/OutputResults/sourceOntology.nt")
     val ontStat = new OntologyStatistics(sparkSession1)
-
-    val triple: graph.Triple = graph.Triple.create(
-      NodeFactory.createURI("http://dbpedia.org/resource/Guy_de_Maupassant"),
-      NodeFactory.createURI("http://xmlns.com/foaf/0.1/givenName"),
-      NodeFactory.createLiteral("Guy De"))
-
-    println("Triple is "+triple)
-
-
-
-
-    println("################### Statistics of the Source Ontology ###########################")
+        println("################### Statistics of the Source Ontology ###########################")
     ontStat.GetStatistics(sourceOntology)
     println("################### Statistics of the Target Ontology ###########################")
     ontStat.GetStatistics(targetOntology)
@@ -194,23 +183,22 @@ object OntologyEnrichment {
     println("Enriched Target Ontology: "+ enrichedTargetOntology.count())
     enrichedTargetOntology.foreach(println(_))
 
-    val triplesToBeEnrichedAsGraphWithForeignClassLabels = gCreate.createMultilingualGraphLabelsForClasses(triplesForHierarchicalEnrichmentWithURIs,sourceClassesWithBestTranslation)
-    println("Foreign labels for classes")
-    triplesToBeEnrichedAsGraphWithForeignClassLabels.foreach(println(_))
+//    val triplesToBeEnrichedAsGraphWithForeignClassLabels = gCreate.createMultilingualGraphLabelsForClasses(triplesForHierarchicalEnrichmentWithURIs,sourceClassesWithBestTranslation)
+//    println("Foreign labels for classes")
+//    triplesToBeEnrichedAsGraphWithForeignClassLabels.foreach(println(_))
+//
+//    val triplesToBeEnrichedAsGraphWithForeignRelationsLabels = gCreate.createMultilingualGraphLabelsForRelations(triplesForRelationalEnrichmentWithURIs,relationsWithTranslation)
+//    println("Foreign labels for relations")
+//    triplesToBeEnrichedAsGraphWithForeignRelationsLabels.foreach(println(_))
 
-    val triplesToBeEnrichedAsGraphWithForeignRelationsLabels = gCreate.createMultilingualGraphLabelsForRelations(triplesForRelationalEnrichmentWithURIs,relationsWithTranslation)
-    println("Foreign labels for relations")
-    triplesToBeEnrichedAsGraphWithForeignRelationsLabels.foreach(println(_))
+//    triplesToBeEnrichedAsGraphWithForeignClassLabels.union(triplesToBeEnrichedAsGraphWithForeignRelationsLabels).coalesce(1, shuffle = true).saveAsNTriplesFile("Output/MultilingualLabels")
 
+    //################################## Quality Assessment ###################
+    println("################################## Quality Assessment ###################")
 
+    val enrichStats = new EnrichmentStatistics(sparkSession1)
+    enrichStats.getEnrichmentStatistics(targetOntology, enrichedTargetOntology)
 
-    //    translatedSourceOntology.coalesce(1, shuffle = true).saveAsTextFile("Output/triplesForEnrichment(SEO-Conference)")
-    //    println("####################### Generate multilingual Triples #######################")
-    //    val multilingual = new RetriveMultilingualInfo()
-    //    val foreignLanguageTriples = multilingual.getForeignLangTriples(monolingualTriplesForEnrichment, sourceClassesWithBestTranslation)
-    //    val triplesForEnrichment = monolingualTriplesForEnrichment.union(foreignLanguageTriples)
-    //    println("Number of triples = "+triplesForEnrichment.count())
-    //    triplesForEnrichment.foreach(println(_))
     val endTimeMillis = System.currentTimeMillis()
     val durationMinutes = (endTimeMillis - startTimeMillis) / (1000 * 60)
     println("runtime = " + durationMinutes + " minutes")

@@ -32,7 +32,7 @@ class GraphCreating(sparkSession: SparkSession) extends Serializable {
     val g: RDD[graph.Triple] = triplesWithTranslation.map{case x => graph.Triple.create(
       NodeFactory.createURI(x._1),
       NodeFactory.createURI(x._2),
-      NodeFactory.createLiteral(x._3, "de")
+      NodeFactory.createLiteral(prePross.splitCamelCase(x._3), "de")
     )}
     g
   }
@@ -43,10 +43,12 @@ class GraphCreating(sparkSession: SparkSession) extends Serializable {
       if (relationsWithTranslationBroadcasting.value.contains(prePross.splitCamelCase(x._1.split("#").last).toLowerCase)) (x._1,"http://www.w3.org/2000/01/rdf-schema#label",prePross.ToCamelForRelation(relationsWithTranslationBroadcasting.value(prePross.splitCamelCase(x._1.split("#").last).toLowerCase)._2))
       else (x._1, x._2,x._3))
 
-    val g: RDD[graph.Triple] = triplesWithTranslation.map{case x => graph.Triple.create(
+    val relationsWithLiterals: RDD[(String, String, String)] = triplesWithTranslation.filter(x => x._2 == "http://www.w3.org/2000/01/rdf-schema#label")
+
+    val g: RDD[graph.Triple] = relationsWithLiterals.map{case x => graph.Triple.create(
       NodeFactory.createURI(x._1),
       NodeFactory.createURI(x._2),
-      NodeFactory.createLiteral(x._3, "de")
+      NodeFactory.createLiteral(prePross.splitCamelCase(x._3), "de")
     )}
     g
   }
