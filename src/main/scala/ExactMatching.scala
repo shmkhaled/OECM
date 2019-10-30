@@ -28,8 +28,8 @@ class ExactMatching {
     println("|        The intersection between the two ontologies       |")
     var matchOntology: RDD[(Node, (Node, Node))] = sourceOntology.intersection(tOntology)//get full matched triples
     matchOntology.foreach(println(_))
-    println("|        The source ontologyTriples after removing the common triples       |")
-    sourceOntology = sourceOntology.subtract(matchOntology)//remove full matched triples from the source ontologyTriples
+    println("|        The source triples after removing the common triples       |")
+    sourceOntology = sourceOntology.subtract(matchOntology)//remove full matched triples from the source triples
     sourceOntology.foreach(println(_))
 //    var source :RDD[graph.Triple] = sourceOntology.map(t=>t._1,t.)
 

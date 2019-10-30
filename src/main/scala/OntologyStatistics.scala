@@ -15,7 +15,7 @@ class OntologyStatistics (sparkSession: SparkSession) {
       .map(x => x.getSubject.getLocalName).first()
     println("Ontology name is: "+ontoName)
     println("Number of triples in the "+ontoName+" ontology = "+ontologyTriples.count())
-//    ontologyTriples.foreach(println(_))
+//    triples.foreach(println(_))
 
     val sObjectProperty = ontologyTriples.filter(q => q.getObject.isURI && q.getObject.getLocalName == "ObjectProperty").distinct(2)
     println("Number of object properties is "+sObjectProperty.count())
@@ -57,13 +57,13 @@ class OntologyStatistics (sparkSession: SparkSession) {
     numOfSubClasses
 
   }
-//  def GetNumberOfRelations(ontologyTriples: RDD[graph.Triple]): Double={
-//    val numOfObjectProperty = ontologyTriples.filter(q => q.getObject.isURI && q.getObject.getLocalName == "ObjectProperty").distinct(2).count()
+//  def GetNumberOfRelations(triples: RDD[graph.Triple]): Double={
+//    val numOfObjectProperty = triples.filter(q => q.getObject.isURI && q.getObject.getLocalName == "ObjectProperty").distinct(2).count()
 //
-//    val numOfAnnotationProperty = ontologyTriples.filter(q => q.getObject.isURI && q.getObject.getLocalName == "AnnotationProperty").distinct(2).count()
+//    val numOfAnnotationProperty = triples.filter(q => q.getObject.isURI && q.getObject.getLocalName == "AnnotationProperty").distinct(2).count()
 //    //    sAnnotationProperty.foreach(println(_))
 //
-//    val numOfDatatypeProperty = ontologyTriples.filter(q => q.getObject.isURI && q.getObject.getLocalName == "DatatypeProperty").distinct(2).count()
+//    val numOfDatatypeProperty = triples.filter(q => q.getObject.isURI && q.getObject.getLocalName == "DatatypeProperty").distinct(2).count()
 //
 //    val numOfRelations = numOfObjectProperty + numOfAnnotationProperty + numOfDatatypeProperty
 //
