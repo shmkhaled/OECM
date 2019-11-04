@@ -3,7 +3,7 @@ import org.apache.spark.broadcast.Broadcast
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
 
-class Translation (sparkSession: SparkSession) extends Serializable{
+class ClassSimilarity(sparkSession: SparkSession) extends Serializable{
   def GettingAllAvailableTranslations(filePathForOfflineTranslation: String): RDD[(String, List[String])]= {
     val p = new PreProcessing()
     RedwoodConfiguration.current.clear.apply()

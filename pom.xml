@@ -54,6 +54,7 @@
             <type>pom</type>
             <version>${jena.version}</version>
         </dependency>
+        <!-- SANSA RDF -->
         <dependency>
             <groupId>net.sansa-stack</groupId>
             <artifactId>sansa-rdf-spark_${scala.binary.version}</artifactId>
@@ -72,6 +73,12 @@
                     <artifactId>sparqlify-core</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <!-- SANSA Querying -->
+        <dependency>
+            <groupId>net.sansa-stack</groupId>
+            <artifactId>sansa-query-spark_${scala.binary.version}</artifactId>
+            <version>${sansa.version}</version>
         </dependency>
         <dependency>
             <groupId>info.debatty</groupId>
