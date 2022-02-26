@@ -23,7 +23,7 @@
         <spark.version>2.3.1</spark.version>
         <sansa.version>0.4.1-SNAPSHOT</sansa.version>
         <jena.version>3.7.0</jena.version>
-        <stanford.corenlp.version>3.9.2</stanford.corenlp.version>
+        <stanford.corenlp.version>4.4.0</stanford.corenlp.version>
     </properties>
 
     <dependencies>
